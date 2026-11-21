@@ -4,6 +4,10 @@
 
 - README song ngữ: `README.md` (tiếng Anh, bản mặc định trên GitHub) và `README.vi.md`
   (tiếng Việt), có nút chuyển ngôn ngữ; ảnh minh hoạ bộ quét slop có bản cho từng ngôn ngữ.
+- Bộ ảnh README mới, tự thiết kế: bản đồ quy trình kiểu tàu điện (một trục bằng chứng, hai tuyến
+  slide và viết bài) và bốn thẻ tính năng, mỗi ảnh có bản tiếng Anh và tiếng Việt. Thay sơ đồ
+  và ảnh minh hoạ cũ. Script sinh ảnh ở `assets/src/`.
+- `lint_prose.py --compare` bỏ qua số thứ tự trích dẫn như `[4]`.
 - Test giữ hai bản README đồng bộ: đủ skill, cùng phiên bản, cùng các lệnh, ảnh tồn tại.
 
 ## 1.2.0
