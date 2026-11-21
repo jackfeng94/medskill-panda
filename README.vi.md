@@ -17,9 +17,9 @@ bắt các dấu hiệu "slide do máy làm", và hỗ trợ viết bài báo, t
 [![tests](https://github.com/jackfeng94/medskill-panda/actions/workflows/tests.yml/badge.svg)](https://github.com/jackfeng94/medskill-panda/actions/workflows/tests.yml)
 [![python 3.8+](https://img.shields.io/badge/python-3.8%2B-4a5a6a)](#hook)
 
-<img src="assets/features.vi.png" alt="Bốn tính năng: mỗi con số đều có nguồn; chưa duyệt thì chưa dựng; slop bị bắt khi lưu; kiểm tra bản thảo tiếng Việt và tiếng Anh" width="100%">
+<img src="assets/example-slides.vi.png" alt="Bốn slide của ví dụ DEMO-HF: tiêu đề, đường cong Kaplan–Meier, forest plot phân nhóm, hiệu quả tuyệt đối" width="100%">
 
-<sub>Thẻ 3 và 4 là kết quả chạy thật của <code>lint_slop.py</code> và <code>lint_prose.py</code>; thẻ 1 là ví dụ minh hoạ.</sub>
+<sub>Bộ slide thật do plugin dựng từ dữ liệu mô phỏng (<a href="examples/demo-hf/">examples/demo-hf</a>): tiêu đề khẳng định, hình vẽ từ dữ liệu, dòng nguồn trên mọi slide, 0 lỗi slop.</sub>
 
 </div>
 
@@ -39,7 +39,7 @@ bắt các dấu hiệu "slide do máy làm", và hỗ trợ viết bài báo, t
 ## Cách hoạt động
 
 <div align="center">
-<img src="assets/pipeline.vi.png" alt="Bản đồ quy trình: brief, kế hoạch, sổ bằng chứng, rồi tách thành tuyến slide và tuyến viết bài, nhập lại ở bước kiểm tra và bàn giao" width="100%">
+<img src="assets/pipeline.vi.png" alt="Medskill Panda hoạt động thế nào: đầu vào, trục chung gồm brief, kế hoạch và sổ bằng chứng, rồi làn slide và làn viết bài, một bước kiểm tra, bàn giao kèm thư mục dự án" width="100%">
 </div>
 
 Slide và bản thảo dùng chung một trục bằng chứng: cùng brief, cùng kế hoạch đã duyệt, cùng sổ
@@ -120,6 +120,10 @@ cầu viết đi theo cùng nguyên tắc như làm slide:
    và tiếng Anh, con số thiếu trích dẫn, placeholder, `p = 0.000`, dấu thập phân lẫn lộn,
    số liệu lệch giữa bản tiếng Việt và tiếng Anh, liên kết nhận định–bằng chứng, guideline,
    tác giả.
+
+<div align="center">
+<img src="assets/example-manuscript.vi.png" alt="Trang bản thảo mẫu có tóm tắt tiếng Anh và tiếng Việt, cạnh kết quả lint_prose" width="100%">
+</div>
 
 ## Các skill
 

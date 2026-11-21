@@ -82,6 +82,18 @@ class LintProseTest(unittest.TestCase):
                          "Mortality was 50% (McMurray et al., 2019).\n\n# Results\n\nResponse was 42%.\n")
         self.assertNotIn("P04", ids(found))
 
+    def test_bilingual_paper_uses_each_languages_decimals(self):
+        found = run_lint("# Abstract\n\nThe rate ratio was 0.75 (95% CI 0.63–0.89) and the absolute difference "
+                         "6.7 points.\n\n# Tóm tắt\n\nTỷ số tỷ suất là 0,75 (KTC 95% 0,63–0,89); chênh lệch tuyệt "
+                         "đối 6,7 điểm phần trăm.\n")
+        self.assertEqual(lint_prose.detect_lang(lint_prose.with_sections(lint_prose.read_markdown(
+            "English text here.\n\nVăn bản tiếng Việt ở đây.\n"))), "vi+en")
+        self.assertNotIn("P06", ids(found))
+        self.assertNotIn("P03", ids(found))  # "chênh lệch tuyệt đối" is a statistical term
+
+    def test_comma_decimal_in_english_block(self):
+        self.assertIn("P06", ids(run_lint("# Results\n\nThe rate ratio was 0,75 overall.\n")))
+
     def test_reference_list_is_checked_for_placeholders_only(self):
         found = run_lint("# Introduction\n\nPlain text.\n\n# References\n\n1. A pivotal paper. 2019. TODO\n")
         self.assertEqual(ids(found), ["P01"])

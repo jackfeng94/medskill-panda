@@ -65,7 +65,8 @@ OVERSTATE = {
         r"\bguarantee(?:s|d)?\b|\bclearly demonstrat\w+|\bundeniabl\w+|\bconclusively\b|\bno limitations\b",
         re.I),
     "vi": re.compile(
-        r"chứng minh (?:rằng|được|là)|khẳng định chắc chắn|\bhoàn toàn (?:không|có|hiệu quả|an toàn|khỏi)|tuyệt đối|"
+        r"chứng minh (?:rằng|được|là)|khẳng định chắc chắn|\bhoàn toàn (?:không|có|hiệu quả|an toàn|khỏi)|"
+        r"(?<!chênh lệch )(?<!nguy cơ )(?<!giảm )(?<!giá trị )(?<!số )(?<!tăng )tuyệt đối|"
         r"rất có ý nghĩa thống kê|có xu hướng có ý nghĩa|100% hiệu quả|chắc chắn rằng",
         re.I),
 }
@@ -257,15 +258,30 @@ def with_sections(blocks: list[dict]) -> list[dict]:
     return out
 
 
+def block_lang(text: str) -> str:
+    """'vi' when the block's own letters carry Vietnamese diacritics, else 'en'."""
+    letters = sum(ch.isalpha() for ch in text)
+    return "vi" if len(VI_CHARS.findall(text)) >= max(2, letters * 0.02) else "en"
+
+
 def detect_lang(blocks: list[dict]) -> str:
-    text = " ".join(b["text"] for b in blocks[:400] if not b.get("refs"))
-    return "vi" if len(VI_CHARS.findall(text)) > max(4, len(text) // 200) else "en"
+    """Document language by words: 'vi', 'en', or 'vi+en' when each holds at least 20%."""
+    words = Counter()
+    for b in blocks:
+        if not b.get("refs") and b["kind"] != "heading":
+            words[block_lang(b["text"])] += len(b["text"].split())
+    total = sum(words.values()) or 1
+    langs = [l for l in ("vi", "en") if words[l] / total >= 0.2]
+    if len(langs) == 2:
+        return "vi+en"
+    return langs[0] if langs else "en"
 
 
 # ---------------------------------------------------------------------------- checks
 
 
-def lint(blocks: list[dict], lang: str) -> list[dict]:
+def lint(blocks: list[dict], lang: str = "auto") -> list[dict]:
+    """lang 'vi' or 'en' applies one language to every block; 'auto' (or 'vi+en') decides per block."""
     out: list[dict] = []
     refs = [b for b in blocks if b.get("refs")]
     blocks = [b for b in blocks if not b.get("refs")]
@@ -284,9 +300,10 @@ def lint(blocks: list[dict], lang: str) -> list[dict]:
             add("P01", "error", b, m.group(0))
         if b["kind"] in ("table", "heading"):
             continue
-        for m in STOCK[lang].finditer(t):
+        bl = lang if lang in ("vi", "en") else block_lang(t)
+        for m in STOCK[bl].finditer(t):
             add("P02", "warning", b, m.group(0))
-        for m in OVERSTATE[lang].finditer(t):
+        for m in OVERSTATE[bl].finditer(t):
             add("P03", "warning", b, m.group(0))
         for m in P_ZERO.finditer(t):
             add("P05", "warning", b, m.group(0), "report p < 0.001")
@@ -296,13 +313,20 @@ def lint(blocks: list[dict], lang: str) -> list[dict]:
                 if stat and not CITATION.search(sentence):
                     add("P04", "warning", b, stat.group(0), "statistic without a citation in its sentence")
 
-    all_text = " ".join(b["text"] for b in blocks if b["kind"] != "heading")
-    dots, commas = len(DEC_DOT.findall(all_text)), len(DEC_COMMA.findall(all_text))
-    if lang == "vi" and dots and commas:
-        add("P06", "warning", None, f"{commas} × 0,58 style and {dots} × 0.58 style",
+    # decimal separators are judged per language, so a bilingual paper may use both
+    by_lang = {"vi": [], "en": []}
+    for b in blocks:
+        if b["kind"] != "heading":
+            by_lang[lang if lang in ("vi", "en") else block_lang(b["text"])].append(b["text"])
+    vi_text, en_text = " ".join(by_lang["vi"]), " ".join(by_lang["en"])
+    dots, commas = len(DEC_DOT.findall(vi_text)), len(DEC_COMMA.findall(vi_text))
+    if dots and commas:
+        add("P06", "warning", None, f"Vietnamese text: {commas} × 0,58 style and {dots} × 0.58 style",
             "use one decimal separator, as the venue requires")
-    elif lang == "en" and commas and re.search(r"(?<![\w.,])0,\d", all_text):
-        add("P06", "warning", None, f"{commas} comma decimal(s) such as 0,58", "English uses 0.58")
+    en_commas = re.findall(r"(?<![\w.,])0,\d+", en_text)
+    if en_commas:
+        add("P06", "warning", None, f"English text: {len(en_commas)} comma decimal(s) such as {en_commas[0]}",
+            "English uses 0.58")
 
     if len(body) >= 10:
         bullets = sum(b["kind"] == "bullet" for b in body)
@@ -349,7 +373,7 @@ def main(argv=None) -> int:
         ap.error(f"{path} not found")
     blocks = with_sections(read_blocks(path))
     lang = a.lang if a.lang != "auto" else detect_lang(blocks)
-    findings = lint(blocks, lang)
+    findings = lint(blocks, a.lang)
     if a.compare:
         findings += compare_numbers(blocks, with_sections(read_blocks(Path(a.compare))))
     findings.sort(key=lambda f: (f["severity"] != "error", f["id"]))
