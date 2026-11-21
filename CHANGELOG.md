@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Hướng dẫn từ A đến Z cho người mới (`docs/HUONG-DAN.md`, `docs/GUIDE.md`): cài Claude Code,
+  đăng nhập, cài plugin, làm bài thuyết trình đầu tiên, kiểm tra slide, viết bài báo, làm tiếp,
+  cập nhật, xử lý sự cố, thuật ngữ; liên kết từ đầu hai README.
+- Ảnh README làm lại theo phong cách tài liệu khoa học: sơ đồ hai làn (bạn / Medskill Panda)
+  với nhãn rõ trên từng mũi tên, góc vuông, không đổ bóng; slide mẫu và ảnh ví dụ bỏ bo góc,
+  đổ bóng và nền chuyển màu.
 - Ví dụ DEMO-HF thiết kế lại: slide HTML 6 trang (slide tiêu đề nền màu, khung biểu đồ, khung
   kết luận) và bản PowerPoint dựng bằng `pptx-deck-building` trong một template có nhận diện
   riêng (`make_template.py`), với sơ đồ và biểu đồ gốc sửa được; ảnh README tương ứng.

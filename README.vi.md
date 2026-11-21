@@ -17,6 +17,8 @@ bắt các dấu hiệu "slide do máy làm", và hỗ trợ viết bài báo, t
 [![tests](https://github.com/jackfeng94/medskill-panda/actions/workflows/tests.yml/badge.svg)](https://github.com/jackfeng94/medskill-panda/actions/workflows/tests.yml)
 [![python 3.8+](https://img.shields.io/badge/python-3.8%2B-4a5a6a)](#hook)
 
+**Chưa quen terminal hay Claude Code? Bắt đầu từ [hướng dẫn từng bước](docs/HUONG-DAN.md).**
+
 <img src="assets/example-slides.vi.png" alt="Sáu slide HTML của ví dụ DEMO-HF: tiêu đề, dòng bệnh nhân, Kaplan–Meier, forest plot, chất lượng sống, hiệu quả tuyệt đối" width="100%">
 
 <sub>Bộ slide thật do plugin dựng từ dữ liệu mô phỏng (<a href="examples/demo-hf/">examples/demo-hf</a>): tiêu đề khẳng định, hình vẽ từ dữ liệu, dòng nguồn trên mọi slide, 0 lỗi slop.</sub>
@@ -66,6 +68,9 @@ và bài có công thức).
 </div>
 
 ## Cài đặt
+
+Lần đầu dùng? [Hướng dẫn từng bước](docs/HUONG-DAN.md) đi từ cài Claude Code, đăng nhập đến
+bài thuyết trình đầu tiên.
 
 Trong Claude Code:
 
