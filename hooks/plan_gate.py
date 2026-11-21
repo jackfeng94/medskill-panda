@@ -4,7 +4,7 @@
 Blocks, inside a talk folder whose plan is not approved:
   - Write/Edit/MultiEdit of any file under <talk>/build/ or <talk>/out/;
   - Bash commands that run a deck builder (compose_deck.py, build_deck.py,
-    pptx_from_spec.py) on such a talk folder.
+    pptx_from_spec.py, latexmk/pdflatex/xelatex/lualatex) on such a talk folder.
 Everything else passes untouched. Set MEDSKILL_PANDA_NO_GATE=1 to switch the gate off.
 The hook fails open: any error of its own lets the tool call through.
 """
@@ -18,7 +18,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from talk import emit, find_talk, gated_part, plan_state, read_event  # noqa: E402
 
-BUILDERS = ("compose_deck.py", "build_deck.py", "pptx_from_spec.py")
+BUILDERS = ("compose_deck.py", "build_deck.py", "pptx_from_spec.py", "latexmk", "pdflatex", "xelatex", "lualatex")
 TOKEN = re.compile(r'"([^"]+)"|\'([^\']+)\'|(\S+)')
 
 

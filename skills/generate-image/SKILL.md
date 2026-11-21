@@ -300,5 +300,5 @@ output tokens, $0.034. At the same size `gemini-3.1-flash-image` is double that 
 ## Related skills
 
 - `scientific-schematics` — technical diagrams, flowcharts, circuits, pathways
-- `scientific-slides` — presentations that embed generated visuals
+- `medical-deck` — presentations that embed generated visuals
 - `latex-posters` — posters that embed hero images

@@ -11,7 +11,7 @@ for every question, and give the reason in one clause.
 | Audience | students · residents · specialists · mixed MDT · nurses/pharmacists · patients | Sets depth, jargon, how much to explain |
 | Duration | talk minutes + Q&A minutes | Slide budget ≈ 1 content slide per minute |
 | Language | Vietnamese · English · bilingual; keep English drug/trial terms? | Terminology and number format (0,58 vs 0.58) |
-| Output format | HTML · PPTX · both | Build skill, animation, editability |
+| Output format | HTML · PPTX · Beamer (LaTeX → PDF) · HTML + PPTX | Build skill, animation, editability; Beamer suits defences and equation-heavy research talks |
 | Template | institutional .pptx/.potx · congress template · reference deck · none | Theme, logo, header/footer, closing slide |
 | Sources | PDFs supplied · guideline document · case notes · research needed | Whether evidence-research searches |
 | Presenter and event | exact printed name, title, affiliation; event name, date | Title slide; avoids misspelt names |

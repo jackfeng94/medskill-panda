@@ -1,6 +1,6 @@
 ---
 name: deck-grilling
-description: Use when a medical presentation is about to be planned or built and the deck type, audience, purpose, duration, language, output format (HTML or PPTX), template or sources have not all been stated by the user, or when someone wants their talk idea stress-tested.
+description: Use when a medical presentation is about to be planned or built and the deck type, audience, purpose, duration, language, output format (HTML, PPTX or Beamer PDF), template or sources have not all been stated by the user, or when someone wants their talk idea stress-tested.
 ---
 
 # Deck grilling

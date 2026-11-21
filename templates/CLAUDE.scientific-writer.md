@@ -134,7 +134,7 @@ For specialized documents, use the dedicated skill which contains detailed templ
 | Treatment plans (individual patients) | `treatment-plans` |
 | Clinical decision support (cohorts, guidelines) | `clinical-decision-support` |
 | Scientific posters | `latex-posters` |
-| Presentations/slides | `scientific-slides` |
+| Presentations/slides | `medical-deck` (entry point; builds HTML, PPTX or Beamer) |
 | Research grants | `research-grants` |
 | Market research reports | `market-research-reports` |
 | Literature reviews | `literature-review` |
@@ -208,7 +208,7 @@ After compiling any PDF:
 
 1. **Convert to images** (NEVER read PDF directly):
       ```bash
-   python skills/scientific-slides/scripts/pdf_to_images.py document.pdf review/page --dpi 150
+   python skills/beamer-deck-building/scripts/pdf_to_images.py document.pdf review/page --dpi 150
    ```
    Skill scripts live under `skills/<skill-name>/scripts/`; in an initialized project the same tree may be at `.claude/skills/<skill-name>/scripts/` — use whichever prefix exists.
 

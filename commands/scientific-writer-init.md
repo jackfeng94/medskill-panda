@@ -106,7 +106,7 @@ After writing the file, provide a brief summary:
   • citation-management: BibTeX and reference handling
   • clinical-reports: Medical documentation standards
   • research-grants: NSF, NIH, DOE proposal support
-  • scientific-slides: Research presentations
+  • medical-deck: Research and medical presentations (HTML, PPTX, Beamer)
   • latex-posters: Conference poster generation
   • And 19 more specialized skills...
 
