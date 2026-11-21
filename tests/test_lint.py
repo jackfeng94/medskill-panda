@@ -112,6 +112,23 @@ class LintPptxTest(unittest.TestCase):
             found = lint_slop.lint_pptx(p, None)
         self.assertIn("S04", ids(found, "blocking"))
 
+    def test_pptx_footer_and_credit_do_not_count_as_body_text(self):
+        from pptx import Presentation  # type: ignore
+        from pptx.util import Inches
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d) / "deck.pptx"
+            prs = Presentation()
+            for _ in range(2):
+                slide = prs.slides.add_slide(prs.slide_layouts[5])
+                slide.shapes.title.text = "Admissions fell by a quarter"
+                for name in ("Source", "Credit"):
+                    box = slide.shapes.add_textbox(Inches(1), Inches(6), Inches(8), Inches(1))
+                    box.name = name
+                    box.text_frame.text = " ".join(["word"] * 30)
+            prs.save(str(p))
+            found = lint_slop.lint_pptx(p, None)
+        self.assertNotIn("S18", ids(found))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,3 +1,9 @@
 __pycache__/
 *.pyc
 .DS_Store
+# DEMO-HF example: intermediate files that examples/demo-hf/build.sh regenerates
+examples/demo-hf/screens/
+examples/demo-hf/*/build/*.png
+examples/demo-hf/*/build/*.svg
+examples/demo-hf/*/build/index.src.html
+examples/demo-hf/out/charts/*/slide/*.png
