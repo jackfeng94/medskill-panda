@@ -9,6 +9,7 @@ import unittest
 
 from helpers import ROOT
 
+READMES = ("README.md", "README.vi.md")
 SKILLS = sorted(p for p in (ROOT / "skills").iterdir() if p.is_dir())
 FRONTMATTER = re.compile(r"\A---\n(.*?)\n---\n", re.S)
 
@@ -60,14 +61,30 @@ class SkillsTest(unittest.TestCase):
                 with self.subTest(path=str(path.relative_to(ROOT)), name=name):
                     self.assertFalse(name in text, f"{path.name} still mentions {name}")
 
-    def test_readme_lists_every_skill(self):
-        readme = (ROOT / "README.md").read_text(encoding="utf-8")
-        for skill in SKILLS:
-            with self.subTest(skill=skill.name):
-                self.assertTrue(f"`{skill.name}`" in readme, f"{skill.name} missing from README")
-        m = re.search(r"skills-(\d+)-", readme)
-        self.assertIsNotNone(m, "skills badge missing")
-        self.assertEqual(int(m.group(1)), len(SKILLS), "skills badge count is stale")
+    def test_readmes_list_every_skill(self):
+        for name in READMES:
+            readme = (ROOT / name).read_text(encoding="utf-8")
+            for skill in SKILLS:
+                with self.subTest(readme=name, skill=skill.name):
+                    self.assertTrue(f"`{skill.name}`" in readme, f"{skill.name} missing from {name}")
+            m = re.search(r"skills-(\d+)-", readme)
+            self.assertIsNotNone(m, f"skills badge missing in {name}")
+            self.assertEqual(int(m.group(1)), len(SKILLS), f"skills badge count is stale in {name}")
+
+    def test_readme_translations_stay_in_step(self):
+        """English and Vietnamese READMEs: same version, commands, images; each links the other."""
+        texts = {n: (ROOT / n).read_text(encoding="utf-8") for n in READMES}
+        version = json.loads((ROOT / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))["version"]
+        commands = {n: set(re.findall(r"/medskill-panda:[a-z-]+", t)) for n, t in texts.items()}
+        self.assertEqual(commands["README.md"], commands["README.vi.md"])
+        for name, text in texts.items():
+            with self.subTest(readme=name):
+                self.assertIn(f"version-{version}-", text)
+                for other in READMES:
+                    if other != name:
+                        self.assertIn(f"]({other})", text)
+                for img in re.findall(r'src="(assets/[^"]+)"', text):
+                    self.assertTrue((ROOT / img).is_file(), img)
 
 
 class ManifestTest(unittest.TestCase):

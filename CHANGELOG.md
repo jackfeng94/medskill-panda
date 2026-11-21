@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- README song ngữ: `README.md` (tiếng Anh, bản mặc định trên GitHub) và `README.vi.md`
+  (tiếng Việt), có nút chuyển ngôn ngữ; ảnh minh hoạ bộ quét slop có bản cho từng ngôn ngữ.
+- Test giữ hai bản README đồng bộ: đủ skill, cùng phiên bản, cùng các lệnh, ảnh tồn tại.
+
 ## 1.2.0
 
 ### Viết khoa học
