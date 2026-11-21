@@ -131,9 +131,16 @@ def decimal_axis(ax, lang, axis="y", nd=1):
 
 
 def save(fig, lang, name):
+    """Gallery version with its title, and a slide version without (the slide title says it)."""
     d = OUT / lang
-    d.mkdir(parents=True, exist_ok=True)
+    (d / "slide").mkdir(parents=True, exist_ok=True)
     fig.savefig(d / f"{name}.svg", format="svg")
+    for ax in fig.axes:
+        ax.set_title("")
+    if fig._suptitle is not None:
+        fig._suptitle.set_text("")
+    fig.savefig(d / "slide" / f"{name}.svg", format="svg", transparent=True)
+    fig.savefig(d / "slide" / f"{name}.png", format="png", dpi=220, transparent=False, facecolor="white")
     plt.close(fig)
 
 

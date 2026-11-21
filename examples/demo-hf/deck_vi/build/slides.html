@@ -1,27 +1,46 @@
 <section class="slide title" data-name="Title">
-  <h1 class="a-in" style="--d:.1s">DEMO-HF mô phỏng: can thiệp giảm một phần tư số lần nhập viện vì suy tim</h1>
+  <img class="mark a-in" src="logo.svg" alt="Medskill Panda">
+  <div class="rule a-in" style="--d:.05s"></div>
+  <h1 class="a-in" style="--d:.1s">Trong thử nghiệm mô phỏng DEMO-HF, theo dõi có cấu trúc giảm một phần tư số lần nhập viện vì suy tim</h1>
   <div class="sub a-in" style="--d:.3s">Journal club · ví dụ minh hoạ dựng từ dữ liệu mô phỏng</div>
   <div class="who a-in" style="--d:.5s">Medskill Panda demo<span>Dựng trọn quy trình bằng medical-deck</span></div>
   <aside class="notes">Introduce DEMO-HF as a teaching example with simulated data.</aside>
 </section>
+<section class="slide" data-name="Design">
+  <h2 class="t a-in">2.000 bệnh nhân được phân nhóm ngẫu nhiên 1:1 và theo dõi đến 24 tháng</h2>
+  <div class="body"><div class="design">
+    <figure class="panel fig a-in" style="--d:.2s"><!--include: 3-consort.svg--><div class="credit">Nguồn: dữ liệu mô phỏng DEMO-HF (seed 7); sơ đồ CONSORT</div></figure>
+    <div class="row a-in" style="--d:.35s"><div class="item"><b>Đối tượng</b><span>Suy tim phân suất tống máu giảm, sau một đợt nằm viện</span></div><div class="item"><b>Can thiệp</b><span>Theo dõi có cấu trúc sau xuất viện so với chăm sóc thường quy</span></div><div class="item"><b>Tiêu chí chính</b><span>Lần nhập viện đầu tiên vì suy tim</span></div></div>
+  </div></div>
+  <aside class="notes">Walk through the flow from screening to analysis.</aside>
+</section>
 <section class="slide" data-name="Primary outcome">
   <h2 class="t a-in">Tách biệt sớm: 25,8% so với 32,5% nhập viện sau 24 tháng</h2>
   <div class="body"><div class="cols wide-left">
-    <figure class="fig a-in" style="--d:.2s"><!--include: km_vi.svg--><div class="credit">Nguồn: dữ liệu mô phỏng DEMO-HF (seed 7); ước lượng Kaplan–Meier</div></figure>
-    <div class="stat a-in" style="--d:.35s"><span class="big">−6,7</span><div class="big-label">điểm phần trăm sau 24 tháng<br>số cần điều trị 15</div><div class="ev">243 so với 308 lần nhập viện · 1000 bệnh nhân mỗi nhóm</div></div>
+    <figure class="panel fig a-in" style="--d:.2s"><!--include: km_vi.svg--><div class="credit">Nguồn: dữ liệu mô phỏng DEMO-HF (seed 7); ước lượng Kaplan–Meier</div></figure>
+    <div class="take a-in" style="--d:.35s"><span class="big">−6,7</span><div class="lbl">điểm phần trăm sau 24 tháng</div><hr><div class="sm">Số cần điều trị: 15</div><div class="sm">243 so với 308 lần nhập viện</div></div>
   </div></div>
   <aside class="notes">[click] Point to the separation of the curves before month 6.</aside>
 </section>
 <section class="slide" data-name="Subgroups">
   <h2 class="t a-in">Hiệu quả nhất quán theo tuổi, giới và đái tháo đường</h2>
   <div class="body"><div class="cols wide-left">
-    <figure class="fig a-in" style="--d:.2s"><!--include: forest_vi.svg--><div class="credit">Nguồn: dữ liệu mô phỏng DEMO-HF (seed 7); tỷ số tỷ suất Poisson</div></figure>
-    <div class="a-in" style="--d:.35s"><ul class="pts"><li>Tỷ số tỷ suất chung 0,75 (KTC 95% 0,63–0,89)</li><li>Mọi phân nhóm đều có ước lượng dưới 1</li><li>Từ 70 tuổi: khoảng tin cậy chạm 1,02, ít biến cố hơn</li></ul></div>
+    <figure class="panel fig a-in" style="--d:.2s"><!--include: forest_vi.svg--><div class="credit">Nguồn: dữ liệu mô phỏng DEMO-HF (seed 7); tỷ số tỷ suất Poisson</div></figure>
+    <div class="take a-in" style="--d:.35s"><ul class="pts"><li>Tỷ số tỷ suất chung 0,75 (KTC 95% 0,63–0,89)</li><li>Mọi phân nhóm đều có ước lượng dưới 1</li><li>Từ 70 tuổi: khoảng tin cậy chạm 1,02, ít biến cố hơn</li><li>Phân tích phân nhóm chỉ mang tính thăm dò</li></ul></div>
   </div></div>
   <aside class="notes">Subgroups are exploratory; say so.</aside>
 </section>
+<section class="slide" data-name="Quality of life">
+  <h2 class="t a-in">Chất lượng sống cải thiện từ tháng 3 và duy trì đến tháng 24</h2>
+  <div class="body"><div class="cols wide-left">
+    <figure class="panel fig a-in" style="--d:.2s"><!--include: 4-line.svg--><div class="credit">Nguồn: dữ liệu mô phỏng DEMO-HF (seed 11); trung bình và KTC 95%</div></figure>
+    <div class="take a-in" style="--d:.35s"><span class="big">+8,4</span><div class="lbl">điểm KCCQ ở nhóm can thiệp</div><hr><div class="sm">+2,2 điểm ở nhóm chăm sóc thường quy</div><div class="sm">Điểm càng cao, tình trạng sức khoẻ càng tốt</div></div>
+  </div></div>
+  <aside class="notes">Mention that KCCQ ranges from 0 to 100.</aside>
+</section>
 <section class="slide" data-name="Bottom line">
-  <h2 class="t a-in">Điều trị 15 bệnh nhân trong hai năm giúp tránh một lần nhập viện</h2>
-  <div class="body"><div class="kpis a-in" style="--d:.2s"><div><span class="big">32,5% → 25,8%</span><div>tỷ lệ nhập viện sau 24 tháng</div></div><div><span class="big">0,75</span><div>tỷ số tỷ suất, KTC 95% 0,63–0,89</div></div><div><span class="big">15</span><div>số cần điều trị trong 24 tháng</div></div></div></div>
+  <h2 class="t a-in">Điều trị 15 bệnh nhân trong hai năm tránh được một lần nhập viện</h2>
+  <div class="body"><div class="facts a-in" style="--d:.2s"><div class="fact" style="--c:#56677F"><span class="big">32,5% → 25,8%</span><div>tỷ lệ nhập viện sau 24 tháng</div></div><div class="fact" style="--c:#C8372D"><span class="big">0,75</span><div>tỷ số tỷ suất, KTC 95% 0,63–0,89</div></div><div class="fact" style="--c:#0F5E7A"><span class="big">15</span><div>số cần điều trị trong 24 tháng</div></div></div>
+    <div class="caveat a-in" style="--d:.4s">Ví dụ mô phỏng để minh hoạ: không phải bằng chứng cho thực hành.</div></div>
   <aside class="notes">Close with the absolute effect, not only the ratio.</aside>
 </section>

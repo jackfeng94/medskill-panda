@@ -17,7 +17,7 @@ bắt các dấu hiệu "slide do máy làm", và hỗ trợ viết bài báo, t
 [![tests](https://github.com/jackfeng94/medskill-panda/actions/workflows/tests.yml/badge.svg)](https://github.com/jackfeng94/medskill-panda/actions/workflows/tests.yml)
 [![python 3.8+](https://img.shields.io/badge/python-3.8%2B-4a5a6a)](#hook)
 
-<img src="assets/example-slides.vi.png" alt="Bốn slide của ví dụ DEMO-HF: tiêu đề, đường cong Kaplan–Meier, forest plot phân nhóm, hiệu quả tuyệt đối" width="100%">
+<img src="assets/example-slides.vi.png" alt="Sáu slide HTML của ví dụ DEMO-HF: tiêu đề, dòng bệnh nhân, Kaplan–Meier, forest plot, chất lượng sống, hiệu quả tuyệt đối" width="100%">
 
 <sub>Bộ slide thật do plugin dựng từ dữ liệu mô phỏng (<a href="examples/demo-hf/">examples/demo-hf</a>): tiêu đề khẳng định, hình vẽ từ dữ liệu, dòng nguồn trên mọi slide, 0 lỗi slop.</sub>
 
@@ -60,6 +60,10 @@ thuyết trình, chỉ cần nói *"làm slide journal club về DAPA-HF"*; `med
 **Ba định dạng xuất:** HTML (một file offline, có chuyển động, bút laser), PowerPoint
 (trong template của bạn, biểu đồ gốc sửa được), LaTeX Beamer (PDF, hợp với bảo vệ luận án
 và bài có công thức).
+
+<div align="center">
+<img src="assets/example-pptx.vi.png" alt="Cùng bài nói dưới dạng PowerPoint sửa được trong một template có nhận diện riêng: slide tiêu đề, sơ đồ thử nghiệm gốc, Kaplan–Meier, forest plot, biểu đồ đường gốc, các con số chính" width="100%">
+</div>
 
 ## Cài đặt
 

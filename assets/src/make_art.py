@@ -74,7 +74,8 @@ T = {
   folder_note="STATUS.md tracks every stage, so a later session picks up where this one stopped.",
   deliver="Deliver", deliver_files=".html · .pptx · .pdf · .docx",
   deliver_note="plus a report: what was verified against full text, abstract only, or not at all",
-  ex_s="Example output · slide deck", ex_s_sub="Built with medical-deck → html-deck-building from simulated DEMO-HF data. lint_slop: 0 blocking.",
+  ex_s="Example output · HTML deck", ex_s_sub="One offline file built by html-deck-building from simulated DEMO-HF data: figures drawn from the data, a source on every slide. lint_slop: 0 findings.",
+  ex_p="Example output · PowerPoint in your template", ex_p_sub="The same talk built by pptx-deck-building inside a branded template: native, editable diagram and chart; speaker notes on every slide. check_pptx and lint_slop: 0 findings.",
   ex_m="Example output · manuscript", ex_m_sub="Word file from the same data: English text, Vietnamese abstract. Checked with lint_prose.",
   audit_hd="lint_prose: demo-hf.docx (vi+en): 1 error, 0 warnings",
   audit_rows=[("P01", "Corresponding author: [MISSING: authors to confirm]", "a gap only the authors can fill, left visible on purpose")],
@@ -107,7 +108,8 @@ T = {
   folder_note="STATUS.md ghi lại từng bước, nên phiên sau làm tiếp đúng chỗ đang dừng.",
   deliver="Bàn giao", deliver_files=".html · .pptx · .pdf · .docx",
   deliver_note="kèm báo cáo: đã kiểm chứng với toàn văn, chỉ tóm tắt, hay chưa kiểm chứng",
-  ex_s="Ví dụ đầu ra · bộ slide", ex_s_sub="Dựng bằng medical-deck → html-deck-building từ dữ liệu mô phỏng DEMO-HF. lint_slop: 0 lỗi chặn.",
+  ex_s="Ví dụ đầu ra · slide HTML", ex_s_sub="Một file offline do html-deck-building dựng từ dữ liệu mô phỏng DEMO-HF: hình vẽ từ dữ liệu, có nguồn trên mọi slide. lint_slop: 0 lỗi.",
+  ex_p="Ví dụ đầu ra · PowerPoint theo template của bạn", ex_p_sub="Cùng bài nói do pptx-deck-building dựng trong một template có nhận diện riêng: sơ đồ và biểu đồ gốc sửa được, có ghi chú người nói trên mọi slide. check_pptx và lint_slop: 0 lỗi.",
   ex_m="Ví dụ đầu ra · bản thảo", ex_m_sub="File Word từ cùng bộ dữ liệu: nội dung tiếng Anh, tóm tắt tiếng Việt. Kiểm tra bằng lint_prose.",
   audit_hd="lint_prose: demo-hf.docx (vi+en): 1 lỗi, 0 cảnh báo",
   audit_rows=[("P01", "Corresponding author: [MISSING: authors to confirm]", "chỗ trống chỉ tác giả điền được, cố ý để lộ ra")],
@@ -169,7 +171,7 @@ CSS = """
 .chart{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:8px;box-shadow:0 6px 18px rgba(24,34,45,.06)}.chart img{display:block;width:100%}
 .ex{width:1680px;padding:32px 34px;background:#fff}
 .ex h2{margin:0;font-size:28px;letter-spacing:-.01em}.ex .sub{margin:6px 0 20px;color:var(--mute);font-size:16px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.grid.g3{grid-template-columns:repeat(3,1fr);gap:18px}
 .shot{border-radius:14px;overflow:hidden;border:1.5px solid var(--line);box-shadow:0 10px 28px rgba(24,34,45,.10)}.shot img{display:block;width:100%}
 .sim{margin-top:14px;font-size:13px;color:#8A5B00}
 .ms{display:grid;grid-template-columns:720px 1fr;gap:34px;align-items:start}
@@ -243,9 +245,12 @@ def pipeline(L):
 
 def examples(L):
     t = T[L]
-    shots = "".join(f'<div class="shot"><img src="{img(DEMO / "screens" / f"{L}-{i}.png")}"></div>' for i in range(1, 5))
+    shots = "".join(f'<div class="shot"><img src="{img(DEMO / "screens" / f"{L}-{i}.png")}"></div>' for i in range(1, 7))
+    pshots = "".join(f'<div class="shot"><img src="{img(DEMO / "screens" / f"pptx-{L}-{i}.png")}"></div>' for i in range(1, 7))
     slides = (f'<div class="ex" id="slides"><h2>{e(t["ex_s"])}</h2><p class="sub">{e(t["ex_s_sub"])}</p>'
-              f'<div class="grid">{shots}</div><div class="sim">{e(t["sim"])}</div></div>')
+              f'<div class="grid g3">{shots}</div><div class="sim">{e(t["sim"])}</div></div>')
+    pptx = (f'<div class="ex" id="pptx"><h2>{e(t["ex_p"])}</h2><p class="sub">{e(t["ex_p_sub"])}</p>'
+            f'<div class="grid g3">{pshots}</div><div class="sim">{e(t["sim"])}</div></div>')
     rows = "".join(f'<div class="row"><b>{i}</b><span>{e(x)}</span><span class="why">{e(w)}</span></div>' for i, x, w in t["audit_rows"])
     checks = "".join(f'<div>{ICON["check"]}<span>{e(c)}</span></div>' for c in t["checks"])
     ms = (f'<div class="ex" id="manuscript"><h2>{e(t["ex_m"])}</h2><p class="sub">{e(t["ex_m_sub"])}</p>'
@@ -257,7 +262,7 @@ def examples(L):
                      for f in sorted((DEMO / "out" / "charts" / L).glob("*.svg")))
     gallery = (f'<div class="ex" id="charts"><h2>{e(t["ex_c"])}</h2><p class="sub">{e(t["ex_c_sub"])}</p>'
                f'<div class="cgrid">{charts}</div><div class="sim">{e(t["sim"])}</div></div>')
-    return slides + ms + gallery
+    return slides + pptx + ms + gallery
 
 
 OUT.mkdir(parents=True, exist_ok=True)

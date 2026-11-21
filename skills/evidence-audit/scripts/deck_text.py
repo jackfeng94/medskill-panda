@@ -108,6 +108,19 @@ def html_slides(src: str) -> list[dict]:
     return out
 
 
+CHROME_NAME = re.compile(r"^(?:source|credit|page|footer|slide number|date)\b", re.I)
+
+
+def _pptx_chrome(shp) -> bool:
+    """Footer, page number, date and source-credit boxes: not body text."""
+    if CHROME_NAME.match(shp.name or ""):
+        return True
+    if getattr(shp, "is_placeholder", False):
+        kind = str(shp.placeholder_format.type)
+        return any(k in kind for k in ("FOOTER", "SLIDE_NUMBER", "DATE"))
+    return False
+
+
 def pptx_slides(path: Path) -> list[dict]:
     try:
         from pptx import Presentation  # type: ignore
@@ -116,10 +129,12 @@ def pptx_slides(path: Path) -> list[dict]:
     prs = Presentation(str(path))
     out = []
     for i, slide in enumerate(prs.slides, 1):
-        texts = []
+        texts, body = [], []
         for shp in slide.shapes:
             if shp.has_text_frame:
                 texts.append(shp.text_frame.text)
+                if not _pptx_chrome(shp):
+                    body.append(shp.text_frame.text)
             if getattr(shp, "has_table", False) and shp.has_table:
                 for row in shp.table.rows:
                     texts.extend(c.text for c in row.cells)
@@ -127,6 +142,7 @@ def pptx_slides(path: Path) -> list[dict]:
         joined = " ".join(" ".join(texts).split())
         out.append({"index": i, "name": "", "text": joined, "text_nosvg": joined,
                     "blocks": [b for b in (_flat(x) for x in texts) if b],
+                    "body": _flat(" ".join(body)),
                     "notes": " ".join(notes.split()), "classes": []})
     return out
 

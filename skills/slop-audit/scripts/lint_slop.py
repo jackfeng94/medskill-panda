@@ -220,9 +220,10 @@ def lint_text_slides(slides: list[dict], max_words: int | None) -> list[dict]:
                 for m in rx.finditer(block):
                     out.append({"id": rule, "slide": idx, "text": _ctx(block, m), "note": "",
                                 "severity": "blocking" if rule in BLOCKING else "advisory"})
+        body = s.get("body", text)  # PPTX: without footer, page number and source credit
         limit = max_words or (60 if len(VI_CHARS.findall(text)) > 8 else 40)
-        if idx > 1 and len(text.split()) > limit:
-            out.append({"id": "S18", "slide": idx, "text": f"{len(text.split())} words (limit {limit})",
+        if idx > 1 and len(body.split()) > limit:
+            out.append({"id": "S18", "slide": idx, "text": f"{len(body.split())} words (limit {limit})",
                         "note": "", "severity": "advisory"})
     return out
 

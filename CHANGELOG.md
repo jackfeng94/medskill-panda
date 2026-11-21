@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Ví dụ DEMO-HF thiết kế lại: slide HTML 6 trang (slide tiêu đề nền màu, khung biểu đồ, khung
+  kết luận) và bản PowerPoint dựng bằng `pptx-deck-building` trong một template có nhận diện
+  riêng (`make_template.py`), với sơ đồ và biểu đồ gốc sửa được; ảnh README tương ứng.
+- `lint_slop.py` không đếm chân trang, số trang và dòng nguồn của PPTX vào giới hạn chữ (S18),
+  giống cách đã làm với HTML.
 - Bộ sưu tập biểu đồ (`examples/demo-hf/make_charts.py`): Kaplan–Meier kèm số còn theo dõi, forest
   plot, CONSORT, biểu đồ đường kèm dải KTC, cột nhóm kèm KTC, box plot kèm từng điểm, cột chồng
   phân độ NYHA, ROC; dạng SVG, tiếng Anh và tiếng Việt; thêm mục Biểu đồ vào hai README.

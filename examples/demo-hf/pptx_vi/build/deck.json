@@ -1,0 +1,239 @@
+{
+  "template": "../../theme/template.pptx",
+  "layouts": {
+    "title": "Title Slide",
+    "content": "Title Only"
+  },
+  "styles": {
+    "title": {
+      "size": 26,
+      "bold": true,
+      "color": "#15202B",
+      "anchor": "middle",
+      "align": "left"
+    },
+    "title_slide": {
+      "size": 38,
+      "bold": true,
+      "color": "#FFFFFF",
+      "anchor": "top",
+      "align": "left"
+    },
+    "subtitle": {
+      "size": 20,
+      "color": "#CFE6EE",
+      "align": "left"
+    }
+  },
+  "theme": {
+    "fonts": {
+      "heading": "Arial",
+      "body": "Arial"
+    },
+    "colors": {
+      "primary": "#0F5E7A",
+      "ink": "#15202B",
+      "muted": "#5F6E7B",
+      "line": "#D9E2E8",
+      "intervention": "#C8372D",
+      "control": "#56677F",
+      "title_text": "#15202B"
+    },
+    "type_pt": {
+      "title": 28,
+      "body": 18,
+      "small": 13,
+      "footer": 10
+    }
+  },
+  "cite": "Dữ liệu mô phỏng để minh hoạ · DEMO-HF, seed 7",
+  "page_numbers": true,
+  "slides": [
+    {
+      "type": "title",
+      "title": "Trong thử nghiệm mô phỏng DEMO-HF, theo dõi có cấu trúc giảm một phần tư số lần nhập viện vì suy tim",
+      "subtitle": "Journal club · ví dụ minh hoạ dựng từ dữ liệu mô phỏng",
+      "presenter": "Medskill Panda demo",
+      "notes": "Introduce DEMO-HF as a teaching example with simulated data."
+    },
+    {
+      "type": "diagram",
+      "title": "2.000 bệnh nhân được phân nhóm ngẫu nhiên 1:1 và theo dõi đến 24 tháng",
+      "nodes": [
+        {
+          "id": "pop",
+          "x": 0,
+          "y": 0.2,
+          "w": 0.22,
+          "h": 0.6,
+          "text": [
+            "Đối tượng",
+            "Suy tim EF giảm sau nằm viện"
+          ]
+        },
+        {
+          "id": "r",
+          "x": 0.28,
+          "y": 0.4,
+          "w": 0.08,
+          "h": 0.2,
+          "text": "R 1:1",
+          "style": "primary",
+          "shape": "circle"
+        },
+        {
+          "id": "a",
+          "x": 0.42,
+          "y": 0.06,
+          "w": 0.28,
+          "h": 0.36,
+          "text": [
+            "Theo dõi có cấu trúc",
+            "n = 1.000"
+          ],
+          "style": "int"
+        },
+        {
+          "id": "b",
+          "x": 0.42,
+          "y": 0.58,
+          "w": 0.28,
+          "h": 0.36,
+          "text": [
+            "Chăm sóc thường quy",
+            "n = 1.000"
+          ],
+          "style": "ctl"
+        },
+        {
+          "id": "ep",
+          "x": 0.77,
+          "y": 0.2,
+          "w": 0.23,
+          "h": 0.6,
+          "text": [
+            "Tiêu chí chính",
+            "Lần nhập viện đầu tiên vì suy tim",
+            "24 tháng"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "pop",
+          "to": "r"
+        },
+        {
+          "from": "r",
+          "to": "a",
+          "elbow": true
+        },
+        {
+          "from": "r",
+          "to": "b",
+          "elbow": true
+        },
+        {
+          "from": "a",
+          "to": "ep",
+          "elbow": true
+        },
+        {
+          "from": "b",
+          "to": "ep",
+          "elbow": true
+        }
+      ],
+      "notes": "Walk through the trial schema from population to endpoint."
+    },
+    {
+      "type": "figure-text",
+      "title": "Tách biệt sớm: 25,8% so với 32,5% nhập viện sau 24 tháng",
+      "image": "1-kaplan-meier.png",
+      "alt": "Kaplan–Meier curve",
+      "credit": "Nguồn: dữ liệu mô phỏng DEMO-HF (seed 7); ước lượng Kaplan–Meier",
+      "bullets": [
+        "Chênh 6,7 điểm phần trăm",
+        "Số cần điều trị: 15",
+        "243 so với 308 lần nhập viện"
+      ],
+      "split": 0.62,
+      "notes": "Point to the separation of the curves before month 6."
+    },
+    {
+      "type": "figure-text",
+      "title": "Hiệu quả nhất quán theo tuổi, giới và đái tháo đường",
+      "image": "2-forest.png",
+      "alt": "Forest plot",
+      "credit": "Nguồn: dữ liệu mô phỏng DEMO-HF (seed 7); tỷ số tỷ suất Poisson",
+      "bullets": [
+        "Tỷ số tỷ suất chung 0,75 (KTC 95% 0,63–0,89)",
+        "Mọi phân nhóm đều có ước lượng dưới 1",
+        "Phân tích phân nhóm chỉ mang tính thăm dò"
+      ],
+      "split": 0.62,
+      "notes": "Subgroups are exploratory; say so."
+    },
+    {
+      "type": "chart",
+      "title": "Chất lượng sống cải thiện từ tháng 3 và duy trì đến tháng 24",
+      "chart": "line",
+      "categories": [
+        "Ban đầu",
+        "Tháng 3",
+        "Tháng 6",
+        "Tháng 12",
+        "Tháng 24"
+      ],
+      "series": [
+        {
+          "name": "Can thiệp",
+          "values": [
+            57.2,
+            62.6,
+            64.1,
+            65.2,
+            65.6
+          ],
+          "color": "#C8372D"
+        },
+        {
+          "name": "Chăm sóc thường quy",
+          "values": [
+            58.2,
+            59.6,
+            60.1,
+            60.4,
+            60.4
+          ],
+          "color": "#56677F"
+        }
+      ],
+      "number_format": "0",
+      "credit": "Nguồn: dữ liệu mô phỏng DEMO-HF (seed 11); điểm KCCQ trung bình",
+      "notes": "KCCQ ranges from 0 to 100; higher is better."
+    },
+    {
+      "type": "big-number",
+      "title": "Điều trị 15 bệnh nhân trong hai năm tránh được một lần nhập viện",
+      "numbers": [
+        {
+          "value": "−6,7",
+          "label": "điểm phần trăm: 32,5% → 25,8% sau 24 tháng",
+          "color": "#56677F"
+        },
+        {
+          "value": "0,75",
+          "label": "tỷ số tỷ suất, KTC 95% 0,63–0,89",
+          "color": "#C8372D"
+        },
+        {
+          "value": "15",
+          "label": "số cần điều trị trong 24 tháng",
+          "color": "#0F5E7A"
+        }
+      ],
+      "notes": "Close with the absolute effect, not only the ratio."
+    }
+  ]
+}
