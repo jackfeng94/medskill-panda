@@ -1,5 +1,5 @@
 ---
-description: Initialize the current project with Medskill Panda - a deep research and writing tool that combines AI-driven research with well-formatted written outputs.
+description: Set up the current project for evidence-first scientific writing with Medskill Panda (Vietnamese, English or bilingual; Word, LaTeX or Markdown) by installing CLAUDE.md and AGENTS.md.
 ---
 
 # Medskill Panda Project Setup
@@ -97,44 +97,31 @@ After writing the file, provide a brief summary:
 ```
 🎉 Medskill Panda has been initialized in this project!
 
-📋 What's Included:
-- A deep research and writing tool that combines AI-driven research with well-formatted written outputs
-- Complete scientific writing workflow with real-time literature search and verified citations
-- 26 selected skills for academic writing:
-  • research-lookup: Real-time literature search
-  • peer-review: Systematic manuscript evaluation
-  • citation-management: BibTeX and reference handling
-  • clinical-reports: Medical documentation standards
-  • research-grants: NSF, NIH, DOE proposal support
-  • medical-deck: Research and medical presentations (HTML, PPTX, Beamer)
-  • latex-posters: Conference poster generation
-  • And 19 more specialized skills...
+📋 How it works:
+- Evidence first: every number and reference traces to a source opened in this project
+- You approve the brief and the outline before any drafting starts
+- Vietnamese, English or bilingual writing; Word, LaTeX or Markdown, following your venue
+- Free literature tools by default (PubMed, Europe PMC, OpenAlex, Crossref); unpublished
+  text stays local unless you allow otherwise
 
 📝 Document Types Supported:
-- Scientific papers (Nature, Science, NeurIPS, IEEE, etc.)
-- Clinical reports (case reports, trial documentation)
-- Grant proposals (NSF, NIH, DOE, DARPA)
-- Research posters and presentations
-- Literature reviews and systematic reviews
+- Original articles, case reports, systematic and narrative reviews
+- Theses (luận văn, luận án) and research protocols (đề cương)
+- Grant proposals, conference abstracts, posters and slides
 
 🚀 Getting Started:
 1. Your CLAUDE.md and AGENTS.md files are now configured at: {paths written}
-2. All skills are automatically available in this project
-3. Start with prompts like:
-   - "Create a Nature paper on [topic]"
-   - "Generate an NSF grant proposal for [research]"
-   - "Review this manuscript using peer-review standards"
-   - "Create conference slides on [topic]"
+2. Start with prompts like:
+   - "Viết bài báo gốc về [đề tài] cho Tạp chí Y học Việt Nam"
+   - "Draft a STROBE-compliant cohort paper in English for [journal]"
+   - "Viết đề cương luận văn thạc sĩ về [đề tài], tóm tắt song ngữ"
+3. Check a draft at any time with /medskill-panda:audit-manuscript <file>
 
 💡 Tips:
-- The research-lookup skill automatically finds real papers and citations
-- All documents default to LaTeX format (publication-ready)
-- Peer review is conducted automatically after paper generation
+- Put your data and results tables in data/ and the papers you already have in sources/
 - You can edit CLAUDE.md or AGENTS.md to customize behavior (keep them in sync)
 
-📚 Documentation:
-- Skill details: Browse the skills/ directory
-- Full docs: README.md của plugin medskill-panda
+📚 Documentation: README.md of the medskill-panda plugin
 
 Happy writing! 🔬📄
 ```
@@ -143,9 +130,8 @@ Happy writing! 🔬📄
 
 Remind the user:
 - The `CLAUDE.md` and `AGENTS.md` files can be opened and edited manually at any time
-- All 26 selected skills are now available for use in this project
-- They can ask "What skills are available?" to see the full list
-- They can reference specific skills like "@research-lookup" in their prompts
+- The first reply to a writing request will be a short round of questions (document type,
+  venue, language, format, data): answering them is what keeps the draft accurate
 
 ## Error Handling
 

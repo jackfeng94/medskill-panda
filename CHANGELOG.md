@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.2.0
+
+### Viết khoa học
+- Viết lại hướng dẫn dự án (`templates/CLAUDE.scientific-writer.md`, `AGENTS…`): phỏng vấn →
+  tác giả duyệt dàn ý → bằng chứng → viết → kiểm tra → bàn giao. Bỏ các quy định mâu thuẫn với
+  skill `scientific-writing` ("không bao giờ hỏi", chỉ tiêu số trích dẫn, bắt buộc hình AI,
+  mọi tìm kiếm qua dịch vụ trả phí).
+- Chọn ngôn ngữ ngay từ đầu: tiếng Việt, tiếng Anh hoặc song ngữ, với quy tắc riêng cho từng
+  ngôn ngữ và kiểm tra số liệu khớp giữa hai bản.
+- Mặc định dùng công cụ tra cứu miễn phí; bản thảo chưa công bố không gửi ra ngoài khi chưa
+  được tác giả cho phép.
+- `lint_prose.py` mới (Markdown, LaTeX, Word; tiếng Việt và tiếng Anh): placeholder, văn phong
+  "máy làm", phóng đại, thống kê thiếu trích dẫn, `p = 0.000`, dấu thập phân lẫn lộn, gạch đầu
+  dòng tràn lan, số lệch giữa hai bản ngôn ngữ.
+- Lệnh `/medskill-panda:audit-manuscript` chạy mọi bước kiểm tra bản thảo và ghi báo cáo.
+- Ba script của `literature-review` có `--help`.
+- Test cho template, `lint_prose.py` và các script viết bài; CI cài thêm `python-docx`.
+
 ## 1.1.0
 
 ### Gộp chức năng trùng lặp
