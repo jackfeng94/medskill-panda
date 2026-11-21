@@ -1,6 +1,6 @@
 ---
 name: audit-deck
-description: Audit an existing medical slide deck (HTML or PPTX) for AI-slop patterns, wrong numbers, unverifiable references and patient identifiers.
+description: Audit an existing medical slide deck (HTML, PPTX or PDF) for AI-slop patterns, wrong numbers, unverifiable references and patient identifiers.
 disable-model-invocation: true
 ---
 

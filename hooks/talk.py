@@ -11,7 +11,12 @@ import sys
 from pathlib import Path
 
 GATED = {"build", "out"}          # folders that must wait for an approved plan
-APPROVED = re.compile(r"(?<!not )(?<!not yet )\bapproved\b|đã duyệt", re.I)
+APPROVED = re.compile(r"\bapproved\b|đã\s+(?:được\s+)?duyệt", re.I)
+# Any of these anywhere on the Plan row means it is not approved yet. The gate fails closed:
+# a row that is ambiguous ("approved? no", "isn't approved yet") keeps build/ and out/ shut.
+NOT_APPROVED = re.compile(
+    r"\b(?:not|no|never|pending|awaiting|waiting|unapproved|rejected|declined|todo|doing|blocked)\b|n['’]t\b|\?|"
+    r"chưa|chờ|không|từ\s+chối|đang", re.I)
 PLAN_ROW = re.compile(r"^\s*\|\s*3\s*\||^\s*\|[^|]*\|\s*plan\b", re.I)
 
 
@@ -47,7 +52,8 @@ def plan_state(talk: Path) -> tuple[bool, str]:
         return False, "there is no plan.md yet"
     for line in (talk / "STATUS.md").read_text(encoding="utf-8", errors="replace").splitlines():
         if PLAN_ROW.search(line):
-            if APPROVED.search(line):
+            state = line.split("|", 3)[-1] if line.count("|") >= 3 else line   # drop "| 3 | Plan |"
+            if APPROVED.search(state) and not NOT_APPROVED.search(state):
                 return True, ""
             return False, f"the Plan row of STATUS.md does not say approved ({line.strip()[:120]})"
     return False, "STATUS.md has no Plan row (stage 3)"

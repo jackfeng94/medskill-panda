@@ -1,6 +1,6 @@
 ---
 name: pptx-deck-building
-description: Use when building or editing a medical presentation as an editable PowerPoint (.pptx), especially inside a hospital, university or congress template, after the plan is approved and claims and figures exist; or when a generated .pptx has overflowing text, off-slide shapes or missing notes.
+description: Use when building or editing a medical presentation as an editable PowerPoint (.pptx), especially inside a hospital, university or congress template, after the plan is approved and claims and figures exist; or when a generated .pptx has overflowing text, off-slide shapes or missing notes. For reading or editing an arbitrary .pptx file outside a talk, use pptx.
 ---
 
 # PPTX deck building

@@ -1,6 +1,6 @@
 ---
 name: evidence-research
-description: Use when a medical presentation needs facts, numbers, trial results, guideline recommendations or references, whether from papers the user supplied or from a literature search (PubMed, Europe PMC, ClinicalTrials.gov, OpenEvidence), and before any number is written on a slide.
+description: Use when a medical presentation needs facts, numbers, trial results, guideline recommendations or references, whether from papers the user supplied or from a literature search (PubMed, Europe PMC, ClinicalTrials.gov, OpenEvidence) or Vietnamese guidance (Bộ Y tế decisions, Dược thư Quốc gia), and before any number is written on a slide.
 ---
 
 # Evidence research
@@ -26,8 +26,30 @@ identifier you remember, even one marked "(verify)", does not go into any file.
    - **Europe PMC** for full text of open-access papers (`pubmed.py fulltext`).
    - **ClinicalTrials.gov** for the registered design and endpoints (`pubmed.py trial NCT…`).
    - Guidelines from the issuing society's own site.
+   - **Vietnamese guidance** when the talk is for a Vietnamese audience or the brief asks
+     for local practice (see below).
 
 Record every search string and its date in `evidence/notes.md`.
+
+## Vietnamese sources (Bộ Y tế and local literature)
+
+For talks in Vietnam, local guidance often decides what the audience can actually do.
+Look it up; do not recall it.
+
+- **Hướng dẫn chẩn đoán và điều trị / quy trình chuyên môn của Bộ Y tế**: each is issued
+  by a *Quyết định* (`<số>/QĐ-BYT`, with its date). Find the decision on the Cục Quản lý
+  Khám, chữa bệnh site (kcb.vn) or the government legal-document portals
+  (vanban.chinhphu.vn, thuvienphapluat.vn), and cite the decision number, date and the
+  guideline title exactly as issued. Check that no later decision replaced it.
+- **Dược thư Quốc gia Việt Nam** and the drug's approved Vietnamese label for doses,
+  indications and reimbursement (BHYT) conditions, which can differ from FDA/EMA labels.
+- **Vietnamese journals** (e.g. Tạp chí Y học Việt Nam) for local epidemiology and
+  outcomes. Many are not in PubMed: record the journal's own URL and access date.
+
+Store these like any other reference: `kind: "recommendation"` for guideline statements,
+`retrieved_with` naming the site, and the quote in Vietnamese as printed. When a Bộ Y tế
+guideline and an international guideline disagree, put both on the slide with their
+sources rather than choosing silently, and flag it to the presenter.
 
 ## Extracting a claim
 

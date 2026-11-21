@@ -292,7 +292,7 @@ This skill works synergistically with:
 
 - **scientific-schematics**: For technical diagrams and flowcharts
 - **market-research-reports**: Infographics for business reports
-- **scientific-slides**: Infographic elements for presentations
+- **medical-deck**: Infographic elements for presentations
 - **generate-image**: For non-infographic visual content
 
 ---

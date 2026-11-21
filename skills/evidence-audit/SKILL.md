@@ -1,6 +1,6 @@
 ---
 name: evidence-audit
-description: Use when a medical slide deck (HTML or PPTX) is built or edited and before it is presented, shared or called finished; when numbers, hazard ratios, percentages, recommendations or references on slides need checking against their sources; or when a clinical-case deck may contain patient identifiers.
+description: Use when a medical or scientific slide deck (HTML, PPTX or PDF) is built or edited and before it is presented, shared or called finished; when numbers, hazard ratios, percentages, recommendations or references on slides need checking against their sources; or when a clinical-case deck may contain patient identifiers.
 ---
 
 # Evidence audit

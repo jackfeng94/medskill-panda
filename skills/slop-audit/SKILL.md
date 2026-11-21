@@ -1,6 +1,6 @@
 ---
 name: slop-audit
-description: Use when a slide deck (HTML or PPTX) has been built or edited and before it is shown to anyone, when slides look generic, templated or machine-made, or when someone asks whether a deck "looks AI-generated", is too wordy, or is ready to present.
+description: Use when a slide deck (HTML, PPTX or PDF) has been built or edited and before it is shown to anyone, when slides look generic, templated or machine-made, or when someone asks whether a deck "looks AI-generated", is too wordy, or is ready to present.
 ---
 
 # Slop audit
@@ -20,7 +20,7 @@ it on the slide. Move what the presenter needs into the speaker notes; delete th
 1. Run the linter from this skill's folder:
 
    ```bash
-   python scripts/lint_slop.py <deck.html|deck.pptx> [--lang vi] [--json]
+   python scripts/lint_slop.py <deck.html|deck.pptx|deck.pdf> [--lang vi] [--json]
    ```
 
    It catches the mechanical patterns (catalog IDs marked ⚙ in `catalog.md`).
@@ -43,7 +43,7 @@ it on the slide. Move what the presenter needs into the speaker notes; delete th
    One row per occurrence. Quote the text exactly. Write each fix as an action ("delete",
    "move to notes", "replace the 4 cards with a dumbbell chart"), not as advice.
 
-**Blocking:** S01–S06 and any text that overflows or is cut off. Everything else is
+**Blocking:** S00–S06 and any text that overflows or is cut off. `lint_slop.py` checks S00–S04 mechanically; S05 (invented visuals) and S06 (overflow, clipping) need your eyes on the rendered slides and the render check. Everything else is
 advisory unless it occurs on more than a third of the slides.
 
 ## Red flags in your own review

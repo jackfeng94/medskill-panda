@@ -2,7 +2,7 @@
 """PostToolUse hook: lint a slide file for AI slop as soon as it is saved.
 
 Runs slop-audit's lint_slop on .html files written under <talk>/build/ or <talk>/out/
-and, when a blocking rule (S01-S04) fires, tells the agent which slide and why, so the
+and, when a blocking rule (S00-S04) fires, tells the agent which slide and why, so the
 fix happens now instead of in the audit stage. Advisory findings stay for the audit.
 Silent everywhere else, and on any error of its own.
 """

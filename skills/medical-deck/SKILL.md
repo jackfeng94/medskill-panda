@@ -1,6 +1,6 @@
 ---
 name: medical-deck
-description: Use when someone asks for slides, a deck, a talk or a presentation on a medical or health-science topic (journal club, conference talk, lecture, grand rounds, guideline update, clinical case, M&M, thesis defence, patient education), or wants an existing medical deck rebuilt, restyled, translated or checked before presenting.
+description: Use when someone asks for slides, a deck, a talk or a presentation on a medical, health-science or other research topic (journal club, conference talk, research seminar, lecture, grand rounds, guideline update, clinical case, M&M, thesis defence, grant pitch, patient education), in HTML, PowerPoint or LaTeX Beamer, or wants an existing deck rebuilt, restyled, translated or checked before presenting. The single entry point for every slide request in this plugin.
 ---
 
 # Medical deck
@@ -24,7 +24,7 @@ stage shorter; it never removes one.
 | 3 | Plan | deck-planning | `plan.md` | **user approves the plan** |
 | 4 | Evidence | evidence-research | `evidence/references.json`, `evidence/claims.json` | no claim without a source |
 | 5 | Figures | medical-figures | `figures/`, `figures/manifest.json` | provenance recorded |
-| 6 | Build | html-deck-building or pptx-deck-building | `build/`, `out/` | renders without overflow |
+| 6 | Build | html-deck-building, pptx-deck-building or beamer-deck-building | `build/`, `out/` | renders without overflow |
 | 7 | Audit | slop-audit and evidence-audit | `audit/*.md` | no blocking findings |
 | 8 | Deliver | — | `out/` + summary | — |
 

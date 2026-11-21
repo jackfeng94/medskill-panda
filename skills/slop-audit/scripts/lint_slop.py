@@ -4,9 +4,11 @@
 Usage:
   python lint_slop.py deck.html [--lang auto|en|vi] [--max-words N] [--json]
   python lint_slop.py deck.pptx            (needs python-pptx)
+  python lint_slop.py deck.pdf             (Beamer or exported decks; needs pypdf)
 
 Speaker notes (<aside class="notes">, PPTX notes) are never linted: cues belong there.
-Exit code 1 when a blocking rule (S01-S04) fires.
+Exit code 1 when a blocking rule (S00-S04) fires. S00 means no slide was recognised: an HTML
+deck must mark each slide <section class="slide">, otherwise nothing could be checked.
 """
 from __future__ import annotations
 
@@ -32,7 +34,8 @@ else:
              "(both come with the medskill-panda plugin).")
 from deck_text import load_slides  # noqa: E402
 
-BLOCKING = {"S01", "S02", "S03", "S04"}
+BLOCKING = {"S00", "S01", "S02", "S03", "S04"}
+NO_SLIDES = ("no slides recognised: mark each slide <section class=\"slide\">; nothing else was checked")
 
 PRESENTER_CUE = re.compile(
     r"(?:^|\s|[(▸►→>])(?:click(?:ing)?\s+(?:to|for|next|here)|press\s+\S+\s+(?:to|for)|hover\s+(?:to|over)|"
@@ -73,7 +76,6 @@ class _ElementTexts(html.parser.HTMLParser):
         self.stack: list[dict] = []
         self.elements: list[dict] = []
         self.body: dict[int, list[str]] = defaultdict(list)
-        self.nocredit: dict[int, list[str]] = defaultdict(list)   # visible text minus source credits
 
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
@@ -105,8 +107,6 @@ class _ElementTexts(html.parser.HTMLParser):
             return
         for n in self.stack:
             n["text"].append(data)
-        if not any(t == "aside" for t in tags) and not any(CREDIT_CLS.search(n["cls"]) for n in self.stack if n["cls"]):
-            self.nocredit[self.slide].append(data)
         excluded = any(t in ("svg", "footer", "figcaption", "aside") for t in tags) or \
             any(EXCLUDE_BODY_CLS.search(n["cls"]) for n in self.stack if n["cls"])
         if not excluded:
@@ -158,30 +158,44 @@ def lint_html(path: Path, lang: str, max_words: int | None) -> list[dict]:
         if float(px) < 12:
             add("S19", 0, f"{sel.strip()[:60]} {{font-size:{px}px}}", "below 12 px at 1920×1080")
 
-    # text rules per slide (visible text only)
+    if not slides:
+        add("S00", 0, NO_SLIDES)
+        return out
+    eyebrows = {(e["slide"], _txt(e)) for e in p.elements if EYEBROW_CLS.search(e["cls"])}
+    credits: dict[int, list[str]] = defaultdict(list)
+    for e in p.elements:
+        if CREDIT_CLS.search(e["cls"]):
+            credits[e["slide"]].append(_txt(e))
+
+    # text rules per slide (visible text only), matched block by block so that each finding
+    # quotes its own element and one phrase is reported once
     for s in slides:
         idx, text = s["index"], s["text"]
-        for m in PRESENTER_CUE.finditer(text):
-            add("S02", idx, _ctx(text, m))
-        for m in CUE_ARROW.finditer(text):
-            add("S02", idx, _ctx(text, m), "▸ cue marker")
-        # S03 ignores source credits: "Illustration: generated with ChatGPT, anatomy checked..."
-        # is a disclosure the audience is owed, not process narration
-        credit_free = " ".join(" ".join(p.nocredit.get(idx, [])).split())
-        for m in PROCESS.finditer(credit_free):
-            add("S03", idx, _ctx(credit_free, m))
-        for m in PLACEHOLDER.finditer(text):
-            add("S04", idx, _ctx(text, m))
-        for m in NUMBERED_LABEL.finditer(text):
-            add("S01", idx, _ctx(text, m), "numbered section label")
+        for block in s.get("blocks") or [text]:
+            cues = [m for m in PRESENTER_CUE.finditer(block)]
+            for m in cues:
+                add("S02", idx, _ctx(block, m))
+            if not cues:
+                for m in CUE_ARROW.finditer(block):
+                    add("S02", idx, _ctx(block, m), "▸ cue marker")
+            # S03 ignores source credits: "Illustration: generated with ChatGPT, anatomy checked..."
+            # is a disclosure the audience is owed, not process narration
+            if not any(block in c for c in credits.get(idx, ())):
+                for m in PROCESS.finditer(block):
+                    add("S03", idx, _ctx(block, m))
+            for m in PLACEHOLDER.finditer(block):
+                add("S04", idx, _ctx(block, m))
+            if (idx, block) not in eyebrows:
+                for m in NUMBERED_LABEL.finditer(block):
+                    add("S01", idx, _ctx(block, m), "numbered section label")
+            for m in NOT_X_DASH.finditer(block):
+                add("S14", idx, _ctx(block, m), '"not X — Y"')
+            for m in STOCK.finditer(block):
+                add("S15", idx, _ctx(block, m))
+            for m in EMOJI.finditer(block):
+                add("S16", idx, m.group(0))
         if text.count("—") >= 3:
             add("S14", idx, f"{text.count('—')} em dashes")
-        for m in NOT_X_DASH.finditer(text):
-            add("S14", idx, _ctx(text, m), '"not X — Y"')
-        for m in STOCK.finditer(text):
-            add("S15", idx, _ctx(text, m))
-        for m in EMOJI.finditer(text):
-            add("S16", idx, m.group(0))
 
         body = " ".join(" ".join(p.body.get(idx, [])).split())
         lang_s = lang if lang != "auto" else ("vi" if len(VI_CHARS.findall(body)) > 8 else "en")
@@ -192,22 +206,35 @@ def lint_html(path: Path, lang: str, max_words: int | None) -> list[dict]:
     return _dedupe(out)
 
 
-def lint_pptx(path: Path, max_words: int | None) -> list[dict]:
-    from pptx import Presentation  # type: ignore
-    from pptx.util import Pt  # noqa: F401
+def lint_text_slides(slides: list[dict], max_words: int | None) -> list[dict]:
+    """Text-only rules for decks without HTML classes (PPTX shapes, PDF pages)."""
     out = []
-    prs = Presentation(str(path))
-    for s in load_slides(path):
+    if not slides:
+        return [{"id": "S00", "slide": 0, "text": "no slides found in the file", "note": "",
+                 "severity": "blocking"}]
+    for s in slides:
         idx, text = s["index"], s["text"]
-        for rule, rx in (("S02", PRESENTER_CUE), ("S03", PROCESS), ("S04", PLACEHOLDER), ("S01", NUMBERED_LABEL),
-                         ("S15", STOCK)):
-            for m in rx.finditer(text):
-                out.append({"id": rule, "slide": idx, "text": _ctx(text, m), "note": "",
-                            "severity": "blocking" if rule in BLOCKING else "advisory"})
+        for block in s.get("blocks") or [text]:
+            for rule, rx in (("S02", PRESENTER_CUE), ("S03", PROCESS), ("S04", PLACEHOLDER),
+                             ("S01", NUMBERED_LABEL), ("S15", STOCK)):
+                for m in rx.finditer(block):
+                    out.append({"id": rule, "slide": idx, "text": _ctx(block, m), "note": "",
+                                "severity": "blocking" if rule in BLOCKING else "advisory"})
         limit = max_words or (60 if len(VI_CHARS.findall(text)) > 8 else 40)
         if idx > 1 and len(text.split()) > limit:
             out.append({"id": "S18", "slide": idx, "text": f"{len(text.split())} words (limit {limit})",
                         "note": "", "severity": "advisory"})
+    return out
+
+
+def lint_pdf(path: Path, max_words: int | None) -> list[dict]:
+    return _dedupe(lint_text_slides(load_slides(path), max_words))
+
+
+def lint_pptx(path: Path, max_words: int | None) -> list[dict]:
+    from pptx import Presentation  # type: ignore
+    prs = Presentation(str(path))
+    out = lint_text_slides(load_slides(path), max_words)
     for i, slide in enumerate(prs.slides, 1):
         for shp in slide.shapes:
             if not shp.has_text_frame:
@@ -221,6 +248,8 @@ def lint_pptx(path: Path, max_words: int | None) -> list[dict]:
 
 
 def _ctx(text: str, m: re.Match, pad: int = 40) -> str:
+    if len(text) <= 120:  # a whole block is short enough to quote as it is
+        return text
     a, b = max(0, m.start() - pad // 2), min(len(text), m.end() + pad)
     return text[a:b].strip()
 
@@ -243,7 +272,13 @@ def main(argv=None) -> int:
     ap.add_argument("--json", action="store_true")
     a = ap.parse_args(argv)
     path = Path(a.deck)
-    findings = lint_pptx(path, a.max_words) if path.suffix.lower() == ".pptx" else lint_html(path, a.lang, a.max_words)
+    suffix = path.suffix.lower()
+    if suffix in (".pptx", ".potx"):
+        findings = lint_pptx(path, a.max_words)
+    elif suffix == ".pdf":
+        findings = lint_pdf(path, a.max_words)
+    else:
+        findings = lint_html(path, a.lang, a.max_words)
     if a.json:
         print(json.dumps(findings, ensure_ascii=False, indent=2))
     else:

@@ -16,13 +16,16 @@ starts.
 
 1. Write the **core message** from the brief as one sentence. Every slide must serve it or
    be cut.
-2. Pick the recipe for the deck type in `recipes.md` and adapt it to the time budget:
+2. Pick the recipe for the deck type in `recipes.md` (longer guides per talk type, timing and
+   storyline in `references/talk_types_guide.md`, `references/timing_guidelines.md` and
+   `references/presentation_structure.md`) and adapt it to the time budget:
    about one content slide per minute, title and closing not counted.
 3. Write each slide's title as an **assertion**, a full sentence stating that slide's
    conclusion: "Recurrence-free survival improved from 70% to 82% at 24 months", not
    "Results". Section words alone are not titles.
 4. For each slide choose the **visual** that carries the evidence, using
-   `visual-grammar.md`. Text-only slides need a reason.
+   `visual-grammar.md` (chart choice for data in `references/data_visualization_slides.md`,
+   layout in `references/slide_design_principles.md`). Text-only slides need a reason.
 5. List the **claims** each slide needs (numbers, facts, recommendations) in words. These
    become the researcher's work list. Do not write numbers you have not sourced: write
    "HR for RFS with 95% CI" and let stage 4 fill it.

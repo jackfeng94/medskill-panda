@@ -24,9 +24,9 @@ DECK_WORDS = re.compile(
     re.I)
 
 REMINDER = (
-    "Medskill Panda: this prompt asks for slides or a presentation. If the topic is medical or "
-    "health-science, call the Skill tool with medskill-panda:medical-deck before anything else; "
-    "do not start from html-deck-building or pptx-deck-building. Unless a talk folder with a "
+    "Medskill Panda: this prompt asks for slides or a presentation. If the topic is medical, "
+    "health-science or research, call the Skill tool with medskill-panda:medical-deck before anything else; "
+    "do not start from html-deck-building, pptx-deck-building or beamer-deck-building. Unless a talk folder with a "
     "brief the user has confirmed already exists, this turn's reply is the deck-grilling "
     "interview: one round of numbered questions, each with a recommended answer. Then end the "
     "turn and wait for the answers: no talk folder, files, literature searches or slides yet."

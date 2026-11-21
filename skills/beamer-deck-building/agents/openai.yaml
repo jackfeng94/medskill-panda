@@ -1,0 +1,3 @@
+interface:
+  display_name: "Beamer deck building"
+  short_description: "LaTeX Beamer PDF deck from an approved plan"
