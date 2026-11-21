@@ -195,16 +195,31 @@ def tile(n, color, title, skill, body, icon, extra="", cls=""):
             + (f'<p>{e(body)}</p>' if body else "") + f'{extra}</div></div>')
 
 
+TIP = '<path d="M{x0} {y0} L{x} {y} L{x1} {y0}" fill="none" stroke="#8A99A6" stroke-width="3" stroke-linecap="round"/>'
+CARD3_X = round(2 * ((1612 - 2 * 46) / 3 + 46) + (1612 - 2 * 46) / 6)   # centre of spine card 3 (row3 grid)
+
+
+def tip(x, y):
+    return TIP.format(x=x, y=y, x0=x - 8, x1=x + 8, y0=y - 10)
+
+
 def fork(merge=False):
-    """Connector from the spine's centre to the two lane centres (or back, when merge)."""
-    w, h, c, a, b = 1612, 56, 806, 393, 1219
+    """Spine card 3 → both lanes; or, with merge, both lanes → the audit band below."""
+    w, h, a, b, c = 1612, 56, 393, 1219, 806
     if merge:
-        d = f"M{a} 0 V18 Q{a} 28 {a+10} 28 H{b-10} Q{b} 28 {b} 18 V0 M{c} 28 V{h-4}"
-        tip = f'<path d="M{c-8} {h-12} L{c} {h-2} L{c+8} {h-12}" fill="none" stroke="#8A99A6" stroke-width="3" stroke-linecap="round"/>'
+        d = f"M{a} 0 V18 Q{a} 28 {a+10} 28 H{b-10} Q{b} 28 {b} 18 V0 M{c} 28 V{h-2}"
+        tips = tip(c, h - 2)
     else:
-        d = f"M{c} 0 V24 M{a} {h-2} V38 Q{a} 28 {a+10} 28 H{b-10} Q{b} 28 {b} 38 V{h-2}"
-        tip = "".join(f'<path d="M{x-8} {h-12} L{x} {h-2} L{x+8} {h-12}" fill="none" stroke="#8A99A6" stroke-width="3" stroke-linecap="round"/>' for x in (a, b))
-    return f'<svg class="fork" viewBox="0 0 {w} {h}"><path d="{d}" fill="none" stroke="#8A99A6" stroke-width="3" stroke-linecap="round"/>{tip}</svg>'
+        src = CARD3_X
+        d = f"M{src} 0 V18 Q{src} 28 {src-10} 28 H{a+10} Q{a} 28 {a} 38 V{h-2} M{b} 28 V{h-2}"
+        tips = tip(a, h - 2) + tip(b, h - 2)
+    return f'<svg class="fork" viewBox="0 0 {w} {h}"><path d="{d}" fill="none" stroke="#8A99A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>{tips}</svg>'
+
+
+def down(x, h=40):
+    """Straight arrow from the audit band to the Deliver card."""
+    return (f'<svg class="fork" style="height:{h}px" viewBox="0 0 1612 {h}"><path d="M{x} 0 V{h-2}" fill="none" stroke="#8A99A6" '
+            f'stroke-width="3" stroke-linecap="round"/>{tip(x, h - 2)}</svg>')
 
 
 def pipeline(L):
@@ -238,7 +253,7 @@ def pipeline(L):
                     for k, name, n in t["files"])
     deliver = tile(7, STAGE_COLOR[7], t["deliver"], "", "", "deliver",
                    f'<div class="fx">{t["deliver_files"]}</div><p>{e(t["deliver_note"])}</p>', cls="deliver")
-    foot = (f'<div class="sec"><div class="sec-t">{e(t["folder"])} <span>· {e(t["folder_sub"])}</span></div><div class="foot">{deliver}'
+    foot = (f'<div class="sec">{down(210)}<div class="foot">{deliver}'
             f'<div class="files"><b>{e(t["files_title"])}</b><div class="fl">{files}</div><div class="note">{e(t["folder_note"])}</div></div></div></div>')
     return f'<div id="pipeline">{band}{spine}{lanes}<div class="sec">{audit}</div>{foot}</div>'
 
