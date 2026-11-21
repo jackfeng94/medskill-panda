@@ -18,10 +18,9 @@ protocols and posters in English, Vietnamese or both.
 [![tests](https://github.com/jackfeng94/medskill-panda/actions/workflows/tests.yml/badge.svg)](https://github.com/jackfeng94/medskill-panda/actions/workflows/tests.yml)
 [![python 3.8+](https://img.shields.io/badge/python-3.8%2B-4a5a6a)](#hooks)
 
-<img src="assets/showcase-figure.png" alt="PD-1/PD-L1 mechanism motion graphic built with medical-figures" width="49%">
-<img src="assets/showcase-slop-audit.png" alt="The slop hook reporting a slide the moment it is saved" width="49%">
+<img src="assets/features.png" alt="Four features: every number has a source; nothing is built before you approve; slop is caught on save; manuscript audit in Vietnamese and English" width="100%">
 
-<sub>Left: a PD-1/PD-L1 mechanism motion graphic built with <code>medical-figures</code>, with licence credits. Right: the hook flags "AI slop" the moment a slide is saved.</sub>
+<sub>Cards 3 and 4 show real output of <code>lint_slop.py</code> and <code>lint_prose.py</code>; card 1 is an illustrative example.</sub>
 
 </div>
 
@@ -43,11 +42,13 @@ protocols and posters in English, Vietnamese or both.
 ## How it works
 
 <div align="center">
-<img src="assets/workflow.png" alt="The eight stages of medical-deck" width="100%">
+<img src="assets/pipeline.png" alt="Pipeline map: brief, plan, evidence ledger, then a slides line and a writing line that meet again at audit and delivery" width="100%">
 </div>
 
-Just say *"make a journal club deck on DAPA-HF"*. `medical-deck` runs eight stages; each
-writes files to the talk folder, so a later session picks up exactly where this one stopped.
+Slides and manuscripts share one evidence spine: the same brief, the same approved plan and
+the same evidence ledger, then a slides line and a writing line that meet again at the audit.
+For a talk, just say *"make a journal club deck on DAPA-HF"*; `medical-deck` runs these
+stages:
 
 | # | Stage | Skill | Your part |
 |---|-------|-------|-----------|

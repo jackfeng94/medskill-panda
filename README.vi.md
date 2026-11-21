@@ -17,10 +17,9 @@ bắt các dấu hiệu "slide do máy làm", và hỗ trợ viết bài báo, t
 [![tests](https://github.com/jackfeng94/medskill-panda/actions/workflows/tests.yml/badge.svg)](https://github.com/jackfeng94/medskill-panda/actions/workflows/tests.yml)
 [![python 3.8+](https://img.shields.io/badge/python-3.8%2B-4a5a6a)](#hook)
 
-<img src="assets/showcase-figure.png" alt="Hình động cơ chế PD-1/PD-L1 dựng bằng medical-figures" width="49%">
-<img src="assets/showcase-slop-audit.vi.png" alt="Hook quét AI slop ngay khi lưu slide" width="49%">
+<img src="assets/features.vi.png" alt="Bốn tính năng: mỗi con số đều có nguồn; chưa duyệt thì chưa dựng; slop bị bắt khi lưu; kiểm tra bản thảo tiếng Việt và tiếng Anh" width="100%">
 
-<sub>Trái: hình động cơ chế PD-1/PD-L1 dựng bằng <code>medical-figures</code>, có ghi công giấy phép. Phải: hook báo lỗi "AI slop" ngay khi slide được lưu.</sub>
+<sub>Thẻ 3 và 4 là kết quả chạy thật của <code>lint_slop.py</code> và <code>lint_prose.py</code>; thẻ 1 là ví dụ minh hoạ.</sub>
 
 </div>
 
@@ -40,11 +39,12 @@ bắt các dấu hiệu "slide do máy làm", và hỗ trợ viết bài báo, t
 ## Cách hoạt động
 
 <div align="center">
-<img src="assets/workflow.png" alt="Quy trình 8 bước của medical-deck" width="100%">
+<img src="assets/pipeline.vi.png" alt="Bản đồ quy trình: brief, kế hoạch, sổ bằng chứng, rồi tách thành tuyến slide và tuyến viết bài, nhập lại ở bước kiểm tra và bàn giao" width="100%">
 </div>
 
-Chỉ cần nói *"làm slide journal club về DAPA-HF"*. `medical-deck` điều phối 8 bước; mỗi bước
-lưu thành file trong thư mục bài nói, nên phiên sau có thể làm tiếp đúng chỗ đang dừng.
+Slide và bản thảo dùng chung một trục bằng chứng: cùng brief, cùng kế hoạch đã duyệt, cùng sổ
+bằng chứng, rồi tách thành tuyến slide và tuyến viết bài, nhập lại ở bước kiểm tra. Với bài
+thuyết trình, chỉ cần nói *"làm slide journal club về DAPA-HF"*; `medical-deck` chạy các bước:
 
 | # | Bước | Skill | Bạn cần làm |
 |---|------|-------|-------------|

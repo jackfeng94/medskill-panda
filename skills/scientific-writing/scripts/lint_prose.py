@@ -320,7 +320,7 @@ def compare_numbers(a: list[dict], b: list[dict]) -> list[dict]:
     def numbers(blocks):
         c = Counter()
         for blk in (x for x in blocks if not x.get("refs")):
-            for m in NUMBER.finditer(blk["text"]):
+            for m in NUMBER.finditer(CITATION.sub(" ", blk["text"])):  # citation numbers are not data
                 v = m.group(0).replace(",", ".")
                 c[v.rstrip("0").rstrip(".") if "." in v else v] += 1
         return c

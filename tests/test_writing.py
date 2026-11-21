@@ -94,7 +94,7 @@ class LintProseTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             a, b = Path(d) / "vi.md", Path(d) / "en.md"
             a.write_text("# A\n\nĐáp ứng 26% ở 120 bệnh nhân, tuổi 65,2.\n", encoding="utf-8")
-            b.write_text("# A\n\nResponse 26% in 112 patients, age 65.2.\n", encoding="utf-8")
+            b.write_text("# A\n\nResponse 26% in 112 patients, age 65.2 [4].\n", encoding="utf-8")
             diff = lint_prose.compare_numbers(lint_prose.with_sections(lint_prose.read_blocks(a)),
                                               lint_prose.with_sections(lint_prose.read_blocks(b)))
         self.assertEqual(sorted(f["text"] for f in diff), ["112", "120"])
