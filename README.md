@@ -10,7 +10,7 @@ bắt các dấu hiệu "slide do máy làm", và hỗ trợ viết bài báo, t
 
 [![licence MIT](https://img.shields.io/badge/licence-MIT-11607a)](LICENSE)
 [![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-c0392b)](#cài-đặt)
-[![version 1.1.0](https://img.shields.io/badge/version-1.1.0-4a5a6a)](CHANGELOG.md)
+[![version 1.2.0](https://img.shields.io/badge/version-1.2.0-4a5a6a)](CHANGELOG.md)
 [![skills-38-](https://img.shields.io/badge/skills-38-11607a)](#các-skill)
 [![tests](https://github.com/jackfeng94/medskill-panda/actions/workflows/tests.yml/badge.svg)](https://github.com/jackfeng94/medskill-panda/actions/workflows/tests.yml)
 [![python 3.8+](https://img.shields.io/badge/python-3.8%2B-4a5a6a)](#hook)
@@ -99,7 +99,25 @@ claude --plugin-dir ./medskill-panda
 | Kiểm tra slide có sẵn | `/medskill-panda:audit-deck` |
 | Xem tiến độ các bài nói | `/medskill-panda:status` |
 | Thiết lập dự án viết bài báo | `/medskill-panda:scientific-writer-init` |
+| Viết bài báo bằng tiếng Anh cho tạp chí quốc tế | *"Draft a STROBE cohort paper for [journal]"* |
 | Viết tổng quan tài liệu | *"Viết tổng quan hệ thống về SGLT2i trong suy thận mạn"* |
+| Kiểm tra bản thảo Word/LaTeX/Markdown | `/medskill-panda:audit-manuscript bai-bao.docx` |
+
+## Viết khoa học
+
+Chạy `/medskill-panda:scientific-writer-init` một lần trong thư mục dự án. Từ đó, mỗi yêu
+cầu viết đi theo cùng nguyên tắc như làm slide:
+
+1. **Phỏng vấn ngắn**: loại bài, nơi công bố, **ngôn ngữ (tiếng Việt, tiếng Anh hay song
+   ngữ)**, định dạng (Word, LaTeX, Markdown), thiết kế nghiên cứu và guideline báo cáo.
+2. **Bạn duyệt dàn ý** trước khi viết.
+3. **Bằng chứng**: tra PubMed, Europe PMC, OpenAlex, Crossref miễn phí; mỗi nhận định gắn
+   với nguồn và câu trích. Bản thảo chưa công bố không gửi ra ngoài.
+4. **Viết từng phần**, số liệu chỉ từ dữ liệu của bạn hoặc từ nguồn đã mở.
+5. **Kiểm tra** bằng `/medskill-panda:audit-manuscript`: văn phong "AI" bằng cả tiếng Việt
+   và tiếng Anh, con số thiếu trích dẫn, placeholder, `p = 0.000`, dấu thập phân lẫn lộn,
+   số liệu lệch giữa bản tiếng Việt và tiếng Anh, liên kết nhận định–bằng chứng, guideline,
+   tác giả.
 
 ## Các skill
 

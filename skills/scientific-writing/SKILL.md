@@ -169,6 +169,12 @@ Use IMRAD only when appropriate. Structured abstracts, lists, combined sections,
 alternative structures depend on study design and venue. See
 `references/imrad_structure.md` and `references/writing_principles.md`.
 
+Write in the language the brief sets (Vietnamese, English, or both). In Vietnamese, give
+the established term with the English in brackets at first mention, keep one decimal
+separator throughout, and avoid stock phrases ("đóng vai trò then chốt", "ngày càng được
+quan tâm"). In a bilingual manuscript, finish and approve one language first; numbers,
+units, claim IDs and references must be identical in both versions.
+
 ### 6. Reconcile methods and results
 
 Record repeated numeric facts and method-result mappings, then run:
@@ -266,6 +272,20 @@ The linter reports issue codes and line numbers without echoing manuscript text.
 Sensitive-content warnings require manual review and are not a de-identification
 certificate.
 
+For Word, LaTeX or Markdown drafts in Vietnamese or English, also run the prose linter
+(Python 3.8+). It quotes only the matched phrase:
+
+```bash
+python3 scripts/lint_prose.py manuscript.docx
+python3 scripts/lint_prose.py manuscript_vi.md --compare manuscript_en.md
+```
+
+It flags placeholders and `[MISSING: …]` gaps (error), stock machine-made phrases,
+overstatement, statistics outside Methods/Results without a citation in the same
+sentence, `p = 0.000`, mixed decimal separators, bullet-heavy body text, and numbers
+that differ between language versions. `/medskill-panda:audit-manuscript` runs it
+together with every other check here.
+
 Only accountable humans may:
 
 - resolve scientific ambiguities;
@@ -336,8 +356,10 @@ Formatting cannot convert an incomplete evidence record into a submission-ready 
 - `scripts/check_references.py`
 - `scripts/validate_authorship.py`
 - `scripts/lint_manuscript.py`
+- `scripts/lint_prose.py` (Markdown, LaTeX and Word; Vietnamese and English)
 
-All scripts are local, deterministic, bounded, dependency-free, and network-free. See
+All scripts are local, deterministic, bounded, dependency-free, and network-free;
+`lint_prose.py` also runs on Python 3.8+. See
 `references/cli_reference.md`.
 
 ### References

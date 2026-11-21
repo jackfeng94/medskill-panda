@@ -105,6 +105,21 @@ python3 scripts/lint_manuscript.py manuscript.md \
 Possible sensitive-content findings are review prompts, not a de-identification
 certificate. The linter intentionally fails on unresolved placeholders.
 
+## Prose and number lint (Vietnamese and English)
+
+```bash
+python3 scripts/lint_prose.py manuscript.docx [--lang auto|vi|en] [--json]
+python3 scripts/lint_prose.py manuscript_vi.md --compare manuscript_en.md
+```
+
+Reads `.md`, `.txt`, `.tex` and `.docx`, and runs on Python 3.8+. Unlike the other
+commands it quotes the matched phrase (at most 80 characters) so the author can find it.
+Rules: P01 placeholder or `[MISSING: …]` gap (error); P02 stock phrase; P03
+overstatement; P04 statistic without a citation in its sentence (outside Methods,
+Results, Abstract and tables); P05 `p = 0.000`; P06 mixed decimal separators; P07
+bullet-heavy body; P08 heavy em-dash use; P09 numbers that differ between language
+versions. The References section is checked for placeholders only.
+
 ## Exit behavior
 
 - exit `0`: no error-level findings;

@@ -10,7 +10,7 @@
     {
       "name": "medskill-panda",
       "description": "Slide y khoa có kiểm chứng + viết khoa học (bài báo, tổng quan, đề cương, poster, trích dẫn, báo cáo lâm sàng).",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "source": "./",
       "author": {
         "name": "Nguyen-Minh-Tan Phung",
