@@ -2,11 +2,16 @@
 
 ## Unreleased
 
+- Ảnh README làm lại: sơ đồ quy trình dạng cột thẻ (tư liệu → trục chung → hai tuyến slide và
+  viết bài → kiểm tra → thư mục dự án và bàn giao), cùng ảnh đầu ra thật của bộ slide và bản
+  thảo; mỗi ảnh có bản tiếng Anh và tiếng Việt. Script sinh ảnh ở `assets/src/`.
+- Ví dụ trọn vẹn `examples/demo-hf/` (dữ liệu mô phỏng): bộ slide HTML tiếng Anh và tiếng
+  Việt, bản thảo Word có tóm tắt song ngữ, dựng lại bằng `build.sh`.
+- `lint_prose.py` nhận diện ngôn ngữ theo từng đoạn: bài song ngữ dùng 0.75 ở phần tiếng Anh
+  và 0,75 ở phần tiếng Việt không còn bị báo lẫn dấu thập phân; "chênh lệch tuyệt đối" và các
+  thuật ngữ thống kê tương tự không còn bị coi là phóng đại.
 - README song ngữ: `README.md` (tiếng Anh, bản mặc định trên GitHub) và `README.vi.md`
-  (tiếng Việt), có nút chuyển ngôn ngữ; ảnh minh hoạ bộ quét slop có bản cho từng ngôn ngữ.
-- Bộ ảnh README mới, tự thiết kế: bản đồ quy trình kiểu tàu điện (một trục bằng chứng, hai tuyến
-  slide và viết bài) và bốn thẻ tính năng, mỗi ảnh có bản tiếng Anh và tiếng Việt. Thay sơ đồ
-  và ảnh minh hoạ cũ. Script sinh ảnh ở `assets/src/`.
+  (tiếng Việt), có nút chuyển ngôn ngữ.
 - `lint_prose.py --compare` bỏ qua số thứ tự trích dẫn như `[4]`.
 - Test giữ hai bản README đồng bộ: đủ skill, cùng phiên bản, cùng các lệnh, ảnh tồn tại.
 

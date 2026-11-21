@@ -18,9 +18,9 @@ protocols and posters in English, Vietnamese or both.
 [![tests](https://github.com/jackfeng94/medskill-panda/actions/workflows/tests.yml/badge.svg)](https://github.com/jackfeng94/medskill-panda/actions/workflows/tests.yml)
 [![python 3.8+](https://img.shields.io/badge/python-3.8%2B-4a5a6a)](#hooks)
 
-<img src="assets/features.png" alt="Four features: every number has a source; nothing is built before you approve; slop is caught on save; manuscript audit in Vietnamese and English" width="100%">
+<img src="assets/example-slides.png" alt="Four slides of the DEMO-HF example deck: title, Kaplan–Meier curve, subgroup forest plot, absolute effect" width="100%">
 
-<sub>Cards 3 and 4 show real output of <code>lint_slop.py</code> and <code>lint_prose.py</code>; card 1 is an illustrative example.</sub>
+<sub>A real deck built by the plugin from simulated data (<a href="examples/demo-hf/">examples/demo-hf</a>): assertion titles, figures drawn from the data, a source line on every slide, 0 slop findings.</sub>
 
 </div>
 
@@ -42,7 +42,7 @@ protocols and posters in English, Vietnamese or both.
 ## How it works
 
 <div align="center">
-<img src="assets/pipeline.png" alt="Pipeline map: brief, plan, evidence ledger, then a slides line and a writing line that meet again at audit and delivery" width="100%">
+<img src="assets/pipeline.png" alt="Pipeline: your materials, a shared spine of brief, plan and evidence ledger, then slides and writing tracks, a shared audit, the project folder and delivery" width="100%">
 </div>
 
 Slides and manuscripts share one evidence spine: the same brief, the same approved plan and
@@ -126,6 +126,10 @@ writing request follows the same principles as the slides:
    Vietnamese, statistics without citations, placeholders, `p = 0.000`, mixed decimal
    separators, numbers that differ between the two language versions, claim–evidence
    links, reporting guideline and authorship.
+
+<div align="center">
+<img src="assets/example-manuscript.png" alt="Example manuscript page with an English abstract and a Vietnamese abstract, next to the lint_prose result" width="100%">
+</div>
 
 ## Skills
 
