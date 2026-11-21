@@ -2,8 +2,8 @@
 
 ## Unreleased
 
-- Ảnh README làm lại: sơ đồ quy trình dạng cột thẻ (tư liệu → trục chung → hai tuyến slide và
-  viết bài → kiểm tra → thư mục dự án và bàn giao), cùng ảnh đầu ra thật của bộ slide và bản
+- Ảnh README làm lại: sơ đồ quy trình dạng thẻ theo dải ngang (băng tiêu đề và đầu vào →
+  trục chung → hai làn slide và viết bài → dải kiểm tra → bàn giao và thư mục dự án), cùng ảnh đầu ra thật của bộ slide và bản
   thảo; mỗi ảnh có bản tiếng Anh và tiếng Việt. Script sinh ảnh ở `assets/src/`.
 - Ví dụ trọn vẹn `examples/demo-hf/` (dữ liệu mô phỏng): bộ slide HTML tiếng Anh và tiếng
   Việt, bản thảo Word có tóm tắt song ngữ, dựng lại bằng `build.sh`.

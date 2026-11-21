@@ -39,7 +39,7 @@ bắt các dấu hiệu "slide do máy làm", và hỗ trợ viết bài báo, t
 ## Cách hoạt động
 
 <div align="center">
-<img src="assets/pipeline.vi.png" alt="Quy trình: tư liệu của bạn, trục chung gồm brief, kế hoạch và sổ bằng chứng, rồi hai tuyến slide và viết bài, bước kiểm tra chung, thư mục dự án và bàn giao" width="100%">
+<img src="assets/pipeline.vi.png" alt="Medskill Panda hoạt động thế nào: đầu vào, trục chung gồm brief, kế hoạch và sổ bằng chứng, rồi làn slide và làn viết bài, một bước kiểm tra, bàn giao kèm thư mục dự án" width="100%">
 </div>
 
 Slide và bản thảo dùng chung một trục bằng chứng: cùng brief, cùng kế hoạch đã duyệt, cùng sổ

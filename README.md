@@ -42,7 +42,7 @@ protocols and posters in English, Vietnamese or both.
 ## How it works
 
 <div align="center">
-<img src="assets/pipeline.png" alt="Pipeline: your materials, a shared spine of brief, plan and evidence ledger, then slides and writing tracks, a shared audit, the project folder and delivery" width="100%">
+<img src="assets/pipeline.png" alt="How Medskill Panda works: inputs, a shared spine of brief, plan and evidence ledger, then a slides lane and a writing lane, one audit, and delivery with the project folder" width="100%">
 </div>
 
 Slides and manuscripts share one evidence spine: the same brief, the same approved plan and
