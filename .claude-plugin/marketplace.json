@@ -1,0 +1,23 @@
+{
+  "name": "medskill-panda",
+  "description": "Marketplace của Nguyen-Minh-Tan Phung cho y khoa và nghiên cứu khoa học",
+  "owner": {
+    "name": "Nguyen-Minh-Tan Phung",
+    "email": "pnmtan.med@gmail.com",
+    "url": "https://github.com/jackfeng94"
+  },
+  "plugins": [
+    {
+      "name": "medskill-panda",
+      "description": "Slide y khoa có kiểm chứng + viết khoa học (bài báo, tổng quan, đề cương, poster, trích dẫn, báo cáo lâm sàng).",
+      "version": "1.0.0",
+      "source": "./",
+      "author": {
+        "name": "Nguyen-Minh-Tan Phung",
+        "email": "pnmtan.med@gmail.com",
+        "url": "https://github.com/jackfeng94"
+      },
+      "homepage": "https://github.com/jackfeng94/medskill-panda"
+    }
+  ]
+}

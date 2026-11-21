@@ -1,0 +1,27 @@
+{
+  "name": "medskill-panda",
+  "description": "Bộ công cụ y khoa & nghiên cứu khoa học: slide y khoa có kiểm chứng (journal club, grand rounds, ca lâm sàng) + viết bài báo, tổng quan tài liệu, đề cương nghiên cứu, poster, trích dẫn và báo cáo lâm sàng.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Nguyen-Minh-Tan Phung",
+    "email": "pnmtan.med@gmail.com",
+    "url": "https://github.com/jackfeng94"
+  },
+  "homepage": "https://github.com/jackfeng94/medskill-panda",
+  "repository": "https://github.com/jackfeng94/medskill-panda",
+  "license": "MIT",
+  "keywords": [
+    "medical",
+    "presentation",
+    "slides",
+    "journal-club",
+    "evidence",
+    "pubmed",
+    "scientific-writing",
+    "literature-review",
+    "citations",
+    "grants",
+    "posters",
+    "clinical-reports"
+  ]
+}

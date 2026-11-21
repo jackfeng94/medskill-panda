@@ -1,0 +1,3 @@
+interface:
+  display_name: "Medical figures"
+  short_description: "Lift KM curves from PDFs, rebuild diagrams, chart data, animate mechanisms"

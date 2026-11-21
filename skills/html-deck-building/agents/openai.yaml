@@ -1,0 +1,3 @@
+interface:
+  display_name: "HTML deck building"
+  short_description: "Single-file HTML deck with motion and presenter tools"

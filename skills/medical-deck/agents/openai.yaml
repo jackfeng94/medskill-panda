@@ -1,0 +1,3 @@
+interface:
+  display_name: "Medical deck"
+  short_description: "Build an evidence-checked medical presentation from interview to audit"

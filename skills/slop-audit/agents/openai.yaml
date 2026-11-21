@@ -1,0 +1,3 @@
+interface:
+  display_name: "Slop audit"
+  short_description: "Find eyebrows, presenter cues, process notes and other AI tells"

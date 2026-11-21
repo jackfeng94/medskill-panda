@@ -1,0 +1,5 @@
+interface:
+  display_name: "Audit my deck"
+  short_description: "Audit an existing medical deck for slop, wrong numbers and references"
+policy:
+  allow_implicit_invocation: false

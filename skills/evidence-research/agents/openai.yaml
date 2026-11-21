@@ -1,0 +1,3 @@
+interface:
+  display_name: "Evidence research"
+  short_description: "Find and record every claim with its source (PubMed, Europe PMC, trials)"

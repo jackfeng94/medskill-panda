@@ -1,0 +1,5 @@
+interface:
+  display_name: "Grill my talk"
+  short_description: "Interview me about a medical talk before any slides are made"
+policy:
+  allow_implicit_invocation: false
