@@ -18,6 +18,8 @@ protocols and posters in English, Vietnamese or both.
 [![tests](https://github.com/jackfeng94/medskill-panda/actions/workflows/tests.yml/badge.svg)](https://github.com/jackfeng94/medskill-panda/actions/workflows/tests.yml)
 [![python 3.8+](https://img.shields.io/badge/python-3.8%2B-4a5a6a)](#hooks)
 
+**New to the terminal or Claude Code? Start with the [step-by-step guide](docs/GUIDE.md).**
+
 <img src="assets/example-slides.png" alt="Six slides of the DEMO-HF example HTML deck: title, trial flow, Kaplan–Meier curve, subgroup forest plot, quality of life, absolute effect" width="100%">
 
 <sub>A real deck built by the plugin from simulated data (<a href="examples/demo-hf/">examples/demo-hf</a>): assertion titles, figures drawn from the data, a source line on every slide, 0 slop findings.</sub>
@@ -70,6 +72,9 @@ defences and equation-heavy talks).
 </div>
 
 ## Install
+
+First time? The [step-by-step guide](docs/GUIDE.md) walks you through installing Claude Code,
+signing in and making your first talk.
 
 In Claude Code:
 

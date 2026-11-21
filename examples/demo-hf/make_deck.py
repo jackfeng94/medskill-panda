@@ -96,11 +96,11 @@ CSS = """:root{--primary:#0F5E7A;--primary-d:#0A4257;--int:#C8372D;--ctl:#56677F
 .slide{background:var(--bg)}
 .slide h2.t{left:96px;right:96px;top:56px;padding-left:30px;border-left:10px solid var(--primary);letter-spacing:-.01em}
 .slide .body{top:206px;bottom:104px}
-.panel{background:#fff;border-radius:26px;box-shadow:0 12px 34px rgba(15,40,60,.08);padding:26px 34px;height:100%;
+.panel{background:#fff;border:1px solid #C9D3DA;padding:26px 34px;height:100%;
   display:flex;flex-direction:column;justify-content:center}
 .panel svg{width:100%;height:auto;max-height:640px}
 .panel .credit{font-size:18px;color:var(--muted);margin-top:10px}
-.take{background:var(--primary);color:#fff;border-radius:26px;padding:44px 46px;height:100%;display:flex;flex-direction:column;justify-content:center}
+.take{background:var(--primary);color:#fff;padding:44px 46px;height:100%;display:flex;flex-direction:column;justify-content:center}
 .take .big{color:#fff;font-size:128px}
 .take .lbl{font-size:28px;margin-top:10px;color:#D3E8EF}
 .take hr{border:0;border-top:2px solid rgba(255,255,255,.28);margin:34px 0 26px;width:100%}
@@ -108,20 +108,20 @@ CSS = """:root{--primary:#0F5E7A;--primary-d:#0A4257;--int:#C8372D;--ctl:#56677F
 .take ul.pts{font-size:27px;line-height:1.4;color:#fff}.take ul.pts li::marker{color:#F2B8B2}
 .design{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;height:100%}
 .design .row{display:flex;flex-direction:column;justify-content:center;gap:22px}
-.design .item{background:#fff;border-radius:20px;padding:24px 28px;box-shadow:0 8px 24px rgba(15,40,60,.07);border-left:8px solid var(--primary)}
+.design .item{background:#fff;border:1px solid #C9D3DA;padding:24px 28px;border-left:8px solid var(--primary)}
 .design .item b{display:block;font-size:22px;color:var(--primary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
 .design .item span{font-size:28px;color:var(--ink);line-height:1.3}
 .facts{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:34px;margin-top:70px}
-.fact{background:#fff;border-radius:26px;padding:70px 44px;box-shadow:0 12px 34px rgba(15,40,60,.08);border-top:12px solid var(--c)}
+.fact{background:#fff;border:1px solid #C9D3DA;padding:70px 44px;border-top:12px solid var(--c)}
 .fact .big{font-size:104px;color:var(--c);white-space:nowrap}
 .fact div{font-size:27px;color:var(--ink2);margin-top:16px;line-height:1.3}
-.caveat{margin-top:90px;font-size:26px;color:#8A5B00;background:#FFF4D6;border-radius:16px;padding:18px 26px;display:inline-block}
-.slide.title{background:linear-gradient(135deg,#0A4257 0%,#0F5E7A 55%,#16809F 100%)}
+.caveat{margin-top:90px;font-size:26px;color:#8A5B00;background:#FFF4D6;padding:18px 26px;display:inline-block}
+.slide.title{background:#0F5E7A}
 .slide.title h1{color:#fff;top:330px;font-size:70px;right:260px;letter-spacing:-.01em}
 .slide.title .sub{color:#CFE6EE;top:620px}
 .slide.title .who{color:#fff}.slide.title .who span{color:#BBD9E3}
-.slide.title .mark{position:absolute;left:120px;top:120px;width:132px;height:132px;border-radius:30px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.25)}
-.slide.title .rule{position:absolute;left:120px;top:300px;width:140px;height:10px;border-radius:5px;background:var(--int)}
+.slide.title .mark{position:absolute;left:120px;top:120px;width:132px;height:132px;overflow:hidden;}
+.slide.title .rule{position:absolute;left:120px;top:300px;width:140px;height:10px;background:var(--int)}
 .slide.title .ftr{color:rgba(255,255,255,.65)}.slide.title .ftr .pg b{color:#fff}
 """
 

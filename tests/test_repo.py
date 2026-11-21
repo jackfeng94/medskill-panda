@@ -87,6 +87,31 @@ class SkillsTest(unittest.TestCase):
                     self.assertTrue((ROOT / img).is_file(), img)
 
 
+class GuideTest(unittest.TestCase):
+    GUIDES = ("docs/GUIDE.md", "docs/HUONG-DAN.md")
+
+    def test_guides_link_each_other_and_from_readmes(self):
+        self.assertIn("](docs/GUIDE.md)", (ROOT / "README.md").read_text(encoding="utf-8"))
+        self.assertIn("](docs/HUONG-DAN.md)", (ROOT / "README.vi.md").read_text(encoding="utf-8"))
+        self.assertIn("](HUONG-DAN.md)", (ROOT / "docs/GUIDE.md").read_text(encoding="utf-8"))
+        self.assertIn("](GUIDE.md)", (ROOT / "docs/HUONG-DAN.md").read_text(encoding="utf-8"))
+
+    def test_guide_commands_and_images_exist(self):
+        skills = {p.name for p in SKILLS}
+        for name in self.GUIDES:
+            text = (ROOT / name).read_text(encoding="utf-8")
+            for cmd in set(re.findall(r"/medskill-panda:([a-z-]+)", text)):
+                with self.subTest(guide=name, command=cmd):
+                    self.assertTrue((ROOT / "commands" / f"{cmd}.md").is_file() or cmd in skills)
+            for img in re.findall(r"!\[[^\]]*\]\(([^)]+)\)", text):
+                with self.subTest(guide=name, image=img):
+                    self.assertTrue((ROOT / "docs" / img).resolve().is_file())
+
+    def test_guides_cover_the_same_sections(self):
+        heads = [re.findall(r"^## (\d+)\.", (ROOT / g).read_text(encoding="utf-8"), re.M) for g in self.GUIDES]
+        self.assertEqual(heads[0], heads[1])
+
+
 class ManifestTest(unittest.TestCase):
     def test_versions_agree(self):
         plugin = json.loads((ROOT / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
