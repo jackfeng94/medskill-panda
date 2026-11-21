@@ -17,6 +17,7 @@ for L in en vi; do
 done
 mkdir -p manuscript screens
 python3 make_manuscript.py "$X"
+python3 make_charts.py > /dev/null
 (cd manuscript && soffice --headless --convert-to pdf demo-hf.docx > /dev/null)
 python3 "$R/skills/scientific-writing/scripts/lint_prose.py" manuscript/demo-hf.docx || true
 for L in en vi; do node shoot_deck.js "$X/deck_$L/out/demo-hf.html" "$X/screens/$L" 4; done

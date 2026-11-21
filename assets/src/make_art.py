@@ -80,6 +80,7 @@ T = {
   audit_rows=[("P01", "Corresponding author: [MISSING: authors to confirm]", "a gap only the authors can fill, left visible on purpose")],
   checks=["Abstract in English, Tóm tắt in Vietnamese", "0.75 in English, 0,75 in Vietnamese: no mixed-decimal warning", "Every number from results.json", "Converted to PDF with LibreOffice"],
   sim="All numbers are simulated for demonstration (seed 7).",
+  ex_c="Chart gallery", ex_c_sub="Eight chart types drawn from the same simulated data by examples/demo-hf/make_charts.py. SVG, ready for HTML or PowerPoint decks and manuscripts.",
  ),
  "vi": dict(
   head="Medskill Panda hoạt động thế nào", head_sub="Một trục bằng chứng, hai đầu ra, một bước kiểm tra. Mỗi bước để lại một file.",
@@ -112,6 +113,7 @@ T = {
   audit_rows=[("P01", "Corresponding author: [MISSING: authors to confirm]", "chỗ trống chỉ tác giả điền được, cố ý để lộ ra")],
   checks=["Abstract tiếng Anh, Tóm tắt tiếng Việt", "0.75 ở phần tiếng Anh, 0,75 ở phần tiếng Việt: không báo lẫn dấu thập phân", "Mọi con số lấy từ results.json", "Chuyển sang PDF bằng LibreOffice"],
   sim="Mọi con số là dữ liệu mô phỏng để minh hoạ (seed 7).",
+  ex_c="Bộ sưu tập biểu đồ", ex_c_sub="Tám loại biểu đồ vẽ từ cùng bộ dữ liệu mô phỏng bằng examples/demo-hf/make_charts.py. Định dạng SVG, dùng được cho slide HTML, PowerPoint và bản thảo.",
  ),
 }
 
@@ -163,6 +165,8 @@ CSS = """
 .files .f svg{width:16px;height:18px;flex:none}.files .f .b{width:21px;height:21px;border-radius:6px;color:#fff;font:700 11.5px Inter,Arial;display:grid;place-items:center}
 .files .note{font-size:13px;color:var(--mute);margin-top:10px}
 /* examples */
+.cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.chart{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:8px;box-shadow:0 6px 18px rgba(24,34,45,.06)}.chart img{display:block;width:100%}
 .ex{width:1680px;padding:32px 34px;background:#fff}
 .ex h2{margin:0;font-size:28px;letter-spacing:-.01em}.ex .sub{margin:6px 0 20px;color:var(--mute);font-size:16px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
@@ -249,7 +253,11 @@ def examples(L):
           f'<div><div class="term"><div class="hd">{e(t["audit_hd"])}</div>{rows}</div><div class="checks">{checks}</div>'
           f'<div class="figcrop"><img src="{img(DEMO / "screens" / "page2-figure.png")}"></div>'
           f'<div class="sim">{e(t["sim"])}</div></div></div></div>')
-    return slides + ms
+    charts = "".join(f'<div class="chart"><img src="data:image/svg+xml;base64,{base64.b64encode(f.read_bytes()).decode()}"></div>'
+                     for f in sorted((DEMO / "out" / "charts" / L).glob("*.svg")))
+    gallery = (f'<div class="ex" id="charts"><h2>{e(t["ex_c"])}</h2><p class="sub">{e(t["ex_c_sub"])}</p>'
+               f'<div class="cgrid">{charts}</div><div class="sim">{e(t["sim"])}</div></div>')
+    return slides + ms + gallery
 
 
 OUT.mkdir(parents=True, exist_ok=True)

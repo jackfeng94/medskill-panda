@@ -9,6 +9,7 @@ stored in `out/results.json`.
 | HTML deck (English, Vietnamese), one offline file each | `deck_en/out/demo-hf.html`, `deck_vi/out/demo-hf.html` |
 | Manuscript (Word, English text with a Vietnamese abstract) and its PDF | `manuscript/demo-hf.docx`, `manuscript/demo-hf.pdf` |
 | Figures and every computed number | `out/` |
+| Chart gallery: eight chart types, SVG, English and Vietnamese | `out/charts/en/`, `out/charts/vi/`, values in `out/charts/values.json` |
 | Screenshots used in the main README | `screens/` |
 
 The decks pass `lint_slop.py` with 0 findings. `lint_prose.py` reports one error on the
