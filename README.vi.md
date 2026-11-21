@@ -125,6 +125,18 @@ cầu viết đi theo cùng nguyên tắc như làm slide:
 <img src="assets/example-manuscript.vi.png" alt="Trang bản thảo mẫu có tóm tắt tiếng Anh và tiếng Việt, cạnh kết quả lint_prose" width="100%">
 </div>
 
+## Biểu đồ
+
+Hình vẽ từ dữ liệu, không bao giờ từ trí nhớ: mỗi biểu đồ được vẽ từ con số trong sổ bằng
+chứng hoặc dữ liệu của tác giả, lưu dạng SVG cho slide HTML, PowerPoint và bản thảo, và ghi
+nhãn theo ngôn ngữ của bài (`0,75` cho tiếng Việt, `0.75` cho tiếng Anh).
+
+<div align="center">
+<img src="assets/chart-gallery.vi.png" alt="Tám loại biểu đồ: Kaplan–Meier kèm số còn theo dõi, forest plot, sơ đồ CONSORT, biểu đồ đường kèm dải tin cậy, cột nhóm kèm khoảng tin cậy, box plot kèm từng bệnh nhân, cột chồng phân độ NYHA, đường ROC" width="100%">
+</div>
+
+<sub>Cả tám biểu đồ vẽ từ dữ liệu mô phỏng bằng <a href="examples/demo-hf/make_charts.py">examples/demo-hf/make_charts.py</a>; bản tiếng Anh ở <code>examples/demo-hf/out/charts/en/</code>.</sub>
+
 ## Các skill
 
 <details open>

@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Bộ sưu tập biểu đồ (`examples/demo-hf/make_charts.py`): Kaplan–Meier kèm số còn theo dõi, forest
+  plot, CONSORT, biểu đồ đường kèm dải KTC, cột nhóm kèm KTC, box plot kèm từng điểm, cột chồng
+  phân độ NYHA, ROC; dạng SVG, tiếng Anh và tiếng Việt; thêm mục Biểu đồ vào hai README.
 - Ảnh README làm lại: sơ đồ quy trình dạng thẻ theo dải ngang (băng tiêu đề và đầu vào →
   trục chung → hai làn slide và viết bài → dải kiểm tra → bàn giao và thư mục dự án), cùng ảnh đầu ra thật của bộ slide và bản
   thảo; mỗi ảnh có bản tiếng Anh và tiếng Việt. Script sinh ảnh ở `assets/src/`.

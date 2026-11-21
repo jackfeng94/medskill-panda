@@ -131,6 +131,18 @@ writing request follows the same principles as the slides:
 <img src="assets/example-manuscript.png" alt="Example manuscript page with an English abstract and a Vietnamese abstract, next to the lint_prose result" width="100%">
 </div>
 
+## Charts
+
+Figures come from data, never from memory: each chart is drawn from the numbers in the
+evidence ledger or the authors' data, saved as SVG for HTML or PowerPoint decks and
+manuscripts, and labelled in the deck's language (`0.75` in English, `0,75` in Vietnamese).
+
+<div align="center">
+<img src="assets/chart-gallery.png" alt="Eight chart types: Kaplan–Meier curve with numbers at risk, forest plot, CONSORT flow diagram, line chart with confidence bands, grouped bars with confidence intervals, box plot with individual points, stacked bars of NYHA class, ROC curve" width="100%">
+</div>
+
+<sub>All eight are drawn from simulated data by <a href="examples/demo-hf/make_charts.py">examples/demo-hf/make_charts.py</a>; the Vietnamese versions are in <code>examples/demo-hf/out/charts/vi/</code>.</sub>
+
 ## Skills
 
 <details open>
