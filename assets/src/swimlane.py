@@ -1,7 +1,8 @@
-"""The 'How it works' figure: what you do / what Medskill Panda does, as an editorial flowchart.
+"""The 'How it works' figure: a chain of files, each written by one step and read by the next.
 
-Journal-infographic style: square blocks of solid colour per phase, serif headings, line icons,
-labelled hand-offs. No rounded corners, shadows or gradients. Used by make_art.py.
+Each step is drawn as the document it leaves behind (a sheet with a folded corner), grouped in
+three acts. The person steps in at three marked moments; the approval is a gate across the chain;
+a failed check loops back underneath. Flat: no rounded boxes, shadows or gradients. Used by make_art.py.
 """
 import html
 
@@ -26,51 +27,52 @@ ICON = {  # 32 x 32 line icons, drawn in the step colour
 S = {
  "en": dict(
   title="How Medskill Panda works",
-  sub="You make three decisions. The plugin does the rest, writes every step to a file and checks its own work.",
-  you="YOU", panda="MEDSKILL PANDA",
-  phases=[("Plan together", 0, 1), ("Research and build", 2, 4), ("Check and deliver", 5, 6)],
-  a=("A", "Ask", ["A talk or a paper,", "plus your papers, data", "and template. Answer", "one round of questions."]),
-  b=("B", "Approve", ["Read the plan.", "Approve it, or say", "what to change."]),
-  c=("C", "Use", ["Open the files.", "Present, or revise", "and submit."]),
-  up1="questions", dn1="request · answers", up2="plan.md", dn2="approval", up3="files · report",
-  steps=[("Interview", "deck-grilling", ["audience, length,", "language, format"], "brief.md", "chat"),
-         ("Plan", "deck-planning", ["one conclusion", "per slide or section"], "plan.md", "plan"),
-         ("Evidence", "evidence-research", ["value, source,", "page, exact quote"], "claims.json", "ledger"),
-         ("Figures, text", "medical-figures", ["charts from data;", "drafts per section"], "figures/ drafts/", "figure"),
-         ("Build", "html · pptx · beamer", ["slides: html pptx pdf", "paper: docx tex md"], "out/", "deck"),
-         ("Audit", "slop · evidence · prose", ["numbers vs sources,", "style VI / EN"], "audit/", "audit"),
-         ("Deliver", "report", ["what was verified,", "what was not"], "STATUS.md", "deliver")],
-  loop="Each finding goes back to the step that caused it · at most 3 rounds",
-  notes_h="Checks that run by themselves",
-  notes=[("Plan gate", "Nothing is built before you approve the plan.", TEAL),
-         ("Slop check", "Every saved slide is scanned for machine-made patterns.", RED),
-         ("Evidence audit", "Every number is compared with its source quote.", BLUE),
-         ("Manuscript audit", "Style in Vietnamese and English, unsourced statistics, decimals.", PLUM)],
+  sub="Every step saves its result as a file you can open. You only need to step in three times.",
+  acts=[("I", "Prepare", 0, 1), ("II", "Gather evidence", 2, 3), ("III", "Build and check", 4, 6)],
+  sheets=[("brief.md", "Set the brief", ["audience, length,", "language, format"], "chat"),
+          ("plan.md", "Outline", ["one main point per", "slide or section"], "plan"),
+          ("claims.json", "Record sources", ["value, page number,", "verbatim quote"], "ledger"),
+          ("figures/", "Make figures", ["charts from the data,", "figures from the paper"], "figure"),
+          ("out/", "Produce files", ["slides: HTML, PPTX", "papers: Word, LaTeX"], "deck"),
+          ("audit/", "Check", ["numbers match sources,", "wording and layout"], "audit"),
+          ("STATUS.md", "Report", ["what was verified", "and what was not"], "deliver")],
+  you=[("You ask", ["the topic and your files,", "then a few questions"]),
+       ("You approve", ["the outline, or ask", "for changes"]),
+       ("You receive", ["present, edit", "or submit"])],
+  gate="APPROVE",
+  loop="Problem found → fixed at the step that caused it (up to 3 times)",
+  on_h="Automatic checks",
+  on=[("No build before approval", "No slides or paper until you approve the outline."),
+      ("Number check", "Each time a slide is saved, a number without a source is flagged."),
+      ("Template-look check", "Generic layouts and stock phrases are flagged when a slide is saved."),
+      ("Writing check", "Uncited statistics, overstated conclusions and decimal style.")],
  ),
  "vi": dict(
-  title="Medskill Panda hoạt động thế nào",
-  sub="Bạn đưa ra ba quyết định. Plugin làm phần còn lại, ghi mỗi bước ra file và tự kiểm tra kết quả.",
-  you="BẠN", panda="MEDSKILL PANDA",
-  phases=[("Lập kế hoạch cùng bạn", 0, 1), ("Nghiên cứu và dựng", 2, 4), ("Kiểm tra và bàn giao", 5, 6)],
-  a=("A", "Yêu cầu", ["Bài nói hoặc bài báo,", "kèm tài liệu, dữ liệu,", "template. Trả lời", "một lượt câu hỏi."]),
-  b=("B", "Duyệt", ["Đọc kế hoạch.", "Duyệt, hoặc nói", "cần sửa gì."]),
-  c=("C", "Sử dụng", ["Mở file kết quả.", "Trình bày, hoặc", "sửa và nộp."]),
-  up1="câu hỏi", dn1="yêu cầu · trả lời", up2="plan.md", dn2="đã duyệt", up3="file · báo cáo",
-  steps=[("Phỏng vấn", "deck-grilling", ["đối tượng, thời lượng,", "ngôn ngữ, định dạng"], "brief.md", "chat"),
-         ("Kế hoạch", "deck-planning", ["một kết luận", "cho mỗi slide, mỗi mục"], "plan.md", "plan"),
-         ("Bằng chứng", "evidence-research", ["giá trị, nguồn,", "trang, câu trích"], "claims.json", "ledger"),
-         ("Hình, văn bản", "medical-figures", ["biểu đồ từ dữ liệu;", "bản thảo từng mục"], "figures/ drafts/", "figure"),
-         ("Dựng", "html · pptx · beamer", ["slide: html pptx pdf", "bài báo: docx tex md"], "out/", "deck"),
-         ("Kiểm tra", "slop · evidence · prose", ["số liệu so với nguồn,", "văn phong Việt / Anh"], "audit/", "audit"),
-         ("Bàn giao", "báo cáo", ["đã kiểm chứng gì,", "chưa kiểm chứng gì"], "STATUS.md", "deliver")],
-  loop="Mỗi lỗi quay về đúng bước gây ra · tối đa 3 vòng",
-  notes_h="Các bước tự kiểm tra",
-  notes=[("Cổng duyệt", "Chưa duyệt kế hoạch thì chưa dựng gì.", TEAL),
-         ("Quét slop", "Mỗi slide vừa lưu được quét dấu hiệu do máy làm.", RED),
-         ("Kiểm tra bằng chứng", "Mỗi con số được đối chiếu với câu trích nguồn.", BLUE),
-         ("Kiểm tra bản thảo", "Văn phong Việt/Anh, thống kê thiếu nguồn, dấu thập phân.", PLUM)],
+  title="Medskill Panda làm việc thế nào",
+  sub="Mỗi bước lưu kết quả thành một file để bạn mở ra xem. Bạn chỉ cần tham gia ba lần.",
+  acts=[("I", "Chuẩn bị", 0, 1), ("II", "Tìm bằng chứng", 2, 3), ("III", "Làm và kiểm tra", 4, 6)],
+  sheets=[("brief.md", "Xác định yêu cầu", ["người nghe, thời lượng,", "ngôn ngữ, định dạng"], "chat"),
+          ("plan.md", "Lập dàn ý", ["mỗi slide hoặc mỗi mục", "một ý chính"], "plan"),
+          ("claims.json", "Ghi nguồn số liệu", ["con số, số trang,", "câu trích nguyên văn"], "ledger"),
+          ("figures/", "Vẽ hình", ["biểu đồ từ dữ liệu,", "hình lấy từ bài báo"], "figure"),
+          ("out/", "Tạo file", ["slide: HTML, PPTX", "bài báo: Word, LaTeX"], "deck"),
+          ("audit/", "Kiểm tra", ["số liệu khớp nguồn,", "câu chữ, trình bày"], "audit"),
+          ("STATUS.md", "Báo cáo", ["phần đã kiểm chứng", "và phần chưa"], "deliver")],
+  you=[("Bạn đặt yêu cầu", ["chủ đề, tài liệu,", "trả lời vài câu hỏi"]),
+       ("Bạn duyệt dàn ý", ["đồng ý, hoặc", "yêu cầu sửa"]),
+       ("Bạn nhận kết quả", ["trình bày, chỉnh sửa", "hoặc nộp bài"])],
+  gate="DUYỆT",
+  loop="Phát hiện lỗi → quay lại sửa đúng bước gây lỗi (tối đa 3 lần)",
+  on_h="Kiểm tra tự động",
+  on=[("Chưa duyệt thì chưa làm", "Chưa duyệt dàn ý thì chưa tạo slide hay bài viết."),
+      ("Đối chiếu số liệu", "Mỗi lần lưu slide, số nào không có nguồn sẽ bị báo."),
+      ("Lọc slide rập khuôn", "Bố cục và câu chữ sáo rỗng bị báo ngay khi lưu."),
+      ("Soát bài viết", "Số liệu thiếu trích dẫn, kết luận quá đà, cách viết số thập phân.")],
  ),
 }
+ACT_COLOR = [TEAL, BLUE, RED]
+ACT_TINT = ["#EAF2F4", "#ECF0F7", "#F7ECEA"]
+ON_ICON = ["plan", "ledger", "audit", "chat"]
 
 
 def text(x, y, s, size=15, weight="normal", color=INK, anchor="start", font=SANS, extra=""):
@@ -94,104 +96,104 @@ def icon(name, x, y, color, size=34):
             f'stroke-linejoin="round" stroke-linecap="round">{ICON[name]}</g>')
 
 
+def wrap(s, n):
+    rows, cur = [], ""
+    for w_ in s.split():
+        if len(cur) + len(w_) + 1 > n:
+            rows.append(cur)
+            cur = w_
+        else:
+            cur = (cur + " " + w_).strip()
+    return rows + [cur]
+
+
+def sheet(x, y, w, h, fname, head, rows, ic, color):
+    """A document with a folded corner: the file this step leaves behind."""
+    f = 22
+    out = [f'<path d="M{x} {y} H{x+w-f} L{x+w} {y+f} V{y+h} H{x} Z" fill="#FFFFFF" stroke="{INK}" stroke-width="1.4"/>',
+           f'<path d="M{x+w-f} {y} V{y+f} H{x+w}" fill="#EEF1F3" stroke="{INK}" stroke-width="1.4"/>',
+           f'<rect x="{x}" y="{y}" width="5" height="{h}" fill="{color}"/>',
+           text(x + 18, y + 32, fname, 15, "bold", color, font=MONO),
+           f'<line x1="{x+18}" y1="{y+46}" x2="{x+w-18}" y2="{y+46}" stroke="{RULE}" stroke-width="1"/>',
+           text(x + 18, y + 76, head, 15, "bold", INK, font=SERIF),
+           lines(x + 18, y + 104, rows, 13.5, 19, color=MUTE),
+           icon(ic, x + w - 44, y + h - 42, color, 28)]
+    return "".join(out)
+
+
 def pipeline(L):
     t = S[L]
-    W, H = 1680, 900
-    x0, x1, lab = 40, 1640, 64
-    you_y, you_h = 150, 150
-    pan_y = you_y + you_h + 86
-    sx = x0 + lab + 26
-    bw = 182
-    gap = (x1 - 18 - sx - 7 * bw) / 6
-    by, bh = pan_y + 34, 176
-    pan_h = 34 + bh + 118
-    cx = [sx + i * (bw + gap) + bw / 2 for i in range(7)]
-    colors = (INK, RED, MUTE)
+    W, H = 1680, 860
+    x0, x1 = 40, 1640
+    sw, sh = 182, 196
+    G = 96                                   # extra room for the gate between plan.md and claims.json
+    g = (x1 - 30 - (x0 + 30) - 7 * sw - G) / 6
+    xs, x = [], x0 + 30
+    for i in range(7):
+        xs.append(x)
+        x += sw + g + (G if i == 1 else 0)
+    sy = 330
+    cy = sy + sh / 2
+    gate_x = xs[1] + sw + (g + G) / 2
     out = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">',
            "<defs>" + "".join(f'<marker id="ah-{c[1:]}" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6.5" markerHeight="6.5" '
-                              f'orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="{c}"/></marker>' for c in colors) + "</defs>",
+                              f'orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="{c}"/></marker>'
+                              for c in (INK, RED, AMBER)) + "</defs>",
            f'<rect width="{W}" height="{H}" fill="{PAPER}"/>',
-           f'<rect x="{x0}" y="34" width="60" height="6" fill="{RED}"/>',
-           text(x0, 84, t["title"], 34, "bold", font=SERIF),
-           text(x0, 116, t["sub"], 17.5, color=MUTE)]
-    # lanes: solid label bands
-    out += [f'<rect x="{x0}" y="{you_y}" width="{x1-x0}" height="{you_h}" fill="#FFFFFF" stroke="{RULE}"/>',
-            f'<rect x="{x0}" y="{you_y}" width="{lab}" height="{you_h}" fill="{AMBER}"/>',
-            text(x0 + lab / 2 + 6, you_y + you_h / 2, t["you"], 17, "bold", "#FFFFFF", "middle",
-                 extra=f'transform="rotate(-90 {x0 + lab / 2 + 6} {you_y + you_h / 2})" letter-spacing="3"'),
-            f'<rect x="{x0}" y="{pan_y}" width="{x1-x0}" height="{pan_h}" fill="#FFFFFF" stroke="{RULE}"/>',
-            f'<rect x="{x0}" y="{pan_y}" width="{lab}" height="{pan_h}" fill="{TEAL}"/>',
-            text(x0 + lab / 2 + 6, pan_y + pan_h / 2, t["panda"], 17, "bold", "#FFFFFF", "middle",
-                 extra=f'transform="rotate(-90 {x0 + lab / 2 + 6} {pan_y + pan_h / 2})" letter-spacing="3"')]
-    # your three decisions
-    yb_y, yb_h = you_y + 18, you_h - 36
-    for i, (letter, verb, rows) in ((0, t["a"]), (1, t["b"]), (6, t["c"])):
-        bx, w = cx[i] - (bw + 16) / 2, bw + 16
-        out.append(f'<rect x="{bx:.1f}" y="{yb_y}" width="{w}" height="{yb_h}" fill="#FFF7E6" stroke="{AMBER}" stroke-width="1.5"/>')
-        out.append(f'<rect x="{bx:.1f}" y="{yb_y}" width="34" height="34" fill="{AMBER}"/>')
-        out.append(text(bx + 17, yb_y + 24, letter, 19, "bold", "#FFFFFF", "middle", font=SERIF))
-        out.append(text(bx + 44, yb_y + 24, verb, 19, "bold", AMBER, font=SERIF))
-        out.append(lines(bx + 12, yb_y + 54, rows, 13.5, 17.5))
-    # phase brackets above the steps
-    for name, i, j in t["phases"]:  # brackets under the steps
-        a_, b_ = cx[i] - bw / 2, cx[j] + bw / 2
-        yy = by + bh + 22
-        out.append(f'<path d="M{a_:.1f} {yy-10} V{yy} H{b_:.1f} V{yy-10}" fill="none" stroke="{STEP_COLOR[i]}" stroke-width="2"/>')
-        out.append(text((a_ + b_) / 2, yy + 22, name.upper(), 13, "bold", STEP_COLOR[i], "middle", extra='letter-spacing="1.5"'))
-    # steps
-    for i, (name, skill, rows, f, ic) in enumerate(t["steps"]):
-        c = STEP_COLOR[i]
-        bx = cx[i] - bw / 2
-        out.append(f'<rect x="{bx:.1f}" y="{by}" width="{bw}" height="{bh}" fill="#FFFFFF" stroke="{c}" stroke-width="1.6"/>')
-        out.append(f'<rect x="{bx:.1f}" y="{by}" width="{bw}" height="46" fill="{c}"/>')
-        out.append(text(bx + 14, by + 32, str(i + 1), 26, "bold", "#FFFFFF", font=SERIF))
-        out.append(text(bx + 40, by + 30, name, 17, "bold", "#FFFFFF"))
-        out.append(icon(ic, bx + bw - 38, by + 8, "#FFFFFF", 30))
-        out.append(text(bx + 14, by + 70, skill, 11.5, color=MUTE, font=MONO))
-        out.append(lines(bx + 14, by + 100, rows, 13.5, 18))
-        out.append(f'<rect x="{bx:.1f}" y="{by+bh-34}" width="{bw}" height="34" fill="#F3F5F7"/>')
-        out.append(text(bx + 14, by + bh - 12, f, 12.5, "bold", c, font=MONO))
-        if i < 6:
-            out.append(arrow(bx + bw + 3, by + 23, bx + bw + gap - 4, by + 23))
-    # hand-offs between the lanes
-    top, bot = yb_y + yb_h, by
-
-    def label(x, y, s, anchor):
-        w = len(s) * 7.2 + 14
-        rx = x - w if anchor == "end" else x
-        return (f'<rect x="{rx:.1f}" y="{y-15:.1f}" width="{w:.1f}" height="22" fill="{PAPER}"/>'
-                + text(x - 7 if anchor == "end" else x + 7, y + 1, s, 13, "bold", INK, anchor))
-
-    mid = (top + bot) / 2 + 2
-    for i, up, dn in ((0, t["up1"], t["dn1"]), (1, t["up2"], t["dn2"])):
-        out.append(arrow(cx[i] - 16, top, cx[i] - 16, bot - 3, AMBER and INK))
-        out.append(arrow(cx[i] + 16, bot, cx[i] + 16, top + 3))
-        out.append(label(cx[i] - 26, mid, dn, "end"))
-        out.append(label(cx[i] + 26, mid, up, "start"))
-    out.append(arrow(cx[6], bot, cx[6], top + 3))
-    out.append(label(cx[6] + 10, mid, t["up3"], "start") if False else label(cx[6] - 10, mid, t["up3"], "end"))
-    # fix loop
-    ly = by + bh + 86
-    out.append(f'<path d="M{cx[5]:.1f} {by+bh} V{ly} H{cx[2]:.1f} V{by+bh+5}" fill="none" stroke="{RED}" stroke-width="2" '
-               f'stroke-dasharray="7 5" marker-end="url(#ah-{RED[1:]})"/>')
-    out.append(f'<rect x="{(cx[2]+cx[5])/2 - len(t["loop"])*3.9:.1f}" y="{ly-12}" width="{len(t["loop"])*7.8:.1f}" height="24" fill="#FFFFFF"/>')
-    out.append(text((cx[2] + cx[5]) / 2, ly + 5, t["loop"], 13.5, "bold", RED, "middle"))
-    # checks that run by themselves
-    ny = pan_y + pan_h + 54
-    out.append(text(x0, ny, t["notes_h"], 20, "bold", font=SERIF))
+           text(x0, 70, t["title"], 34, "bold", font=SERIF),
+           f'<rect x="{x0}" y="88" width="{x1-x0}" height="1.5" fill="{INK}"/>',
+           text(x0, 120, t["sub"], 17.5, color=MUTE)]
+    # acts: tinted fields behind their sheets, roman numeral and name on top
+    for k, (num, name, i, j) in enumerate(t["acts"]):
+        ax_, bx_ = xs[i] - 16, xs[j] + sw + 16
+        out.append(f'<rect x="{ax_:.1f}" y="{sy-48}" width="{bx_-ax_:.1f}" height="{sh+70}" fill="{ACT_TINT[k]}"/>')
+        anchor, lx = ("end", bx_ - 14) if k == 0 else ("start", ax_ + 14)  # act I: clear of the first dashed line
+        out.append(f'<text x="{lx:.1f}" y="{sy-18}" font-family="{SERIF}" font-weight="bold" font-style="italic" '
+                   f'fill="{ACT_COLOR[k]}" text-anchor="{anchor}"><tspan font-size="20">{e(num)}</tspan>'
+                   f'<tspan font-size="16" dx="10">{e(name)}</tspan></text>')
+    # the chain: one line through every sheet, arrowheads between sheets
+    for i in range(6):
+        a_, b_ = xs[i] + sw, xs[i + 1]
+        out.append(f'<line x1="{a_:.1f}" y1="{cy}" x2="{b_-3:.1f}" y2="{cy}" stroke="{INK}" stroke-width="2.4" marker-end="url(#ah-{INK[1:]})"/>')
+    for i, (fname, head, rows, ic) in enumerate(t["sheets"]):
+        k = 0 if i < 2 else 1 if i < 4 else 2
+        out.append(sheet(xs[i], sy, sw, sh, fname, head, rows, ic, ACT_COLOR[k]))
+    # the gate: a bar across the chain
+    out.append(f'<rect x="{gate_x-5:.1f}" y="{sy-62}" width="10" height="{sh+96}" fill="{AMBER}"/>')
+    gw = len(t["gate"]) * 10.5 + 22
+    out.append(f'<rect x="{gate_x-gw/2:.1f}" y="{cy-15}" width="{gw:.1f}" height="30" fill="{AMBER}"/>')
+    out.append(text(gate_x, cy + 6, t["gate"], 14, "bold", "#FFFFFF", "middle", extra='letter-spacing="2"'))
+    # the three moments that need the person: amber discs above the chain
+    for (vx, (verb, rows)) in zip((xs[0] + sw / 2, gate_x, xs[6] + sw / 2), t["you"]):
+        dy = 196
+        out.append(f'<line x1="{vx:.1f}" y1="{dy+22}" x2="{vx:.1f}" y2="{sy-66 if vx == gate_x else sy-2}" stroke="{AMBER}" '
+                   f'stroke-width="2" stroke-dasharray="4 4"/>')
+        out.append(f'<circle cx="{vx:.1f}" cy="{dy}" r="22" fill="{AMBER}"/>')
+        out.append(f'<circle cx="{vx:.1f}" cy="{dy-5}" r="5.5" fill="#FFFFFF"/>'
+                   f'<path d="M{vx-10:.1f} {dy+12} q10 -14 20 0" fill="#FFFFFF"/>')
+        right = vx < W - 300
+        tx, anchor = (vx + 32, "start") if right else (vx - 32, "end")
+        out.append(text(tx, dy - 6, verb, 17, "bold", AMBER, anchor, font=SERIF))
+        out.append(lines(tx, dy + 15, rows, 13.5, 18, color=INK, anchor=anchor))
+    # the repair loop: from audit/ back under the chain to claims.json
+    a_, b_ = xs[5] + sw / 2, xs[2] + sw / 2
+    ly = sy + sh + 78
+    out.append(f'<path d="M{a_:.1f} {sy+sh} C{a_:.1f} {ly+10} {b_:.1f} {ly+10} {b_:.1f} {sy+sh+5}" fill="none" stroke="{RED}" '
+               f'stroke-width="2" stroke-dasharray="7 5" marker-end="url(#ah-{RED[1:]})"/>')
+    mx = (a_ + b_) / 2
+    wl = len(t["loop"]) * 7.6
+    out.append(f'<rect x="{mx-wl/2:.1f}" y="{ly-6}" width="{wl:.1f}" height="26" fill="{PAPER}"/>')
+    out.append(text(mx, ly + 12, t["loop"], 14, "bold", RED, "middle"))
+    # always-on checks: four columns split by thin rules
+    oy = 690
+    out.append(text(x0, oy, t["on_h"], 20, "bold", font=SERIF, extra='font-style="italic"'))
     cw = (x1 - x0) / 4
-    for k, (h, body, c) in enumerate(t["notes"]):
+    for k, (h, body) in enumerate(t["on"]):
         nx = x0 + k * cw
-        out.append(f'<rect x="{nx}" y="{ny+18}" width="{cw-28:.1f}" height="5" fill="{c}"/>')
-        out.append(text(nx, ny + 50, h, 16, "bold", c))
-        words, rows, cur = body.split(), [], ""
-        for w_ in words:
-            if len(cur) + len(w_) + 1 > 46:
-                rows.append(cur)
-                cur = w_
-            else:
-                cur = (cur + " " + w_).strip()
-        rows.append(cur)
-        out.append(lines(nx, ny + 74, rows, 14.5, 20, color=INK))
+        if k:
+            out.append(f'<line x1="{nx-14:.1f}" y1="{oy+22}" x2="{nx-14:.1f}" y2="{oy+118}" stroke="{RULE}" stroke-width="1.2"/>')
+        out.append(icon(ON_ICON[k], nx, oy + 26, INK, 26))
+        out.append(text(nx + 36, oy + 46, h, 16, "bold", INK))
+        out.append(lines(nx, oy + 78, wrap(body, 52), 14.5, 20, color=MUTE))
     out.append("</svg>")
     return f'<div id="pipeline" style="width:{W}px;background:{PAPER}">' + "".join(out) + "</div>"

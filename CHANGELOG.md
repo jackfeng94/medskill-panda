@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **Hình "cách hoạt động" thiết kế lại từ đầu:** thay sơ đồ hai làn với bảy hộp màu đánh số bằng
+  chuỗi file (brief.md → plan.md → claims.json → figures/ → out/ → audit/ → STATUS.md), mỗi bước vẽ
+  thành tờ tài liệu gấp góc, chia ba phần (Chuẩn bị, Tìm bằng chứng, Làm và kiểm tra). Bước duyệt
+  dàn ý là thanh chắn ngang chuỗi, ba lần bạn tham gia đánh dấu bằng vòng tròn, vòng sửa lỗi là
+  đường cong phía dưới, mục "Kiểm tra tự động" ở cuối. Câu chữ viết mới, song ngữ.
+
 - **Ví dụ đổi sang chuyên khoa Tai Mũi Họng:** `examples/demo-hf` thành `examples/demo-crs`, thử
   nghiệm mô phỏng DEMO-CRS (viêm mũi xoang mạn có polyp, chăm sóc có cấu trúc sau phẫu thuật nội soi
   xoang so với thường quy, tiêu chí chính tái phát polyp trên nội soi trong 24 tháng). Slide HTML,
