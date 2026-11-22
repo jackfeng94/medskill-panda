@@ -7,8 +7,10 @@
   trong bài báo (cột chú thích, slide lớn kèm ảnh nhỏ, trang bản thảo có chú thích đánh số, biểu đồ
   gắn nhãn A–H). Không bo góc, không đổ bóng, không nền chuyển màu.
 - Slide tiêu đề của ví dụ có đường Kaplan–Meier thật thay cho khoảng trống.
-- `pptx_from_spec.py`: tuỳ chọn `theme.corners: "square"` cho ô sơ đồ góc vuông, không bóng
-  (mặc định vẫn bo góc).
+- `pptx_from_spec.py`, sơ đồ (`diagram`): kiểu mặc định mới, ô vuông viền mảnh, dải màu nhấn ở
+  đầu ô, dòng đầu in đậm cùng màu, chữ căn trái, không bóng, đường nối mảnh màu xám; kiểu bo góc
+  cũ vẫn có qua `theme.corners: "rounded"`. Sửa lỗi đường nối vào hình tròn (ô ngẫu nhiên hoá) đi
+  chéo vì dùng sai điểm nối.
 - Hướng dẫn từ A đến Z cho người mới (`docs/HUONG-DAN.md`, `docs/GUIDE.md`): cài Claude Code,
   đăng nhập, cài plugin, làm bài thuyết trình đầu tiên, kiểm tra slide, viết bài báo, làm tiếp,
   cập nhật, xử lý sự cố, thuật ngữ; liên kết từ đầu hai README.

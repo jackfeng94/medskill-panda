@@ -24,7 +24,8 @@
 ```
 
 Leave out `template` for a clean deck drawn from `theme`. `theme.corners` sets diagram boxes:
-`"rounded"` (default) or `"square"` (flat rectangles without the template's shadow). `layouts` maps slide kinds to the
+`"square"` (default: flat rectangles, thin border, a narrow accent band on top, first line bold in the
+accent colour, left-aligned text, no shadow) or `"rounded"` (rounded boxes without the band). `layouts` maps slide kinds to the
 template's layouts, by name or, when two masters share a name, by part (`"slideLayout13"`).
 `scan_template.py` prints the layouts the template's own slides use: prefer those. A slide may set `"layout"` to
 override.
