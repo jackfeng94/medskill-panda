@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- **`CLAUDE.md` cho người phát triển repo:** cấu trúc, lệnh test, các quy tắc mà test kiểm tra,
+  quy ước mã, phong cách hình ảnh, cách dựng lại ảnh README, quy trình git/PR. Giúp các phiên Claude
+  Code sau làm đúng ngay từ đầu.
+
 - **Font ảnh minh hoạ:** tiêu đề dùng Source Serif 4 (giấy phép SIL OFL, kèm trong
   `assets/src/fonts/`, hỗ trợ đủ dấu tiếng Việt) thay DejaVu Serif; chữ thường Inter, mã JetBrains
   Mono; bỏ chữ nghiêng giả. `shoot.js` chờ font tải xong mới chụp.
