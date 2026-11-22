@@ -134,6 +134,28 @@ def forest_fig(path, overall_label, xlabel, fmt, labels=None, dec="."):
 km_fig(OUT / "km.svg", ("Control", "Intervention"), "Months since randomisation", "HF admission (%)", "svg")
 km_fig(OUT / "km.png", ("Control", "Intervention"), "Months since randomisation", "HF admission (%)", "png")
 km_fig(OUT / "km_vi.svg", ("Chứng", "Can thiệp"), "Tháng kể từ phân nhóm ngẫu nhiên", "Nhập viện vì suy tim (%)", "svg")
+
+
+def title_km(path, labels):
+    """The same Kaplan–Meier curves, in light lines, for the dark title slide."""
+    fig, ax = plt.subplots(figsize=(7.2, 5.4))
+    for name, col, lab in (("control", "#FFFFFF", labels[0]), ("intervention", "#F4A79E", labels[1])):
+        xs, ys = curves[name]
+        ax.step(np.append(xs, 24), 100 * (1 - np.append(ys, ys[-1])), where="post", color=col, lw=4)
+        ax.text(24.4, 100 * (1 - ys[-1]), lab, color=col, va="center", fontsize=17, fontweight="bold")
+    ax.set(xlim=(0, 24), ylim=(0, 36), xticks=[0, 12, 24], yticks=[0, 10, 20, 30])
+    for s in ("top", "right"):
+        ax.spines[s].set_visible(False)
+    for s in ("left", "bottom"):
+        ax.spines[s].set_color("#9CC3D2")
+    ax.tick_params(colors="#BFD9E3", labelsize=14)
+    fig.subplots_adjust(left=0.1, right=0.7, bottom=0.1, top=0.97)
+    fig.savefig(path, format="svg", transparent=True)
+    plt.close(fig)
+
+
+title_km(OUT / "km_title.svg", ("Control", "Intervention"))
+title_km(OUT / "km_title_vi.svg", ("Chứng", "Can thiệp"))
 forest_fig(OUT / "forest.svg", "Overall", "Rate ratio (log scale)", "svg")
 VI_LABELS = {"Age < 70": "Dưới 70 tuổi", "Age ≥ 70": "Từ 70 tuổi", "Women": "Nữ", "Men": "Nam",
              "Diabetes": "Đái tháo đường", "No diabetes": "Không đái tháo đường", "Overall": "Chung"}

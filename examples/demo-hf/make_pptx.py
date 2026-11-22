@@ -20,7 +20,7 @@ def num(x, lang, nd=1):
     return s.replace(".", ",") if lang == "vi" else s
 
 
-THEME = {"fonts": {"heading": "Arial", "body": "Arial"},
+THEME = {"fonts": {"heading": "Arial", "body": "Arial"}, "corners": "square",
          "colors": {"primary": "#0F5E7A", "ink": "#15202B", "muted": "#5F6E7B", "line": "#D9E2E8",
                     "intervention": "#C8372D", "control": "#56677F", "title_text": "#15202B"},
          "type_pt": {"title": 28, "body": 18, "small": 13, "footer": 10}}

@@ -30,6 +30,7 @@
       "heading": "Arial",
       "body": "Arial"
     },
+    "corners": "square",
     "colors": {
       "primary": "#0F5E7A",
       "ink": "#15202B",
