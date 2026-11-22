@@ -28,7 +28,7 @@ trên xuống; mỗi bước có cách kiểm tra đã làm đúng chưa. Lần 
 
 Medskill Panda là một **plugin** (gói mở rộng) cho **Claude Code**, trợ lý AI chạy trên máy
 tính của bạn. Sau khi cài, bạn chỉ cần gõ yêu cầu bằng tiếng Việt hoặc tiếng Anh, ví dụ
-*"Làm slide journal club 15 phút về thử nghiệm DAPA-HF"*, và plugin sẽ:
+*"Làm slide journal club 15 phút về thử nghiệm SINUS-52"*, và plugin sẽ:
 
 1. hỏi bạn một lượt câu hỏi (đối tượng nghe, thời lượng, ngôn ngữ, định dạng…);
 2. lập kế hoạch từng slide và **chờ bạn duyệt**;
@@ -156,7 +156,7 @@ thư mục `bai-noi` trước. Plugin sẽ dùng chúng làm nguồn chính và 
 Trong Claude Code, gõ yêu cầu bằng lời thường. Ví dụ:
 
 ```text
-Làm slide journal club 15 phút về bài báo DAPA-HF trong file dapa-hf.pdf, cho bác sĩ nội trú
+Làm slide journal club 15 phút về bài báo SINUS-52 trong file sinus-52.pdf, cho bác sĩ nội trú
 ```
 
 ### 7.3. Trả lời câu hỏi
@@ -190,7 +190,7 @@ ghi file, đọc và chọn **Yes**.
 
 ### 7.6. Mở kết quả
 
-Mọi thứ nằm trong một thư mục con mang tên bài nói, ví dụ `bai-noi/dapa-hf/`:
+Mọi thứ nằm trong một thư mục con mang tên bài nói, ví dụ `bai-noi/sinus-52/`:
 
 | File | Là gì |
 |------|-------|
@@ -203,11 +203,11 @@ Mọi thứ nằm trong một thư mục con mang tên bài nói, ví dụ `bai-
 
 Mở thư mục nhanh từ terminal: macOS `open .`, Windows `explorer .`.
 
-![Ví dụ bộ slide HTML](../assets/example-slides.vi.92fee725.png)
+![Ví dụ bộ slide HTML](../assets/example-slides.vi.f8dc0384.png)
 
-*Ví dụ bộ slide HTML do plugin dựng từ dữ liệu mô phỏng (thư mục `examples/demo-hf`).*
+*Ví dụ bộ slide HTML do plugin dựng từ dữ liệu mô phỏng (thư mục `examples/demo-crs`).*
 
-![Ví dụ bộ slide PowerPoint](../assets/example-pptx.vi.5d9e7950.png)
+![Ví dụ bộ slide PowerPoint](../assets/example-pptx.vi.83a12384.png)
 
 *Cùng thử nghiệm thành một bài journal club 12 slide hoàn chỉnh bằng PowerPoint trong template: mục lục, câu hỏi PICO, sơ đồ thử nghiệm, hình kèm câu chốt, độ lớn hiệu quả, điểm mạnh và hạn chế, kết luận, tài liệu tham khảo. Sơ đồ và biểu đồ sửa được.*
 
@@ -231,7 +231,7 @@ plot"*, *"Thêm slide tài liệu tham khảo"*. Plugin sửa đúng bước li�
 
 Các loại biểu đồ plugin vẽ từ dữ liệu, bạn có thể gọi tên khi yêu cầu sửa:
 
-![Các loại biểu đồ](../assets/chart-gallery.vi.2db6fd87.png)
+![Các loại biểu đồ](../assets/chart-gallery.vi.47689eb5.png)
 
 ### 7.8. Journal club từ một bài báo (PDF)
 
@@ -304,7 +304,7 @@ không tự sửa bản thảo; nó đề xuất và chỉ sửa những gì b�
 Chỗ nào ghi `[MISSING: …]` là thông tin **chỉ bạn mới điền được** (ví dụ số quyết định của hội
 đồng đạo đức). Plugin cố ý để lộ, không bịa.
 
-![Ví dụ bản thảo](../assets/example-manuscript.vi.8dc2e4cb.png)
+![Ví dụ bản thảo](../assets/example-manuscript.vi.6652af11.png)
 
 *Bản thảo mẫu: tóm tắt tiếng Anh và tiếng Việt, bảng từ dữ liệu, và chỗ `[MISSING]` mà bộ kiểm tra chỉ ra.*
 
@@ -339,7 +339,7 @@ Rồi gõ:
 ```
 
 Plugin đọc `STATUS.md` và cho biết mỗi bài đang ở bước nào, bước tiếp theo là gì. Gõ
-*"Làm tiếp bài dapa-hf"* để tiếp tục.
+*"Làm tiếp bài sinus-52"* để tiếp tục.
 
 ## 11. Cập nhật plugin
 

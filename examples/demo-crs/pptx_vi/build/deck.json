@@ -1,0 +1,368 @@
+{
+  "template": "../../theme/template.pptx",
+  "layouts": {
+    "title": "Title Slide",
+    "content": "Title Only",
+    "closing": "Title Slide",
+    "key-message": "Title Slide"
+  },
+  "styles": {
+    "title": {
+      "size": 26,
+      "bold": true,
+      "color": "#15202B",
+      "anchor": "middle",
+      "align": "left"
+    },
+    "title_slide": {
+      "size": 38,
+      "bold": true,
+      "color": "#FFFFFF",
+      "anchor": "top",
+      "align": "left"
+    },
+    "subtitle": {
+      "size": 20,
+      "color": "#CFE6EE",
+      "align": "left"
+    },
+    "key_message": {
+      "size": 34,
+      "bold": true,
+      "color": "#FFFFFF",
+      "anchor": "top",
+      "align": "left"
+    }
+  },
+  "theme": {
+    "fonts": {
+      "heading": "Arial",
+      "body": "Arial"
+    },
+    "corners": "square",
+    "colors": {
+      "primary": "#0F5E7A",
+      "ink": "#15202B",
+      "muted": "#5F6E7B",
+      "line": "#D9E2E8",
+      "intervention": "#C8372D",
+      "control": "#56677F",
+      "title_text": "#15202B"
+    },
+    "type_pt": {
+      "title": 28,
+      "body": 18,
+      "small": 13,
+      "footer": 10
+    }
+  },
+  "cite": "Dữ liệu mô phỏng để minh hoạ · DEMO-CRS, seed 7",
+  "page_numbers": true,
+  "slides": [
+    {
+      "type": "title",
+      "title": "Trong thử nghiệm mô phỏng DEMO-CRS, chăm sóc có cấu trúc sau mổ xoang giảm khoảng một phần ba tái phát polyp",
+      "subtitle": "Ví dụ minh hoạ dựng từ dữ liệu mô phỏng",
+      "presenter": "Medskill Panda demo",
+      "event": "Journal club Tai Mũi Họng",
+      "notes": "Introduce DEMO-CRS as a teaching example with simulated data."
+    },
+    {
+      "type": "agenda",
+      "title": "Bốn câu hỏi trong mười lăm phút",
+      "items": [
+        {
+          "text": "Câu hỏi và thiết kế",
+          "minutes": 3
+        },
+        {
+          "text": "Tái phát và triệu chứng",
+          "minutes": 5
+        },
+        {
+          "text": "Tin được đến đâu",
+          "minutes": 4
+        },
+        {
+          "text": "Ý nghĩa cho phòng khám mũi xoang",
+          "minutes": 3
+        }
+      ],
+      "notes": "Fifteen minutes: four questions, one per part."
+    },
+    {
+      "type": "pico",
+      "title": "Chăm sóc có cấu trúc sau mổ xoang có ngăn polyp tái phát?",
+      "rows": [
+        {
+          "label": "Đối tượng",
+          "text": "Viêm mũi xoang mạn có polyp, sau mổ"
+        },
+        {
+          "label": "Can thiệp",
+          "text": "Rửa mũi corticoid, nội soi theo lịch"
+        },
+        {
+          "label": "So sánh",
+          "text": "Chăm sóc thường quy"
+        },
+        {
+          "label": "Kết cục",
+          "text": "Tái phát polyp trên nội soi, 24 tháng"
+        },
+        {
+          "label": "Thiết kế",
+          "text": "Ngẫu nhiên 1:1, 600 người, mô phỏng"
+        }
+      ],
+      "notes": "State the question in PICO form before showing any result."
+    },
+    {
+      "type": "diagram",
+      "title": "600 bệnh nhân được phân nhóm ngẫu nhiên 1:1 sau phẫu thuật nội soi xoang",
+      "nodes": [
+        {
+          "id": "pop",
+          "x": 0,
+          "y": 0.34,
+          "w": 0.22,
+          "h": 0.32,
+          "text": [
+            "Đối tượng",
+            "Polyp mũi, sau mổ nội soi xoang"
+          ]
+        },
+        {
+          "id": "r",
+          "x": 0.28,
+          "y": 0.41,
+          "w": 0.075,
+          "h": 0.18,
+          "text": "R 1:1",
+          "style": "primary",
+          "shape": "circle"
+        },
+        {
+          "id": "a",
+          "x": 0.43,
+          "y": 0.1,
+          "w": 0.27,
+          "h": 0.26,
+          "text": [
+            "Chăm sóc có cấu trúc",
+            "n = 300"
+          ],
+          "style": "int"
+        },
+        {
+          "id": "b",
+          "x": 0.43,
+          "y": 0.64,
+          "w": 0.27,
+          "h": 0.26,
+          "text": [
+            "Chăm sóc thường quy",
+            "n = 300"
+          ],
+          "style": "ctl"
+        },
+        {
+          "id": "ep",
+          "x": 0.77,
+          "y": 0.34,
+          "w": 0.23,
+          "h": 0.32,
+          "text": [
+            "Tiêu chí chính",
+            "Tái phát polyp",
+            "24 tháng"
+          ]
+        }
+      ],
+      "edges": [
+        {
+          "from": "pop",
+          "to": "r"
+        },
+        {
+          "from": "r",
+          "to": "a",
+          "elbow": true
+        },
+        {
+          "from": "r",
+          "to": "b",
+          "elbow": true
+        },
+        {
+          "from": "a",
+          "to": "ep",
+          "elbow": true
+        },
+        {
+          "from": "b",
+          "to": "ep",
+          "elbow": true
+        }
+      ],
+      "notes": "Walk through the trial schema from population to endpoint."
+    },
+    {
+      "type": "figure-text",
+      "title": "Tách biệt sớm: 28,6% so với 40,5% tái phát sau 24 tháng",
+      "image": "1-kaplan-meier.png",
+      "alt": "Kaplan–Meier curve",
+      "credit": "Nguồn: dữ liệu mô phỏng DEMO-CRS (seed 7); ước lượng Kaplan–Meier",
+      "bullets": [
+        "Chênh 11,9 điểm phần trăm",
+        "84 so với 115 ca tái phát"
+      ],
+      "takeaway": "Cứ 9 bệnh nhân được chăm sóc hai năm thì tránh được một ca tái phát",
+      "split": 0.62,
+      "notes": "Point to the separation of the curves before month 6."
+    },
+    {
+      "type": "figure-text",
+      "title": "Hiệu quả cùng chiều theo tuổi, giới và hen phế quản",
+      "image": "2-forest.png",
+      "alt": "Forest plot",
+      "credit": "Nguồn: dữ liệu mô phỏng DEMO-CRS (seed 7); tỷ số tỷ suất Poisson",
+      "bullets": [
+        "Tỷ số tỷ suất chung 0,68 (KTC 95% 0,52–0,91)",
+        "KTC vượt 1 ở nhóm dưới 50 tuổi, nữ, không hen"
+      ],
+      "takeaway": "Phân nhóm chỉ để thăm dò: không nhóm nào khác biệt rõ",
+      "split": 0.62,
+      "notes": "Subgroups are exploratory; say so."
+    },
+    {
+      "type": "chart",
+      "title": "Triệu chứng cải thiện ở cả hai nhóm; với chăm sóc có cấu trúc, cải thiện giữ được đến tháng 24",
+      "chart": "line",
+      "categories": [
+        "Trước mổ",
+        "Tháng 3",
+        "Tháng 6",
+        "Tháng 12",
+        "Tháng 24"
+      ],
+      "series": [
+        {
+          "name": "Chăm sóc có cấu trúc",
+          "values": [
+            53.9,
+            25.5,
+            24.6,
+            24.8,
+            26.8
+          ],
+          "color": "#C8372D"
+        },
+        {
+          "name": "Thường quy",
+          "values": [
+            54.1,
+            29.2,
+            29.7,
+            32.2,
+            35.1
+          ],
+          "color": "#56677F"
+        }
+      ],
+      "number_format": "0",
+      "credit": "Nguồn: dữ liệu mô phỏng DEMO-CRS (seed 11); điểm SNOT-22 trung bình (0–110, thấp là tốt)",
+      "notes": "SNOT-22 ranges from 0 to 110; lower is better."
+    },
+    {
+      "type": "big-number",
+      "title": "Điều trị 9 bệnh nhân trong hai năm tránh được một ca tái phát",
+      "numbers": [
+        {
+          "value": "−11,9",
+          "label": "điểm phần trăm tái phát ít hơn",
+          "context": "40,5% → 28,6% sau 24 tháng",
+          "color": "#56677F"
+        },
+        {
+          "value": "0,68",
+          "label": "tỷ số tỷ suất",
+          "context": "KTC 95% 0,52–0,91",
+          "color": "#C8372D"
+        },
+        {
+          "value": "9",
+          "label": "số cần điều trị",
+          "context": "trong 24 tháng",
+          "color": "#0F5E7A"
+        }
+      ],
+      "notes": "Close the results with the absolute effect, not only the ratio."
+    },
+    {
+      "type": "two-column",
+      "title": "So sánh rõ ràng, nhưng nhóm mô phỏng không thể thay đổi thực hành",
+      "left": {
+        "heading": "Điểm mạnh",
+        "bullets": [
+          "So sánh ngẫu nhiên",
+          "Tiêu chí nội soi",
+          "Hiệu quả tuyệt đối, tương đối"
+        ],
+        "style": "primary"
+      },
+      "right": {
+        "heading": "Hạn chế",
+        "bullets": [
+          "Dữ liệu mô phỏng",
+          "Chưa rõ người đọc nội soi",
+          "Chưa có dữ liệu tuân thủ"
+        ],
+        "style": "int"
+      },
+      "takeaway": "Học phương pháp; chưa đổi thực hành.",
+      "notes": "Weigh the strengths against what a simulated trial cannot show."
+    },
+    {
+      "type": "key-message",
+      "message": "Chăm sóc có cấu trúc giảm 11,9 ca tái phát trên 100 bệnh nhân sau hai năm",
+      "support": [
+        "Với thử nghiệm thật, cần xem mức tuân thủ rửa mũi và ai đọc kết quả nội soi.",
+        "Thảo luận: bệnh nhân nào ở phòng khám của chúng ta nên được ưu tiên?"
+      ],
+      "notes": "Pause on the bottom line, then open the discussion question."
+    },
+    {
+      "type": "references",
+      "title": "Tài liệu tham khảo",
+      "items": [
+        {
+          "authors": "Medskill Panda",
+          "title": "Bộ dữ liệu mô phỏng DEMO-CRS, seed 7",
+          "journal": "examples/demo-crs/make_data.py",
+          "year": 2026
+        },
+        {
+          "authors": "Fokkens WJ, Lund VJ, Hopkins C, et al",
+          "title": "European Position Paper on Rhinosinusitis and Nasal Polyps 2020",
+          "journal": "Rhinology",
+          "year": 2020
+        },
+        {
+          "authors": "Hopkins C, Gillett S, Slack R, Lund VJ, Browne JP",
+          "title": "Psychometric validity of the 22-item Sinonasal Outcome Test",
+          "journal": "Clin Otolaryngol",
+          "year": 2009
+        }
+      ],
+      "notes": "Sources: the simulated data, the EPOS 2020 position paper and the SNOT-22 validation."
+    },
+    {
+      "type": "closing",
+      "title": "Câu hỏi và thảo luận",
+      "subtitle": "DEMO-CRS · dữ liệu mô phỏng để giảng dạy",
+      "presenter": "Medskill Panda demo",
+      "notes": "Take questions."
+    }
+  ]
+}

@@ -32,7 +32,7 @@ C002,results,factual,x,E001,verified,ci_95,confirmatory
 C003,discussion,factual,x,E002,unverified,not_estimated,not_applicable
 """
 MANIFEST = {"sources": [
-    {"evidence_id": "E001", "title": "DEMO-HF dataset", "authors": [], "year": 2026, "source_type": "dataset",
+    {"evidence_id": "E001", "title": "DEMO-CRS dataset", "authors": [], "year": 2026, "source_type": "dataset",
      "identifiers": {"doi": "", "pmid": "", "pmcid": "", "url": "", "isbn": ""}, "locator": "results.json",
      "verification": {"status": "verified", "source_opened": True}},
     {"evidence_id": "E002", "title": "A feasibility study", "authors": ["Doe J"], "year": 2024, "source_type": "article",

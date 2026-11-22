@@ -98,7 +98,7 @@ evidence) and the plan follows `deck-planning/recipes.md` → Journal club. The 
 
 Every number on these slides is a value of a claim in `evidence/claims.json` with the page and
 quote from the PDF. `check_spec.py --recipe journal-club` confirms the components are present;
-`check_pptx.py` and `slop-audit` check the built file. `examples/demo-hf/make_pptx.py` builds such
+`check_pptx.py` and `slop-audit` check the built file. `examples/demo-crs/make_pptx.py` builds such
 a deck (from simulated data) and CI runs every check on it.
 
 ## Floors

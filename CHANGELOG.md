@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+- **Ví dụ đổi sang chuyên khoa Tai Mũi Họng:** `examples/demo-hf` thành `examples/demo-crs`, thử
+  nghiệm mô phỏng DEMO-CRS (viêm mũi xoang mạn có polyp, chăm sóc có cấu trúc sau phẫu thuật nội soi
+  xoang so với thường quy, tiêu chí chính tái phát polyp trên nội soi trong 24 tháng). Slide HTML,
+  PowerPoint journal club 12 slide, 8 biểu đồ (Kaplan–Meier, forest plot, CONSORT, SNOT-22, cột nhóm,
+  box plot điểm Lund–Kennedy, cột chồng độ polyp, ROC bạch cầu ái toan) và ảnh README dựng lại.
+- **Bản thảo ví dụ thành IMRaD đầy đủ:** Abstract, Tóm tắt, Introduction có trích dẫn (EPOS 2020,
+  SNOT-22, Lund–Mackay), Methods, Results (bảng, hình, phân nhóm), Discussion, References.
+- Forest plot: nhãn phân nhóm nằm ngoài trục, không còn đè lên khoảng tin cậy rộng.
+- `deck_text.py`: hộp danh sách tài liệu tham khảo (`References`) không tính vào số chữ của slide.
+- Ví dụ câu lệnh trong README và hướng dẫn đổi sang chủ đề tai mũi họng (SINUS-52, viêm mũi xoang).
+
 - **PowerPoint truyền đạt tốt hơn và đủ thành phần:** `pptx_from_spec.py` có thêm các loại slide
   `agenda` (mục lục, đánh dấu phần đang nói, số phút), `section` (slide chuyển phần), `pico` (câu
   hỏi nghiên cứu dạng PICO), `two-column`/`comparison` (điểm mạnh và hạn chế, cũ và mới),
