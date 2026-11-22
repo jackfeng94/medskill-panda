@@ -13,8 +13,8 @@ protocols and posters in English, Vietnamese or both.
 
 [![licence MIT](https://img.shields.io/badge/licence-MIT-11607a)](LICENSE)
 [![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-c0392b)](#install)
-[![version 1.2.0](https://img.shields.io/badge/version-1.2.0-4a5a6a)](CHANGELOG.md)
-[![skills-38-](https://img.shields.io/badge/skills-38-11607a)](#skills)
+[![version 1.3.0](https://img.shields.io/badge/version-1.3.0-4a5a6a)](CHANGELOG.md)
+[![skills-36-](https://img.shields.io/badge/skills-36-11607a)](#skills)
 [![tests](https://github.com/jackfeng94/medskill-panda/actions/workflows/tests.yml/badge.svg)](https://github.com/jackfeng94/medskill-panda/actions/workflows/tests.yml)
 [![python 3.8+](https://img.shields.io/badge/python-3.8%2B-4a5a6a)](#hooks)
 
@@ -117,6 +117,7 @@ claude --plugin-dir ./medskill-panda
 | Write a paper for an international journal | *"Draft a STROBE cohort paper for [journal]"* |
 | Write in Vietnamese with a bilingual abstract | *"Viết bài báo gốc về [đề tài], tóm tắt song ngữ"* |
 | Check a Word, LaTeX or Markdown manuscript | `/medskill-panda:audit-manuscript paper.docx` |
+| Turn your paper into a talk or poster with the same numbers | `/medskill-panda:paper-to-deck` |
 
 ## Scientific writing
 
@@ -176,11 +177,11 @@ manuscripts, and labelled in the deck's language (`0.75` in English, `0,75` in V
 </details>
 
 <details>
-<summary><b>Writing & research (11)</b></summary>
+<summary><b>Writing & research (9)</b></summary>
 
 `scientific-writing` · `literature-review` · `research-lookup` · `citation-management` ·
-`peer-review` · `scientific-critical-thinking` · `scholar-evaluation` ·
-`hypothesis-generation` · `research-grants` · `venue-templates` · `market-research-reports`
+`peer-review` · `scientific-critical-thinking` · `hypothesis-generation` ·
+`research-grants` · `venue-templates`
 
 </details>
 
@@ -215,7 +216,7 @@ Active only during slide work, silent everywhere else:
 |------|--------------|
 | `route_prompt.py` | Prompts that mention "slides", "presentation", "journal club"… are reminded to start from `medical-deck` |
 | `plan_gate.py` | Blocks writes to `build/`, `out/` and deck-builder commands until `plan.md` is approved |
-| `slop_on_save.py` | Lints every saved HTML slide and reports blocking findings at once |
+| `slop_on_save.py` | Checks every saved HTML slide: machine-made patterns, and every number against `evidence/claims.json` |
 
 Needs Python 3.8+. Without Python the hooks do nothing, and they never block your work
 because of an error of their own. Turn the plan gate off with `MEDSKILL_PANDA_NO_GATE=1`.

@@ -12,8 +12,8 @@ bắt các dấu hiệu "slide do máy làm", và hỗ trợ viết bài báo, t
 
 [![licence MIT](https://img.shields.io/badge/licence-MIT-11607a)](LICENSE)
 [![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-c0392b)](#cài-đặt)
-[![version 1.2.0](https://img.shields.io/badge/version-1.2.0-4a5a6a)](CHANGELOG.md)
-[![skills-38-](https://img.shields.io/badge/skills-38-11607a)](#các-skill)
+[![version 1.3.0](https://img.shields.io/badge/version-1.3.0-4a5a6a)](CHANGELOG.md)
+[![skills-36-](https://img.shields.io/badge/skills-36-11607a)](#các-skill)
 [![tests](https://github.com/jackfeng94/medskill-panda/actions/workflows/tests.yml/badge.svg)](https://github.com/jackfeng94/medskill-panda/actions/workflows/tests.yml)
 [![python 3.8+](https://img.shields.io/badge/python-3.8%2B-4a5a6a)](#hook)
 
@@ -113,6 +113,7 @@ claude --plugin-dir ./medskill-panda
 | Viết bài báo bằng tiếng Anh cho tạp chí quốc tế | *"Draft a STROBE cohort paper for [journal]"* |
 | Viết tổng quan tài liệu | *"Viết tổng quan hệ thống về SGLT2i trong suy thận mạn"* |
 | Kiểm tra bản thảo Word/LaTeX/Markdown | `/medskill-panda:audit-manuscript bai-bao.docx` |
+| Từ bài báo ra slide hoặc poster, cùng số liệu | `/medskill-panda:paper-to-deck` |
 
 ## Viết khoa học
 
@@ -170,11 +171,11 @@ nhãn theo ngôn ngữ của bài (`0,75` cho tiếng Việt, `0.75` cho tiếng
 </details>
 
 <details>
-<summary><b>Viết & nghiên cứu (11)</b></summary>
+<summary><b>Viết & nghiên cứu (9)</b></summary>
 
 `scientific-writing` · `literature-review` · `research-lookup` · `citation-management` ·
-`peer-review` · `scientific-critical-thinking` · `scholar-evaluation` ·
-`hypothesis-generation` · `research-grants` · `venue-templates` · `market-research-reports`
+`peer-review` · `scientific-critical-thinking` · `hypothesis-generation` ·
+`research-grants` · `venue-templates`
 
 </details>
 
@@ -209,7 +210,7 @@ Chỉ hoạt động khi làm slide, im lặng ở mọi việc khác:
 |------|--------|
 | `route_prompt.py` | Yêu cầu có chữ "slide", "thuyết trình", "journal club"… → nhắc bắt đầu từ `medical-deck` |
 | `plan_gate.py` | Chặn ghi vào `build/`, `out/` và lệnh dựng slide cho đến khi `plan.md` được duyệt |
-| `slop_on_save.py` | Quét AI slop mỗi lần lưu slide HTML, báo lỗi chặn ngay |
+| `slop_on_save.py` | Kiểm tra mỗi slide HTML vừa lưu: dấu hiệu do máy làm, và từng con số so với `evidence/claims.json` |
 
 Cần Python 3.8+; không có Python thì hook tự bỏ qua, không bao giờ chặn công việc vì lỗi
 của chính nó. Tắt cổng duyệt: `MEDSKILL_PANDA_NO_GATE=1`.

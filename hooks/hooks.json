@@ -1,5 +1,5 @@
 {
-  "description": "Medskill Panda: route slide requests to the orchestrator, hold deck builds until plan.md is approved, and lint saved slides for AI slop. Silent outside slide work.",
+  "description": "Medskill Panda: route slide requests to the orchestrator, hold deck builds until plan.md is approved, and check saved slides for AI slop and for numbers without a claim. Silent outside slide work.",
   "hooks": {
     "UserPromptSubmit": [
       {

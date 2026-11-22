@@ -1,7 +1,20 @@
 # Changelog
 
-## Unreleased
+## 1.3.0
 
+### Mới trong lần này
+- **Kiểm tra số liệu ngay khi lưu slide:** hook `slop_on_save.py` giờ đối chiếu mọi con số trên
+  slide vừa lưu với `evidence/claims.json` (dùng `check_claims.slide_findings`). Số không có nhận
+  định nào bị báo UNSUPPORTED, số thuộc nhận định của slide khác bị báo ELSEWHERE; chưa có
+  `claims.json` mà slide có số cũng bị báo.
+- **Lệnh `/medskill-panda:paper-to-deck`:** từ bài báo viết bằng `scientific-writing` ra slide hoặc
+  poster dùng chung sổ bằng chứng. `medical-deck/scripts/manuscript_to_evidence.py` nhập các nhận
+  định đánh dấu `[claim:…] [evidence:…]` (giá trị, câu trích, nguồn, trạng thái kiểm chứng).
+- **CI chạy ví dụ DEMO-HF** (`examples/demo-hf/check.sh`): dựng slide HTML, PowerPoint và bản
+  thảo bằng chính công cụ của plugin rồi chạy mọi bước kiểm tra.
+- **Gỡ hai skill ít liên quan:** `market-research-reports`, `scholar-evaluation` (còn 36 skill).
+
+### Từ sau 1.2.0
 - Ảnh README và hướng dẫn mang mã nội dung trong tên (`pipeline.vi.1069afb3.png`…), do
   `assets/src/publish_art.py` tạo và tự cập nhật đường dẫn: đổi ảnh là đổi tên, nên trình duyệt
   và GitHub không còn hiện bản cũ. Test bảo đảm mọi ảnh đều có mã và đều được dùng.

@@ -50,7 +50,7 @@ class SkillsTest(unittest.TestCase):
                     self.assertTrue((skill / rel).exists())
 
     def test_no_reference_to_removed_skills(self):
-        removed = ("scientific-slides",)
+        removed = ("scientific-slides", "market-research-reports", "scholar-evaluation")
         for path in ROOT.rglob("*"):
             if ".git" in path.parts or path.suffix not in (".md", ".py", ".json", ".yaml", ".sh"):
                 continue

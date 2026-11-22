@@ -1,6 +1,7 @@
 """End-to-end tests of the three hooks, run through run-hook.sh like Claude Code runs them."""
 from __future__ import annotations
 
+import json
 import unittest
 
 from helpers import TalkFolder, run_hook
@@ -111,8 +112,36 @@ class SlopOnSaveTest(unittest.TestCase):
         self.assertIn("S04", msg)
         self.assertNotIn("[click]", msg)  # speaker notes are never linted
 
-    def test_clean_slide_is_silent(self):
-        self.assertFalse(self.save("build/slides.html", '<section class="slide"><h2>HR 0.58</h2></section>'))
+    def claims(self, *values, slide=1):
+        ev = self.talk.path / "evidence"
+        ev.mkdir(exist_ok=True)
+        (ev / "claims.json").write_text(json.dumps({"claims": [
+            {"id": "c01", "slide": slide, "values": list(values), "quote": " ".join(values), "kind": "observed"}]}),
+            encoding="utf-8")
+
+    def test_clean_slide_with_sourced_numbers_is_silent(self):
+        self.claims("HR 0.58", "0.45–0.75")
+        self.assertFalse(self.save("build/slides.html",
+                                   '<section class="slide"><h2>HR 0.58 (95% CI 0.45–0.75)</h2></section>'))
+
+    def test_number_without_claim_is_reported(self):
+        self.claims("HR 0.58")
+        msg = self.save("build/slides.html", '<section class="slide"><h2>HR 0.58, NNT 21</h2></section>')
+        self.assertIn("number check", msg)
+        self.assertIn("UNSUPPORTED", msg)
+        self.assertIn("'21'", msg)
+
+    def test_number_mapped_to_another_slide_is_reported(self):
+        self.claims("HR 0.58", slide=2)
+        msg = self.save("build/slides.html", '<section class="slide"><h2>HR 0.58</h2></section>')
+        self.assertIn("ELSEWHERE", msg)
+
+    def test_numbers_without_any_claims_file_are_reported(self):
+        msg = self.save("build/slides.html", '<section class="slide"><h2>HR 0.58</h2></section>')
+        self.assertIn("claims.json does not exist", msg)
+
+    def test_slide_without_numbers_and_claims_is_silent(self):
+        self.assertFalse(self.save("build/slides.html", '<section class="slide"><h2>Mechanism of action</h2></section>'))
 
     def test_unrecognised_markup_is_reported(self):
         self.assertIn("S00", self.save("build/slides.html", '<div class="slide"><p>Lorem ipsum</p></div>'))
