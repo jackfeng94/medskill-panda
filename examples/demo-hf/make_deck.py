@@ -56,7 +56,8 @@ S = {
   credit4="Source: simulated DEMO-HF data (seed 7); Poisson rate ratios",
   credit5="Source: simulated DEMO-HF data (seed 11); mean and 95% CI",
   cite="Simulated data for demonstration · DEMO-HF, seed 7",
-  km="km.svg", forest="forest.svg",
+  km="km.svg", forest="forest.svg", km_title="km_title.svg",
+  title_fig="24-month heart-failure admission (%) · simulated data",
  ),
  "vi": dict(
   t1="Trong thử nghiệm mô phỏng DEMO-HF, theo dõi có cấu trúc giảm một phần tư số lần nhập viện vì suy tim",
@@ -87,7 +88,8 @@ S = {
   credit4="Nguồn: dữ liệu mô phỏng DEMO-HF (seed 7); tỷ số tỷ suất Poisson",
   credit5="Nguồn: dữ liệu mô phỏng DEMO-HF (seed 11); trung bình và KTC 95%",
   cite="Dữ liệu mô phỏng để minh hoạ · DEMO-HF, seed 7",
-  km="km_vi.svg", forest="forest_vi.svg",
+  km="km_vi.svg", forest="forest_vi.svg", km_title="km_title_vi.svg",
+  title_fig="Nhập viện vì suy tim sau 24 tháng (%) · dữ liệu mô phỏng",
  ),
 }
 
@@ -117,8 +119,11 @@ CSS = """:root{--primary:#0F5E7A;--primary-d:#0A4257;--int:#C8372D;--ctl:#56677F
 .fact div{font-size:27px;color:var(--ink2);margin-top:16px;line-height:1.3}
 .caveat{margin-top:90px;font-size:26px;color:#8A5B00;background:#FFF4D6;padding:18px 26px;display:inline-block}
 .slide.title{background:#0F5E7A}
-.slide.title h1{color:#fff;top:330px;font-size:70px;right:260px;letter-spacing:-.01em}
-.slide.title .sub{color:#CFE6EE;top:620px}
+.slide.title h1{color:#fff;top:320px;font-size:60px;right:900px;letter-spacing:-.01em}
+.slide.title .hero{position:absolute;right:90px;top:200px;width:760px}
+.slide.title .hero svg{width:100%;height:auto}
+.slide.title .hero div{font-size:20px;color:#BFD9E3;margin-top:6px}
+.slide.title .sub{color:#CFE6EE;top:690px;right:900px}
 .slide.title .who{color:#fff}.slide.title .who span{color:#BBD9E3}
 .slide.title .mark{position:absolute;left:120px;top:120px;width:132px;height:132px;overflow:hidden;}
 .slide.title .rule{position:absolute;left:120px;top:300px;width:140px;height:10px;background:var(--int)}
@@ -137,7 +142,7 @@ for lang, s in S.items():
     if b.exists():
         shutil.rmtree(b)
     b.mkdir(parents=True)
-    for f in (s["km"], s["forest"]):
+    for f in (s["km"], s["forest"], s["km_title"]):
         shutil.copy(D / "out" / f, b / f)
     for f in ("3-consort.svg", "4-line.svg"):
         shutil.copy(D / "out" / "charts" / lang / "slide" / f, b / f)
@@ -147,6 +152,7 @@ for lang, s in S.items():
     slides = f"""<section class="slide title" data-name="Title">
   <img class="mark a-in" src="logo.svg" alt="Medskill Panda">
   <div class="rule a-in" style="--d:.05s"></div>
+  <figure class="hero a-in" style="--d:.4s;margin:0"><!--include: {s['km_title']}--><div>{s['title_fig']}</div></figure>
   <h1 class="a-in" style="--d:.1s">{s['t1']}</h1>
   <div class="sub a-in" style="--d:.3s">{s['sub']}</div>
   <div class="who a-in" style="--d:.5s">{s['who']}<span>{s['whos']}</span></div>

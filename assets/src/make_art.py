@@ -125,21 +125,34 @@ CSS = """
 :root{--teal:#0F5E7A;--red:#C8372D;--slate:#56677F;--ink:#18222D;--mute:#5F6E7B;--line:#DCE4EA;--green:#1D7A3E}
 *{box-sizing:border-box}body{margin:0;background:#fff;font-family:Inter,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--ink)}
 .mono{font-family:ui-monospace,"JetBrains Mono",Menlo,Consolas,monospace}
-/* examples */
-.cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.chart{background:#fff;border:1px solid #C9D3DA;padding:6px}.chart img{display:block;width:100%}
-.ex{width:1680px;padding:32px 34px;background:#fff}
-.ex h2{margin:0;font-size:28px;letter-spacing:-.01em}.ex .sub{margin:6px 0 20px;color:var(--mute);font-size:16px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.grid.g3{grid-template-columns:repeat(3,1fr);gap:18px}
-.shot{border:1px solid #C9D3DA}.shot img{display:block;width:100%}
-.sim{margin-top:14px;font-size:13px;color:#8A5B00}
-.ms{display:grid;grid-template-columns:720px 1fr;gap:34px;align-items:start}
-.page{border:1px solid #C9D3DA;background:#fff}.page img{display:block;width:100%}
-.term{border:1px solid #C9D3DA;margin-bottom:18px}.term .hd{background:var(--teal);color:#fff;padding:12px 16px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px}
-.term .row{display:flex;gap:12px;padding:12px 16px;align-items:baseline;flex-wrap:wrap}.term b{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;background:var(--red);color:#fff;padding:2px 7px}
-.term .why{width:100%;color:var(--mute);font-size:13.5px;padding-left:44px}
-.checks div{display:flex;gap:10px;align-items:center;font-size:15.5px;padding:9px 0;border-bottom:1px solid #EEF2F5}.checks svg{width:20px;height:20px;color:var(--green);flex:none}
-.figcrop{margin-top:18px;border:1px solid #C9D3DA;width:520px;background:#fff}.figcrop img{display:block;width:100%}
+/* examples: journal-figure plates */
+.plate{width:1680px;padding:40px 40px 44px;background:#FAF8F4;display:grid;grid-template-columns:330px 1fr;gap:40px;border-top:1px solid #E2DED6}
+.cap .rule{width:56px;height:6px;background:var(--c)}
+.cap .no{font:700 64px/1 'DejaVu Serif',Georgia,serif;color:var(--c);margin:18px 0 6px}
+.cap h2{font:700 27px/1.2 'DejaVu Serif',Georgia,serif;margin:0 0 14px;color:#16212B}
+.cap p{font-size:15.5px;line-height:1.5;color:#33414D;margin:0 0 20px}
+.cap dl{margin:0;border-top:2px solid #16212B}
+.cap dl div{display:grid;grid-template-columns:96px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid #D9D4CB;font-size:14px}
+.cap dt{font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:11.5px;color:#6B6458;padding-top:2px}
+.cap dd{margin:0;color:#16212B}.cap dd code{font:12.5px 'DejaVu Sans Mono',Menlo,monospace;background:#EFEBE3;padding:1px 5px}
+.cap .ok{color:#2E7D4F;font-weight:700}
+.cap .sim{margin-top:16px;font-size:12.5px;color:#8A5B00}
+.frame{background:#fff;border:1px solid #CFC9BE}.frame img{display:block;width:100%}
+.hero-row{display:grid;grid-template-columns:1fr;gap:14px}
+.thumbs{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.thumbs figure{margin:0}.thumbs figcaption{font-size:12.5px;color:#55636F;margin-top:6px}
+.thumbs figcaption b{color:#16212B;margin-right:4px}
+.ms{display:grid;grid-template-columns:600px 1fr;gap:34px;align-items:start}
+.page{position:relative}.mk{position:absolute;left:-15px;width:30px;height:30px;background:var(--c);color:#fff;font:700 16px/30px 'DejaVu Serif',Georgia,serif;text-align:center}
+.callouts{margin:0;padding:0;list-style:none;border-top:2px solid #16212B}
+.callouts li{display:grid;grid-template-columns:34px 1fr;gap:10px;padding:11px 0;border-bottom:1px solid #D9D4CB;font-size:15px;line-height:1.4}
+.callouts li b{display:block;width:28px;height:28px;background:var(--c);color:#fff;font:700 15px/28px 'DejaVu Serif',Georgia,serif;text-align:center}
+.callouts li span strong{display:block;color:#16212B}.callouts li span{color:#33414D}
+.term{margin-top:22px;border:1px solid #CFC9BE;background:#fff}.term .hd{background:#16212B;color:#fff;padding:10px 14px;font:13px 'DejaVu Sans Mono',Menlo,monospace}
+.term .row{padding:10px 14px;font:13.5px 'DejaVu Sans Mono',Menlo,monospace;color:#16212B}.term .row b{background:#B4362C;color:#fff;padding:1px 6px;margin-right:8px}
+.cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.panel{position:relative;background:#fff;border:1px solid #CFC9BE;padding:30px 6px 6px}.panel img{display:block;width:100%}
+.panel .lt{position:absolute;left:0;top:0;width:28px;height:28px;background:#16212B;color:#fff;font:700 16px/28px 'DejaVu Serif',Georgia,serif;text-align:center}
 """
 
 JOIN = '<div class="join"><svg viewBox="0 0 40 22"><path d="M2 11h32M26 3l9 8-9 8" fill="none" stroke="#8A99A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>'
@@ -150,25 +163,78 @@ LOGO = LOGO[LOGO.index("<svg"):].replace("<title>Medskill Panda</title>", "")
 from swimlane import pipeline  # noqa: E402  (the 'How it works' figure)
 
 
+PL = {
+ "en": dict(
+  sim="All numbers are simulated for demonstration (seed 7).",
+  spec=("Format", "Built by", "Checks", "Data"),
+  s=("01", "HTML slide deck", "One offline file with motion, speaker notes and a laser pointer. Titles state the conclusion; every figure is drawn from the data and every slide carries its source.",
+     ["<code>.html</code>, 6 slides", "<code>html-deck-building</code>", "<span class=ok>lint_slop: 0 findings</span>", "simulated DEMO-HF trial"],
+     ["Title", "Trial flow", "Subgroups", "Quality of life", "Bottom line"]),
+  p=("02", "PowerPoint in your template", "The same talk inside a hospital or congress template. The trial diagram and the line chart are native PowerPoint objects you can edit; every slide has speaker notes.",
+     ["<code>.pptx</code>, 6 slides", "<code>pptx-deck-building</code>", "<span class=ok>check_pptx, lint_slop: 0</span>", "simulated DEMO-HF trial"],
+     ["Title", "Kaplan–Meier", "Subgroups", "Native line chart", "Bottom line"]),
+  m=("03", "Manuscript, two languages", "A Word file written from the same data: English text with a Vietnamese abstract, a three-line table and a figure. The audit flags the one gap only the authors can fill.",
+     ["<code>.docx</code> and PDF", "<code>scientific-writing</code>", "<span class=ok>lint_prose: 1 deliberate gap</span>", "simulated DEMO-HF trial"]),
+  callouts=[("Banner", "The document says the data are simulated."), ("Explicit gap", "[MISSING: authors to confirm] instead of an invented author."),
+            ("English abstract", "Numbers written 0.75, 95% CI 0.63–0.89."), ("Tóm tắt (Vietnamese)", "Same numbers written 0,75; KTC 95% 0,63–0,89."),
+            ("Table 1", "Baseline characteristics computed from the data.")],
+  c=("04", "Charts from data", "Eight chart types common in medical talks and papers, drawn from the same simulated data as SVG, with labels in the deck's language.",
+     ["SVG, English and Vietnamese", "<code>make_charts.py</code>", "values in <code>values.json</code>", "simulated DEMO-HF trial"]),
+ ),
+ "vi": dict(
+  sim="Mọi con số là dữ liệu mô phỏng để minh hoạ (seed 7).",
+  spec=("Định dạng", "Dựng bằng", "Kiểm tra", "Dữ liệu"),
+  s=("01", "Slide HTML", "Một file offline có chuyển động, ghi chú người nói và bút laser. Tiêu đề nói kết luận; mọi hình vẽ từ dữ liệu, mọi slide ghi nguồn.",
+     ["<code>.html</code>, 6 slide", "<code>html-deck-building</code>", "<span class=ok>lint_slop: 0 lỗi</span>", "thử nghiệm mô phỏng DEMO-HF"],
+     ["Tiêu đề", "Dòng bệnh nhân", "Phân nhóm", "Chất lượng sống", "Kết luận"]),
+  p=("02", "PowerPoint theo template", "Cùng bài nói, dựng trong template bệnh viện hoặc hội nghị. Sơ đồ thử nghiệm và biểu đồ đường là đối tượng gốc của PowerPoint, sửa được; slide nào cũng có ghi chú.",
+     ["<code>.pptx</code>, 6 slide", "<code>pptx-deck-building</code>", "<span class=ok>check_pptx, lint_slop: 0</span>", "thử nghiệm mô phỏng DEMO-HF"],
+     ["Tiêu đề", "Kaplan–Meier", "Phân nhóm", "Biểu đồ đường gốc", "Kết luận"]),
+  m=("03", "Bản thảo hai ngôn ngữ", "File Word viết từ cùng bộ dữ liệu: nội dung tiếng Anh, tóm tắt tiếng Việt, bảng ba đường kẻ và hình. Bộ kiểm tra chỉ ra chỗ trống duy nhất mà tác giả phải tự điền.",
+     ["<code>.docx</code> và PDF", "<code>scientific-writing</code>", "<span class=ok>lint_prose: 1 chỗ trống cố ý</span>", "thử nghiệm mô phỏng DEMO-HF"]),
+  callouts=[("Dòng cảnh báo", "Bài ghi rõ dữ liệu là mô phỏng."), ("Chỗ trống rõ ràng", "[MISSING: authors to confirm] thay vì bịa tên tác giả."),
+            ("Abstract tiếng Anh", "Số viết 0.75, 95% CI 0.63–0.89."), ("Tóm tắt tiếng Việt", "Cùng số liệu viết 0,75; KTC 95% 0,63–0,89."),
+            ("Bảng 1", "Đặc điểm nền tính từ dữ liệu.")],
+  c=("04", "Biểu đồ từ dữ liệu", "Tám loại biểu đồ hay gặp trong slide và bài báo y khoa, vẽ từ cùng bộ dữ liệu mô phỏng, xuất SVG, nhãn theo ngôn ngữ của bài.",
+     ["SVG, tiếng Anh và tiếng Việt", "<code>make_charts.py</code>", "giá trị trong <code>values.json</code>", "thử nghiệm mô phỏng DEMO-HF"]),
+ ),
+}
+COLORS = {"s": "#B4362C", "p": "#0F5E7A", "m": "#7A3E7A", "c": "#2C5F9E"}
+
+
+def caption(L, key, extra=""):
+    q, no, title, desc, spec = PL[L], *PL[L][key][:4]
+    rows = "".join(f"<div><dt>{e(h)}</dt><dd>{v}</dd></div>" for h, v in zip(q["spec"], spec))
+    return (f'<div class="cap"><div class="rule"></div><div class="no">{no}</div><h2>{e(title)}</h2><p>{e(desc)}</p>'
+            f'<dl>{rows}</dl>{extra}<div class="sim">{e(q["sim"])}</div></div>')
+
+
+def deck_plate(L, key, files, hero, pid):
+    names = PL[L][key][4]
+    others = [i for i in range(1, 7) if i != hero]
+    thumbs = "".join(f'<figure><div class="frame"><img src="{img(DEMO / "screens" / files.format(i=i))}"></div>'
+                     f'<figcaption><b>{i}</b>{e(n)}</figcaption></figure>' for i, n in zip(others, names))
+    return (f'<div class="plate" id="{pid}" style="--c:{COLORS[key]}">{caption(L, key)}<div class="hero-row">'
+            f'<div class="frame"><img src="{img(DEMO / "screens" / files.format(i=hero))}"></div><div class="thumbs">{thumbs}</div></div></div>')
+
+
 def examples(L):
-    t = T[L]
-    shots = "".join(f'<div class="shot"><img src="{img(DEMO / "screens" / f"{L}-{i}.png")}"></div>' for i in range(1, 7))
-    pshots = "".join(f'<div class="shot"><img src="{img(DEMO / "screens" / f"pptx-{L}-{i}.png")}"></div>' for i in range(1, 7))
-    slides = (f'<div class="ex" id="slides"><h2>{e(t["ex_s"])}</h2><p class="sub">{e(t["ex_s_sub"])}</p>'
-              f'<div class="grid g3">{shots}</div><div class="sim">{e(t["sim"])}</div></div>')
-    pptx = (f'<div class="ex" id="pptx"><h2>{e(t["ex_p"])}</h2><p class="sub">{e(t["ex_p_sub"])}</p>'
-            f'<div class="grid g3">{pshots}</div><div class="sim">{e(t["sim"])}</div></div>')
-    rows = "".join(f'<div class="row"><b>{i}</b><span>{e(x)}</span><span class="why">{e(w)}</span></div>' for i, x, w in t["audit_rows"])
-    checks = "".join(f'<div>{ICON["check"]}<span>{e(c)}</span></div>' for c in t["checks"])
-    ms = (f'<div class="ex" id="manuscript"><h2>{e(t["ex_m"])}</h2><p class="sub">{e(t["ex_m_sub"])}</p>'
-          f'<div class="ms"><div class="page"><img src="{img(DEMO / "screens" / "page1.png")}"></div>'
-          f'<div><div class="term"><div class="hd">{e(t["audit_hd"])}</div>{rows}</div><div class="checks">{checks}</div>'
-          f'<div class="figcrop"><img src="{img(DEMO / "screens" / "page2-figure.png")}"></div>'
-          f'<div class="sim">{e(t["sim"])}</div></div></div></div>')
-    charts = "".join(f'<div class="chart"><img src="data:image/svg+xml;base64,{base64.b64encode(f.read_bytes()).decode()}"></div>'
-                     for f in sorted((DEMO / "out" / "charts" / L).glob("*.svg")))
-    gallery = (f'<div class="ex" id="charts"><h2>{e(t["ex_c"])}</h2><p class="sub">{e(t["ex_c_sub"])}</p>'
-               f'<div class="cgrid">{charts}</div><div class="sim">{e(t["sim"])}</div></div>')
+    q = PL[L]
+    slides = deck_plate(L, "s", L + "-{i}.png", 3, "slides")
+    pptx = deck_plate(L, "p", "pptx-" + L + "-{i}.png", 2, "pptx")
+    marks_y = (7.3, 16.9, 23.0, 41.0, 69.3)  # % of the page height, matched to the rendered page
+    marks = "".join(f'<span class="mk" style="top:calc({y}% - 15px)">{k}</span>' for k, y in enumerate(marks_y, 1))
+    callouts = "".join(f'<li><b>{k}</b><span><strong>{e(h)}</strong>{e(b)}</span></li>' for k, (h, b) in enumerate(q["callouts"], 1))
+    term = (f'<div class="term"><div class="hd">$ lint_prose.py demo-hf.docx</div>'
+            f'<div class="row"><b>P01</b>[MISSING: authors to confirm]</div></div>')
+    ms = (f'<div class="plate" id="manuscript" style="--c:{COLORS["m"]}">{caption(L, "m")}<div class="ms">'
+          f'<div class="page frame">{marks}<img src="{img(DEMO / "screens" / "page1.png")}"></div>'
+          f'<div><ol class="callouts">{callouts}</ol>{term}'
+          f'<div class="frame" style="margin-top:22px;width:470px"><img src="{img(DEMO / "screens" / "page2-figure.png")}"></div></div></div></div>')
+    charts = "".join(f'<div class="panel"><span class="lt">{"ABCDEFGH"[k]}</span>'
+                     f'<img src="data:image/svg+xml;base64,{base64.b64encode(f.read_bytes()).decode()}"></div>'
+                     for k, f in enumerate(sorted((DEMO / "out" / "charts" / L).glob("*.svg"))))
+    gallery = f'<div class="plate" id="charts" style="--c:{COLORS["c"]}">{caption(L, "c")}<div class="cgrid">{charts}</div></div>'
     return slides + pptx + ms + gallery
 
 

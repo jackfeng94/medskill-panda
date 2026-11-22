@@ -360,8 +360,12 @@ class Builder:
                   "muted": ("#F4F5F7", "line", "muted")}
         for n in s.get("nodes", []):
             fill, line, ink = styles.get(n.get("style", "default"), styles["default"])
-            kind = MSO_SHAPE.OVAL if n.get("shape") == "circle" else MSO_SHAPE.ROUNDED_RECTANGLE
+            square = self.theme.get("corners", "rounded") == "square"
+            kind = (MSO_SHAPE.OVAL if n.get("shape") == "circle"
+                    else MSO_SHAPE.RECTANGLE if square else MSO_SHAPE.ROUNDED_RECTANGLE)
             shp = self.cur.shapes.add_shape(kind, x + int(w * n["x"]), y + int(h * n["y"]), int(w * n["w"]), int(h * n["h"]))
+            if square:  # flat look: no rounded corners, no inherited shadow
+                shp.shadow.inherit = False
             shp.name = f"Node {n['id']}"
             shp.fill.solid()
             shp.fill.fore_color.rgb = self.color(fill)
