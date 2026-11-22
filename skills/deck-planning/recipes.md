@@ -16,6 +16,11 @@ Adapt to the time budget. Brackets mark slides to drop first when time is short.
 11. Applicability to our patients and setting
 12. Bottom line and discussion questions
 
+For a PowerPoint build these map to `pptx-deck-building` spec types: 1 `title`, (agenda) `agenda`,
+2 `pico`, 4–5 `diagram`, 6 `table`, 7 `figure-text` + `big-number`, 8–9 `figure-text`/`chart`,
+10–11 `two-column`, 12 `key-message`, then `references`. `check_spec.py --recipe journal-club`
+reports a missing component.
+
 ## Journal club: report (8–10 min)
 Steps 1, 2, 4, 5, 7, 8, a single "strengths and limitations" slide, then the bottom line.
 

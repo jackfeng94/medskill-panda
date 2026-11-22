@@ -42,15 +42,24 @@ in inches, to move the placeholder where the template's own slides put it; `scan
 
 | type | fields |
 |------|--------|
-| `title`, `closing` | `title`, `subtitle`, `presenter` |
+| `title`, `closing` | `title`, `subtitle` (for a journal club: the paper's citation), `presenter`, `affiliation`, `event`, `date` |
+| `agenda` | `title`, `items`: strings or `{"text", "minutes"}`; optional `current` (1-based) to mark where the talk is |
+| `section` | `title`, `subtitle`; optional `parts` (the agenda's items) and `current`. Without a template: a full slide in the primary colour |
+| `pico` | `title` (the question as a sentence), `rows`: `[{"label", "text"}]` (Population, Intervention, Comparator, Outcome, Design…), `label_in` |
 | `bullets` | `title`, `bullets`: strings or `{"text", "level", "bold", "color"}` |
 | `figure` | `title`, `image` (PNG/JPG), `alt`, `credit`; optional `labels` (`[{"text", "at": [x, y], "side"}]`, as in `label_figure.py`), `margin`, `label_pt` |
-| `figure-text` | `title`, `image`, `alt`, `credit`, `bullets`, `split` (0–1, image share) |
-| `big-number` | `title`, `numbers`: `[{"value", "label", "color"}]` (1–3), optional `bullets` |
+| `figure-text` | `title`, `image`, `alt`, `credit`, `bullets`, `split` (0–1, image share), `takeaway` (one sentence under a rule, in the accent colour) |
+| `big-number` | `title`, `numbers`: `[{"value", "label", "context", "color"}]` (1–3; `context` is the small line under the label, e.g. `32.5% → 25.8% at 24 months`), optional `bullets` |
 | `table` | `title`, `columns`, `rows`, optional `col_widths` |
 | `diagram` | `title`, `nodes`: `[{"id", "x", "y", "w", "h", "text", "style", "shape"}]`, `edges`: `[{"from", "to", "elbow", "from_side", "to_side"}]` |
 | `chart` | `title`, `chart` (`bar`, `column`, `line`), `categories`, `series`: `[{"name", "values", "color"}]`, `number_format`, `credit` |
-| `references` | `title`, `items` (formatted strings) |
+| `two-column` (alias `comparison`) | `title`, `left` and `right`: `{"heading", "bullets", "style"}` (`style`: `primary`, `int`, `ctl`, `muted` or a colour), optional `takeaway` |
+| `key-message` | `message` (the sentence to remember; it is the slide's title), `support` (a line or a list) |
+| `references` | `title`, `items`: formatted strings or `{"authors", "title", "journal", "year", "doi"}` (numbered, hanging indent, journal in italics) |
+
+Layouts for the new kinds: `"layouts": {"section": "Section Header", "key-message": "Title Slide"}` uses
+the template's own layouts; their title placeholder takes the text, styled by `styles.section` and
+`styles.key_message`. Section and key-message slides carry no footer.
 
 Every slide can carry `notes` (speaker notes) and `cite` (overrides the deck footer).
 
@@ -75,6 +84,16 @@ Example trial schema:
  "edges": [{"from": "pop", "to": "r"}, {"from": "r", "to": "a", "elbow": true}, {"from": "r", "to": "b", "elbow": true},
            {"from": "a", "to": "ep", "elbow": true}, {"from": "b", "to": "ep", "elbow": true}]}
 ```
+
+## Check the spec before building
+
+```bash
+python scripts/check_spec.py build/deck.json --recipe journal-club
+```
+
+Reports unknown types, missing fields, slides without notes, data slides without a source, and
+components the talk type needs but the deck lacks (`journal-club`, `journal-club-report`,
+`conference`, `lecture`). Exit 1 on any of them.
 
 ## Figures for PPTX
 

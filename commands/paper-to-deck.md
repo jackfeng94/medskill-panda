@@ -34,6 +34,11 @@ When the user runs `/medskill-panda:paper-to-deck [manuscript] [talk-name]`:
    without a claim as the slide is written.
 5. **Poster instead of slides.** If the user chose a poster, plan the panels the same way and
    build with `latex-posters` or `pptx-posters`, using only the imported claims and figures.
-6. **Audit and deliver** as `medical-deck` stages 7–8. In the report, say which numbers came
+6. **Someone else's paper (a published PDF)** is not this command's input: it has no evidence
+   ledger. Run `medical-deck` as a journal club with the PDF in `<talk>/sources/`: evidence-research
+   reads the full text and writes each number with its page and quote, medical-figures lifts the
+   figures with `pdf_figures.py`, and pptx-deck-building builds the complete deck described in its
+   "A complete journal-club deck from one paper" section.
+7. **Audit and deliver** as `medical-deck` stages 7–8. In the report, say which numbers came
    from the paper, which claims were still unverified in the paper, and anything that had to
    be added.

@@ -16,6 +16,7 @@ protocols and posters in English, Vietnamese or both.
 [![version 1.3.0](https://img.shields.io/badge/version-1.3.0-4a5a6a)](CHANGELOG.md)
 [![skills-36-](https://img.shields.io/badge/skills-36-11607a)](#skills)
 [![tests](https://github.com/jackfeng94/medskill-panda/actions/workflows/tests.yml/badge.svg)](https://github.com/jackfeng94/medskill-panda/actions/workflows/tests.yml)
+[![unit tests 75](https://img.shields.io/badge/unit%20tests-75-11607a)](tests/)
 [![python 3.8+](https://img.shields.io/badge/python-3.8%2B-4a5a6a)](#hooks)
 
 **New to the terminal or Claude Code? Start with the [step-by-step guide](docs/GUIDE.md).**
@@ -68,7 +69,7 @@ PowerPoint (inside your template, with native editable charts) and LaTeX Beamer 
 defences and equation-heavy talks).
 
 <div align="center">
-<img src="assets/example-pptx.9f2e0731.png" alt="The same talk as an editable PowerPoint inside a branded template: title slide, native trial diagram, Kaplan–Meier curve, forest plot, native line chart, big numbers" width="100%">
+<img src="assets/example-pptx.d07d6039.png" alt="The same talk as an editable PowerPoint inside a branded template: title slide, native trial diagram, Kaplan–Meier curve, forest plot, native line chart, big numbers" width="100%">
 </div>
 
 ## Install
@@ -148,7 +149,7 @@ evidence ledger or the authors' data, saved as SVG for HTML or PowerPoint decks 
 manuscripts, and labelled in the deck's language (`0.75` in English, `0,75` in Vietnamese).
 
 <div align="center">
-<img src="assets/chart-gallery.013f1797.png" alt="Eight chart types: Kaplan–Meier curve with numbers at risk, forest plot, CONSORT flow diagram, line chart with confidence bands, grouped bars with confidence intervals, box plot with individual points, stacked bars of NYHA class, ROC curve" width="100%">
+<img src="assets/chart-gallery.ba2a18ae.png" alt="Eight chart types: Kaplan–Meier curve with numbers at risk, forest plot, CONSORT flow diagram, line chart with confidence bands, grouped bars with confidence intervals, box plot with individual points, stacked bars of NYHA class, ROC curve" width="100%">
 </div>
 
 <sub>All eight are drawn from simulated data by <a href="examples/demo-hf/make_charts.py">examples/demo-hf/make_charts.py</a>; the Vietnamese versions are in <code>examples/demo-hf/out/charts/vi/</code>.</sub>

@@ -33,6 +33,14 @@ same masters, backgrounds and layouts.
    | Lifted KM curve, forest plot, illustration | `figure` or `figure-text` (PNG at 300 dpi) |
    | One to three headline numbers | `big-number` |
    | Recommendations, criteria | `table` |
+   | Clinical question (PICO), study at a glance | `pico` |
+   | Parts of the talk; where we are | `agenda`, `section` |
+   | Strengths vs limitations, old vs new | `two-column` |
+   | Bottom line, the sentence to remember | `key-message` |
+   | Sources | `references` (structured items) |
+
+   A figure slide states its point twice: in the title (the assertion) and in `takeaway` (what
+   the audience should do with it). Prefer one `key-message` slide per part over a summary of bullets.
 
    Titles are the plan's assertions. Numbers come from `claims.json`. Presenter cues go in
    `notes` and never into slide text.
@@ -41,7 +49,13 @@ same masters, backgrounds and layouts.
    from `theme/scan.json`. Don't redraw the header bar or logo: the master has them.
    Without a template, set `"theme"` from `theme/theme.json`.
 
-3. Build:
+3. Check the spec against the talk type, then build:
+
+   ```bash
+   python scripts/check_spec.py <talk>/build/deck.json --recipe journal-club
+   ```
+
+   Add whatever component it reports missing (from the plan and claims, never invented).
 
    ```bash
    python scripts/pptx_from_spec.py <talk>/build/deck.json <talk>/out/<name>.pptx
@@ -62,6 +76,30 @@ same masters, backgrounds and layouts.
    template), open the built file with python-pptx, or edit the OOXML. If an Anthropic
    `pptx` skill is installed, follow its guidance for that. Keep the edited slides
    editable.
+
+## A complete journal-club deck from one paper (PDF)
+
+When the source is a single article PDF, `medical-deck` runs as usual (interview, plan approval,
+evidence) and the plan follows `deck-planning/recipes.md` → Journal club. The finished deck holds:
+
+| # | Component | Spec type | Content comes from |
+|---|-----------|-----------|--------------------|
+| 1 | Title | `title` (`subtitle` = the paper's citation; presenter, event, date) | brief |
+| 2 | Agenda | `agenda` (with minutes) | plan's time budget |
+| 3 | Question | `pico` | Methods: eligibility, arms, primary endpoint |
+| 4 | Design | `diagram` (schema or CONSORT) | Methods, Fig. 1 / CONSORT figure |
+| 5 | Primary result | `figure-text` with `takeaway` (KM curve lifted with `pdf_figures.py`) | Results, Fig. 2 |
+| 6 | Effect size | `big-number` (absolute and relative, with `context`) | Results, Table 2 |
+| 7 | Secondary, safety, subgroups | `figure-text`, `chart` or `table` | Results, supplement |
+| 8 | Appraisal | `two-column` (strengths / limitations, RoB 2 domains) | evidence-audit and the paper's Discussion |
+| 9 | Bottom line | `key-message` (+ discussion question in `support`) | plan |
+| 10 | References | `references` (structured) | `evidence/references.json` |
+| 11 | Closing | `closing` | brief |
+
+Every number on these slides is a value of a claim in `evidence/claims.json` with the page and
+quote from the PDF. `check_spec.py --recipe journal-club` confirms the components are present;
+`check_pptx.py` and `slop-audit` check the built file. `examples/demo-hf/make_pptx.py` builds such
+a deck (from simulated data) and CI runs every check on it.
 
 ## Floors
 

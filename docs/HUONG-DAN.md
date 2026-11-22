@@ -207,9 +207,9 @@ Mở thư mục nhanh từ terminal: macOS `open .`, Windows `explorer .`.
 
 *Ví dụ bộ slide HTML do plugin dựng từ dữ liệu mô phỏng (thư mục `examples/demo-hf`).*
 
-![Ví dụ bộ slide PowerPoint](../assets/example-pptx.vi.a833d2d6.png)
+![Ví dụ bộ slide PowerPoint](../assets/example-pptx.vi.5d9e7950.png)
 
-*Cùng bài nói dưới dạng PowerPoint trong template: sơ đồ và biểu đồ sửa được.*
+*Cùng thử nghiệm thành một bài journal club 12 slide hoàn chỉnh bằng PowerPoint trong template: mục lục, câu hỏi PICO, sơ đồ thử nghiệm, hình kèm câu chốt, độ lớn hiệu quả, điểm mạnh và hạn chế, kết luận, tài liệu tham khảo. Sơ đồ và biểu đồ sửa được.*
 
 **Trình chiếu file HTML:**
 
@@ -231,7 +231,21 @@ plot"*, *"Thêm slide tài liệu tham khảo"*. Plugin sửa đúng bước li�
 
 Các loại biểu đồ plugin vẽ từ dữ liệu, bạn có thể gọi tên khi yêu cầu sửa:
 
-![Các loại biểu đồ](../assets/chart-gallery.vi.9347c0c3.png)
+![Các loại biểu đồ](../assets/chart-gallery.vi.2db6fd87.png)
+
+### 7.8. Journal club từ một bài báo (PDF)
+
+Chép file PDF bài báo vào thư mục làm việc rồi gõ, ví dụ:
+
+```text
+Làm journal club 15 phút bằng PowerPoint từ trial.pdf, tiếng Việt
+```
+
+Sau các câu hỏi thường lệ và khi bạn duyệt kế hoạch, plugin đọc toàn văn PDF, ghi mọi con số kèm
+trang và câu trích, lấy hình (đường Kaplan–Meier, forest plot) từ chính PDF, rồi dựng bộ slide
+đầy đủ: tiêu đề kèm trích dẫn bài báo, mục lục, câu hỏi dạng PICO, sơ đồ thử nghiệm, kết quả kèm
+một câu chốt, độ lớn hiệu quả, điểm mạnh và hạn chế, kết luận, tài liệu tham khảo và slide kết,
+có ghi chú người nói trên mọi slide. Trước khi dựng, plugin kiểm tra không thiếu phần nào.
 
 ## 8. Kiểm tra một bộ slide có sẵn
 

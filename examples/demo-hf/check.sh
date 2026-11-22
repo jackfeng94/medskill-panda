@@ -23,6 +23,7 @@ python3 make_template.py > /dev/null
 python3 make_pptx.py "$X" > /dev/null
 for L in en vi; do
   (cd "pptx_$L" && mkdir -p out &&
+   python3 "$P/check_spec.py" build/deck.json --recipe journal-club &&
    python3 "$P/pptx_from_spec.py" build/deck.json out/demo-hf.pptx > /dev/null &&
    python3 "$P/check_pptx.py" out/demo-hf.pptx &&
    python3 "$LINT" out/demo-hf.pptx --lang "$L")
