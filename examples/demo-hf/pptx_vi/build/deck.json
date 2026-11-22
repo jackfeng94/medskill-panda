@@ -2,7 +2,9 @@
   "template": "../../theme/template.pptx",
   "layouts": {
     "title": "Title Slide",
-    "content": "Title Only"
+    "content": "Title Only",
+    "closing": "Title Slide",
+    "key-message": "Title Slide"
   },
   "styles": {
     "title": {
@@ -22,6 +24,13 @@
     "subtitle": {
       "size": 20,
       "color": "#CFE6EE",
+      "align": "left"
+    },
+    "key_message": {
+      "size": 34,
+      "bold": true,
+      "color": "#FFFFFF",
+      "anchor": "top",
       "align": "left"
     }
   },
@@ -53,9 +62,60 @@
     {
       "type": "title",
       "title": "Trong thử nghiệm mô phỏng DEMO-HF, theo dõi có cấu trúc giảm một phần tư số lần nhập viện vì suy tim",
-      "subtitle": "Journal club · ví dụ minh hoạ dựng từ dữ liệu mô phỏng",
+      "subtitle": "Ví dụ minh hoạ dựng từ dữ liệu mô phỏng",
       "presenter": "Medskill Panda demo",
+      "event": "Journal club",
       "notes": "Introduce DEMO-HF as a teaching example with simulated data."
+    },
+    {
+      "type": "agenda",
+      "title": "Bốn câu hỏi trong mười lăm phút",
+      "items": [
+        {
+          "text": "Câu hỏi và thiết kế",
+          "minutes": 3
+        },
+        {
+          "text": "Nhập viện và chất lượng sống",
+          "minutes": 5
+        },
+        {
+          "text": "Tin được đến đâu",
+          "minutes": 4
+        },
+        {
+          "text": "Ý nghĩa cho phòng khám",
+          "minutes": 3
+        }
+      ],
+      "notes": "Fifteen minutes: four questions, one per part."
+    },
+    {
+      "type": "pico",
+      "title": "Theo dõi có cấu trúc sau xuất viện có ngăn được lần nhập viện vì suy tim tiếp theo?",
+      "rows": [
+        {
+          "label": "Đối tượng",
+          "text": "Suy tim EF giảm sau nằm viện"
+        },
+        {
+          "label": "Can thiệp",
+          "text": "Theo dõi có cấu trúc"
+        },
+        {
+          "label": "So sánh",
+          "text": "Chăm sóc thường quy"
+        },
+        {
+          "label": "Kết cục",
+          "text": "Nhập viện vì suy tim trong 24 tháng"
+        },
+        {
+          "label": "Thiết kế",
+          "text": "Ngẫu nhiên 1:1, 2.000 người, mô phỏng"
+        }
+      ],
+      "notes": "State the question in PICO form before showing any result."
     },
     {
       "type": "diagram",
@@ -155,9 +215,9 @@
       "credit": "Nguồn: dữ liệu mô phỏng DEMO-HF (seed 7); ước lượng Kaplan–Meier",
       "bullets": [
         "Chênh 6,7 điểm phần trăm",
-        "Số cần điều trị: 15",
-        "243 so với 308 lần nhập viện"
+        "Số cần điều trị: 15"
       ],
+      "takeaway": "Cứ 15 bệnh nhân được theo dõi hai năm thì tránh được một lần nhập viện",
       "split": 0.62,
       "notes": "Point to the separation of the curves before month 6."
     },
@@ -169,9 +229,9 @@
       "credit": "Nguồn: dữ liệu mô phỏng DEMO-HF (seed 7); tỷ số tỷ suất Poisson",
       "bullets": [
         "Tỷ số tỷ suất chung 0,75 (KTC 95% 0,63–0,89)",
-        "Mọi phân nhóm đều có ước lượng dưới 1",
-        "Phân tích phân nhóm chỉ mang tính thăm dò"
+        "Mọi phân nhóm đều có ước lượng dưới 1"
       ],
+      "takeaway": "Không phân nhóm nào khác biệt rõ so với hiệu quả chung",
       "split": 0.62,
       "notes": "Subgroups are exploratory; say so."
     },
@@ -220,21 +280,83 @@
       "numbers": [
         {
           "value": "−6,7",
-          "label": "điểm phần trăm: 32,5% → 25,8% sau 24 tháng",
+          "label": "điểm phần trăm nhập viện ít hơn",
+          "context": "32,5% → 25,8% sau 24 tháng",
           "color": "#56677F"
         },
         {
           "value": "0,75",
-          "label": "tỷ số tỷ suất, KTC 95% 0,63–0,89",
+          "label": "tỷ số tỷ suất",
+          "context": "KTC 95% 0,63–0,89",
           "color": "#C8372D"
         },
         {
           "value": "15",
-          "label": "số cần điều trị trong 24 tháng",
+          "label": "số cần điều trị",
+          "context": "trong 24 tháng",
           "color": "#0F5E7A"
         }
       ],
-      "notes": "Close with the absolute effect, not only the ratio."
+      "notes": "Close the results with the absolute effect, not only the ratio."
+    },
+    {
+      "type": "two-column",
+      "title": "So sánh rõ ràng, nhưng quần thể mô phỏng không thể thay đổi thực hành",
+      "left": {
+        "heading": "Điểm mạnh",
+        "bullets": [
+          "So sánh ngẫu nhiên",
+          "Tiêu chí cứng: nhập viện",
+          "Hiệu quả tuyệt đối, tương đối"
+        ],
+        "style": "primary"
+      },
+      "right": {
+        "heading": "Hạn chế",
+        "bullets": [
+          "Dữ liệu mô phỏng",
+          "Phân nhóm chỉ để thăm dò",
+          "Chưa có dữ liệu chi phí"
+        ],
+        "style": "int"
+      },
+      "takeaway": "Học phương pháp; chưa đổi thực hành.",
+      "notes": "Weigh the strengths against what a simulated trial cannot show."
+    },
+    {
+      "type": "key-message",
+      "message": "Theo dõi có cấu trúc giảm 6,7 lần nhập viện trên 100 bệnh nhân sau hai năm",
+      "support": [
+        "Với thử nghiệm thật, cần xem hiệu quả có giữ được khi thiếu nhân lực và lượt khám.",
+        "Thảo luận: bệnh nhân nào ở phòng khám của chúng ta nên được ưu tiên?"
+      ],
+      "notes": "Pause on the bottom line, then open the discussion question."
+    },
+    {
+      "type": "references",
+      "title": "Tài liệu tham khảo",
+      "items": [
+        {
+          "authors": "Medskill Panda",
+          "title": "Bộ dữ liệu mô phỏng DEMO-HF, seed 7",
+          "journal": "examples/demo-hf/make_data.py",
+          "year": 2026
+        },
+        {
+          "authors": "Green CP, Porter CB, Bresnahan DR, Spertus JA",
+          "title": "Development and evaluation of the Kansas City Cardiomyopathy Questionnaire",
+          "journal": "J Am Coll Cardiol",
+          "year": 2000
+        }
+      ],
+      "notes": "Sources for the data and the KCCQ scale."
+    },
+    {
+      "type": "closing",
+      "title": "Câu hỏi và thảo luận",
+      "subtitle": "DEMO-HF · dữ liệu mô phỏng để giảng dạy",
+      "presenter": "Medskill Panda demo",
+      "notes": "Take questions."
     }
   ]
 }

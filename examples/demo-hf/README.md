@@ -7,7 +7,7 @@ stored in `out/results.json`.
 | Output | File |
 |--------|------|
 | HTML deck (English, Vietnamese), one offline file each | `deck_en/out/demo-hf.html`, `deck_vi/out/demo-hf.html` |
-| PowerPoint (English, Vietnamese) built inside a branded template, and its PDF | `pptx_en/out/demo-hf.pptx`, `pptx_vi/out/demo-hf.pptx`; template from `make_template.py` in `theme/` |
+| PowerPoint journal club, 12 slides (English, Vietnamese: title, agenda, PICO, schema, figures with takeaways, chart, effect sizes, appraisal, bottom line, references, closing) built inside a branded template, and its PDF | `pptx_en/out/demo-hf.pptx`, `pptx_vi/out/demo-hf.pptx`; template from `make_template.py` in `theme/` |
 | Manuscript (Word, English text with a Vietnamese abstract) and its PDF | `manuscript/demo-hf.docx`, `manuscript/demo-hf.pdf` |
 | Figures and every computed number | `out/` |
 | Chart gallery: eight chart types, SVG, English and Vietnamese | `out/charts/en/`, `out/charts/vi/`, values in `out/charts/values.json` |

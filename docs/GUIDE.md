@@ -206,9 +206,9 @@ Open the folder from the terminal: macOS `open .`, Windows `explorer .`.
 
 *An HTML deck built by the plugin from simulated data (folder `examples/demo-hf`).*
 
-![Example PowerPoint deck](../assets/example-pptx.9f2e0731.png)
+![Example PowerPoint deck](../assets/example-pptx.d07d6039.png)
 
-*The same talk as a PowerPoint inside a template: diagrams and charts stay editable.*
+*The same trial as a complete 12-slide journal club in PowerPoint, inside a template: agenda, PICO question, trial schema, figures with a takeaway, effect sizes, strengths and limitations, bottom line, references. Diagrams and charts stay editable.*
 
 **Presenting the HTML deck:**
 
@@ -231,7 +231,22 @@ again.
 
 The chart types the plugin draws from data, which you can name when asking for a change:
 
-![Chart types](../assets/chart-gallery.013f1797.png)
+![Chart types](../assets/chart-gallery.ba2a18ae.png)
+
+### 7.8. A journal club from one article (PDF)
+
+Put the article's PDF in your folder and ask, for example:
+
+```text
+Make a 15-minute journal club in PowerPoint from trial.pdf, in English
+```
+
+After the usual questions and your approval of the plan, the plugin reads the whole PDF, records
+every number with its page and quote, lifts the figures (Kaplan–Meier curve, forest plot) from
+the PDF, and builds a complete deck: title with the paper's citation, agenda, the question as
+PICO, the trial schema, results with a one-line takeaway, effect sizes, strengths and
+limitations, bottom line, references and a closing slide, with speaker notes on every slide.
+Before building, it checks that none of these parts is missing.
 
 ## 8. Check an existing deck
 

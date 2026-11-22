@@ -85,7 +85,7 @@ class Builder:
             return self.layout_names[names[kind]]
         if not self.spec.get("template"):
             return self.prs.slide_layouts[6]  # blank in the default template
-        prefs = {"title": ["Title Slide"], "closing": ["Title Slide"],
+        prefs = {"title": ["Title Slide"], "closing": ["Title Slide"], "section": ["Section Header", "Title Only"],
                  "content": ["Title Only", "Title and Content"]}.get(kind, ["Title Only", "Title and Content"])
         for p in prefs:
             if p in self.layout_names:
@@ -141,6 +141,45 @@ class Builder:
             r.text = line
             self.font(r, size, bold, color, heading, italic)
         return tb
+
+    def rich_box(self, x, y, w, h, lines, name=None, anchor=MSO_ANCHOR.TOP, align=PP_ALIGN.LEFT):
+        """A text box whose lines each carry their own size/bold/colour: [{"text", "size", "bold", "color"}]."""
+        tb = self.cur.shapes.add_textbox(x, y, w, h)
+        if name:
+            tb.name = name
+        tf = tb.text_frame
+        tf.word_wrap = True
+        tf.vertical_anchor = anchor
+        tf.margin_left = tf.margin_right = Emu(0)
+        for i, ln in enumerate(lines):
+            p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
+            p.alignment = align
+            if ln.get("space_before"):
+                p.space_before = Pt(ln["space_before"])
+            r = p.add_run()
+            r.text = ln["text"]
+            self.font(r, ln.get("size", self.theme["type_pt"]["body"]), ln.get("bold", False),
+                      ln.get("color", "ink"), ln.get("heading", False), ln.get("italic", False))
+        return tb
+
+    @staticmethod
+    def flat(shape):
+        """No shadow: drop the theme style reference, which some viewers still draw as a soft shadow."""
+        shape.shadow.inherit = False
+        style = shape._element.find(qn("p:style"))
+        if style is not None:
+            style.getparent().remove(style)
+        return shape
+
+    def rule(self, x, y, length, color="line", weight=1.0, vertical=False, name="Rule"):
+        """A thin straight line: the only ornament the flat style uses (under headings, between columns)."""
+        ln = self.cur.shapes.add_connector(MSO_CONNECTOR.STRAIGHT, x, y, x if vertical else x + length,
+                                           y + length if vertical else y)
+        ln.line.color.rgb = self.color(color)
+        ln.line.width = Pt(weight)
+        self.flat(ln)
+        ln.name = name
+        return ln
 
     def title(self, s: dict):
         t = s.get("title", "")
@@ -211,22 +250,33 @@ class Builder:
         self.cur = self.prs.slides.add_slide(self.layout("title", s.get("layout")))
         phs = {p.placeholder_format.type: p for p in self.cur.placeholders}
         t = self.cur.shapes.title
-        if t is not None:
+        meta = [x for x in (s.get("presenter"), s.get("affiliation"),
+                            " · ".join(v for v in (s.get("event"), s.get("date")) if v)) if x]
+        if t is not None:  # template: its own title and subtitle placeholders
             t.text_frame.text = s.get("title", "")
             self.apply_style(t, "title_slide")
-        else:
-            self.textbox(Inches(0.9), Inches(2.2), self.W - Inches(1.8), Inches(2.0), s.get("title", ""), 40,
-                         "title_text", True, heading=True, name="Title")
-        sub = "\n".join(x for x in (s.get("subtitle"), s.get("presenter")) if x)
-        body = next((p for k, p in phs.items() if p != t), None)
-        if body is not None and sub:
-            body.text_frame.text = sub
-            self.apply_style(body, "subtitle")
-        elif sub:
-            self.textbox(Inches(0.9), Inches(4.5), self.W - Inches(1.8), Inches(1.4), sub.split("\n"), 22, "primary")
-        for p in list(self.cur.placeholders):
-            if p != t and not p.text_frame.text.strip():
-                p._element.getparent().remove(p._element)
+            sub = "\n".join(x for x in [s.get("subtitle")] + meta if x)
+            body = next((p for k, p in phs.items() if p != t), None)
+            if body is not None and sub:
+                body.text_frame.text = sub
+                self.apply_style(body, "subtitle")
+            elif sub:
+                self.textbox(Inches(0.9), Inches(4.5), self.W - Inches(1.8), Inches(1.4), sub.split("\n"), 22, "primary")
+            for p in list(self.cur.placeholders):
+                if p != t and not p.text_frame.text.strip():
+                    p._element.getparent().remove(p._element)
+            return
+        # no template: title, a short rule, the subtitle (often the paper discussed), then who/where/when
+        x, w = Inches(0.9), self.W - Inches(1.8)
+        self.textbox(x, Inches(1.5), w, Inches(2.2), s.get("title", ""), 40, "title_text", True,
+                     anchor=MSO_ANCHOR.BOTTOM, heading=True, name="Title")
+        self.rule(x, Inches(3.95), Inches(1.4), "primary", 3)
+        if s.get("subtitle"):
+            self.textbox(x, Inches(4.15), w, Inches(1.0), s["subtitle"], 20, "muted", name="Subtitle")
+        if meta:
+            lines = [{"text": meta[0], "size": 20, "bold": True, "color": "ink"}] + \
+                    [{"text": m, "size": 16, "color": "muted"} for m in meta[1:]]
+            self.rich_box(x, Inches(5.45), w, Inches(1.3), lines, name="Presenter")
 
     s_closing = s_title
 
@@ -289,6 +339,7 @@ class Builder:
                 ax = px0 - Inches(0.08) if side == "left" else px0 + pw + Inches(0.08)
                 tx_pt, ty_pt = px0 + int(lab["at"][0] * pw), y + int(lab["at"][1] * ph)
                 ln = self.cur.shapes.add_connector(MSO_CONNECTOR.STRAIGHT, ax, ly, tx_pt, ty_pt)
+                self.flat(ln)
                 ln.line.color.rgb = rgb("#5F6B78")
                 ln.line.width = Pt(1)
                 ln.name = f"Leader {lab['text']}"
@@ -310,22 +361,169 @@ class Builder:
         if s.get("credit"):
             self.textbox(x, y + h - credit_h, left, credit_h, s["credit"], self.theme["type_pt"]["small"], "muted",
                          italic=True, name="Credit")
-        self.bullets(s.get("bullets", []), x + left, y, w - left, h)
+        tx, tw = x + left, w - left
+        take_h = Inches(1.35) if s.get("takeaway") else 0
+        self.bullets(s.get("bullets", []), tx, y, tw, h - take_h)
+        if s.get("takeaway"):
+            self.takeaway(s["takeaway"], tx, y + h - take_h, tw, take_h)
+
+    def takeaway(self, text, x, y, w, h):
+        """The one sentence to remember from a figure: a rule above it, bold, in the accent colour."""
+        self.rule(x, y + Inches(0.1), w, "primary", 2, name="Takeaway rule")
+        self.textbox(x, y + Inches(0.22), w, h - Inches(0.22), text, self.theme["type_pt"]["body"], "primary",
+                     True, name="Takeaway")
 
     def s_big_number(self, s, idx):
         self.cur = self.prs.slides.add_slide(self.layout("content", s.get("layout")))
         x, y, w, h = self.content_box(self.title(s))
         self._clear_body_placeholders()
         nums = s.get("numbers", [])
-        cw = w // max(1, len(nums))
-        for i, n in enumerate(nums):
-            cx = x + i * cw
-            self.textbox(cx, y + Inches(0.6), cw - Inches(0.3), Inches(1.4), n["value"], 54, n.get("color", "intervention"),
-                         True, name=f"Number {i + 1}")
-            self.textbox(cx, y + Inches(2.0), cw - Inches(0.3), Inches(1.2), n.get("label", ""), 20, "muted",
-                         name=f"Label {i + 1}")
+        n = max(1, len(nums))
+        cw = w // n
+        size = 72 if n == 1 else 60 if n == 2 else 54
+        band = Inches(3.1)
+        if not s.get("bullets"):  # nothing below: centre the numbers in the content area
+            y += max(0, (h - band) // 3)
+        for i, num in enumerate(nums):
+            pad_l, pad_r = (Inches(0.35) if i else 0), (Inches(0.35) if i < n - 1 else 0)
+            cx, inner = x + i * cw + pad_l, cw - pad_l - pad_r
+            if i:
+                self.rule(x + i * cw, y + Inches(0.35), band - Inches(0.35), "line", 1, vertical=True, name="Divider")
+            self.textbox(cx, y + Inches(0.3), inner, Inches(1.35), num["value"], size, num.get("color", "intervention"),
+                         True, anchor=MSO_ANCHOR.BOTTOM, name=f"Number {i + 1}")
+            lines = [{"text": num.get("label", ""), "size": 20, "color": "ink"}]
+            if num.get("context"):
+                lines.append({"text": num["context"], "size": 16, "color": "muted", "space_before": 4})
+            self.rich_box(cx, y + Inches(1.75), inner, band - Inches(1.75), lines, name=f"Label {i + 1}")
         if s.get("bullets"):
-            self.bullets(s["bullets"], x, y + Inches(3.3), w, h - Inches(3.3), 18)
+            self.bullets(s["bullets"], x, y + band + Inches(0.2), w, h - band - Inches(0.2), 18)
+
+    def s_agenda(self, s, idx):
+        """Numbered parts of the talk with thin rules; `current` (1-based) marks where we are."""
+        self.cur = self.prs.slides.add_slide(self.layout("content", s.get("layout")))
+        x, y, w, h = self.content_box(self.title(s))
+        self._clear_body_placeholders()
+        items = s.get("items", [])
+        cur = s.get("current")
+        row = min(Inches(0.9), h // max(1, len(items)))
+        for i, it in enumerate(items, 1):
+            it = it if isinstance(it, dict) else {"text": it}
+            ry = y + (i - 1) * row
+            on = cur is None or cur == i
+            self.rule(x, ry, w, "line", 1, name=f"Agenda rule {i}")
+            self.textbox(x, ry, Inches(0.8), row, str(i), 24, "primary" if on else "line", True,
+                         anchor=MSO_ANCHOR.MIDDLE, name=f"Agenda number {i}")
+            lines = [{"text": it["text"], "size": 22, "bold": cur == i, "color": "ink" if on else "muted"}]
+            self.rich_box(x + Inches(0.9), ry, w - Inches(3.0), row, lines, anchor=MSO_ANCHOR.MIDDLE,
+                          name=f"Agenda item {i}")
+            if it.get("minutes"):
+                self.textbox(x + w - Inches(2.0), ry, Inches(2.0), row, f"{it['minutes']} min", 16, "muted",
+                             align=PP_ALIGN.RIGHT, anchor=MSO_ANCHOR.MIDDLE, name=f"Agenda time {i}")
+        self.rule(x, y + len(items) * row, w, "line", 1, name="Agenda rule end")
+
+    def s_section(self, s, idx):
+        """Divider between parts: the part's title large on the accent colour, the talk's parts below."""
+        lay = self.layout("section", s.get("layout"))
+        self.cur = self.prs.slides.add_slide(lay)
+        t = self.cur.shapes.title
+        if t is not None and self.spec.get("template"):
+            t.text_frame.text = s.get("title", "")
+            self.apply_style(t, "section")
+            self._clear_body_placeholders()
+            return
+        bg = self.cur.background.fill
+        bg.solid()
+        bg.fore_color.rgb = self.color("primary")
+        x, w = Inches(0.9), self.W - Inches(1.8)
+        self.textbox(x, Inches(2.0), w, Inches(2.0), s.get("title", ""), 40, "#FFFFFF", True,
+                     anchor=MSO_ANCHOR.BOTTOM, heading=True, name="Title")
+        if s.get("subtitle"):
+            self.textbox(x, Inches(4.2), w, Inches(1.0), s["subtitle"], 22, "#FFFFFF", name="Subtitle")
+        parts = s.get("parts", [])
+        if parts:
+            cur = s.get("current")
+            pw = w // len(parts)
+            py = self.H - Inches(1.45)
+            for i, part in enumerate(parts, 1):
+                on = i == cur
+                self.rule(x + (i - 1) * pw, py, pw - Inches(0.15), "#FFFFFF", 3 if on else 1, name=f"Part rule {i}")
+                tb = self.textbox(x + (i - 1) * pw, py + Inches(0.1), pw - Inches(0.15), Inches(0.6), part, 14,
+                                  "#FFFFFF", on, name=f"Part {i}")
+                if not on:  # dim the parts we are not in
+                    for r in tb.text_frame.paragraphs[0].runs:
+                        r.font.color.rgb = self._mix("primary", "#FFFFFF", 0.55)
+
+    def _mix(self, a, b, t):
+        ca, cb = self.color(a), self.color(b)
+        return RGBColor(*(round(ca[k] + (cb[k] - ca[k]) * t) for k in range(3)))
+
+    def s_key_message(self, s, idx):
+        """One sentence the audience must leave with: it is the slide title, set large; one line of support."""
+        self.cur = self.prs.slides.add_slide(self.layout("key-message", s.get("layout")))
+        msg = s.get("message", s.get("title", ""))
+        sup = s.get("support") or []
+        sup = sup if isinstance(sup, list) else [sup]
+        ph = self.cur.shapes.title
+        if ph is not None and self.spec.get("template"):  # the template's title placeholder, set large
+            ph.text_frame.text = msg
+            self.apply_style(ph, "key_message", {"size": 34, "bold": True})
+            body = next((p for p in self.cur.placeholders if p != ph), None)
+            if body is not None and sup:
+                body.text_frame.text = "\n".join(sup)
+                self.apply_style(body, "subtitle")
+            elif sup:
+                top = ph.top + ph.height + Inches(0.4)
+                self.rich_box(Inches(0.9), top, self.W - Inches(2.6), Inches(1.6),
+                              [{"text": t, "size": 20, "color": "muted"} for t in sup], name="Body")
+            self._clear_body_placeholders()
+            return
+        self._clear_body_placeholders()
+        if ph is not None:
+            ph._element.getparent().remove(ph._element)
+        x, w = Inches(0.9), self.W - Inches(2.6)
+        self.rule(x, Inches(1.6), Inches(1.4), "primary", 3)
+        self.textbox(x, Inches(1.85), w, Inches(2.9), msg, 36, "ink", True, heading=True, name="Title")
+        if sup:
+            self.rich_box(x, Inches(4.9), w, Inches(1.6), [{"text": t, "size": 20, "color": "muted"} for t in sup],
+                          name="Body")
+
+    def s_two_column(self, s, idx):
+        """Two lists side by side under coloured headings: strengths vs limitations, old vs new, arm vs arm."""
+        self.cur = self.prs.slides.add_slide(self.layout("content", s.get("layout")))
+        x, y, w, h = self.content_box(self.title(s))
+        self._clear_body_placeholders()
+        gap = Inches(0.6)
+        cw = (w - gap) // 2
+        take_h = Inches(1.2) if s.get("takeaway") else 0
+        for i, key in enumerate(("left", "right")):
+            col = s.get(key, {})
+            cx = x + i * (cw + gap)
+            color = {"int": "intervention", "ctl": "control"}.get(col.get("style"), col.get("style") or "primary")
+            self.textbox(cx, y, cw, Inches(0.6), col.get("heading", ""), 22, color, True, anchor=MSO_ANCHOR.BOTTOM,
+                         heading=True, name=f"Heading {key}")
+            self.rule(cx, y + Inches(0.68), cw, color, 2, name=f"Heading rule {key}")
+            self.bullets(col.get("bullets", []), cx, y + Inches(0.85), cw, h - Inches(0.85) - take_h)
+        if s.get("takeaway"):
+            self.takeaway(s["takeaway"], x, y + h - take_h, w, take_h)
+
+    s_comparison = s_two_column
+
+    def s_pico(self, s, idx):
+        """Study at a glance: label column and text column, one row per element (P, I, C, O, design, ...)."""
+        self.cur = self.prs.slides.add_slide(self.layout("content", s.get("layout")))
+        x, y, w, h = self.content_box(self.title(s))
+        self._clear_body_placeholders()
+        rows = s.get("rows", [])
+        rh = min(Inches(1.0), h // max(1, len(rows)))
+        lw = Inches(float(s.get("label_in", 2.4)))
+        for i, r in enumerate(rows):
+            ry = y + i * rh
+            self.rule(x, ry, w, "line", 1, name=f"Row rule {i + 1}")
+            self.textbox(x, ry, lw - Inches(0.2), rh, r.get("label", ""), 18, "primary", True,
+                         anchor=MSO_ANCHOR.MIDDLE, name=f"Row label {i + 1}")
+            self.textbox(x + lw, ry, w - lw, rh, r.get("text", ""), 20, "ink", anchor=MSO_ANCHOR.MIDDLE,
+                         name=f"Body {i + 1}")
+        self.rule(x, y + len(rows) * rh, w, "line", 1, name="Row rule end")
 
     def s_table(self, s, idx):
         self.cur = self.prs.slides.add_slide(self.layout("content", s.get("layout")))
@@ -424,6 +622,7 @@ class Builder:
             for node, tag, side in ((e["from"], "a:stCxn", fs), (e["to"], "a:endCxn", ts)):
                 if node in ovals:
                     con._element.find(".//" + qn(tag)).set("idx", str(self.OVAL_SITE.get(side, side)))
+            self.flat(con)
             con.line.color.rgb = self.color("muted")
             con.line.width = Pt(1.5)
             ln = con.line._get_or_add_ln()
@@ -467,18 +666,38 @@ class Builder:
                          italic=True, name="Credit")
 
     def s_references(self, s, idx):
+        """Numbered list with hanging indent. Items are strings or {"authors", "title", "journal", "year", "doi"}."""
         self.cur = self.prs.slides.add_slide(self.layout("content", s.get("layout")))
         x, y, w, h = self.content_box(self.title(s))
         self._clear_body_placeholders()
+        items = s.get("items", [])
+        size = 18 if len(items) <= 4 else self.theme["type_pt"]["small"] if len(items) <= 8 else 12
         tb = self.cur.shapes.add_textbox(x, y, w, h)
+        tb.name = "References"
         tf = tb.text_frame
         tf.word_wrap = True
-        for i, ref in enumerate(s.get("items", [])):
+        for i, ref in enumerate(items):
             p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
             p.space_after = Pt(6)
+            pPr = p._p.get_or_add_pPr()
+            pPr.set("marL", str(int(Inches(0.45))))
+            pPr.set("indent", str(int(-Inches(0.45))))
             r = p.add_run()
-            r.text = f"{i + 1}. {ref}"
-            self.font(r, self.theme["type_pt"]["small"], color="ink")
+            r.text = f"{i + 1}.\t"
+            self.font(r, size, True, "primary")
+            if isinstance(ref, dict):
+                head = ", ".join(v for v in (ref.get("authors"), ref.get("title")) if v)
+                tail = " ".join(str(v) for v in (ref.get("journal"), ref.get("year")) if v)
+                for text, italic in ((head + (". " if tail or ref.get("doi") else ""), False), (tail, True),
+                                     ((". " if tail else "") + f"doi:{ref['doi']}" if ref.get("doi") else "", False)):
+                    if text:
+                        r = p.add_run()
+                        r.text = text
+                        self.font(r, size, False, "ink", italic=italic)
+            else:
+                r = p.add_run()
+                r.text = str(ref)
+                self.font(r, size, False, "ink")
 
     def _clear_body_placeholders(self):
         title = self.cur.shapes.title
@@ -493,7 +712,7 @@ class Builder:
             if fn is None:
                 raise SystemExit(f"slide {idx}: unknown type {s['type']!r}")
             fn(s, idx)
-            if s["type"] not in ("title", "closing"):
+            if s["type"] not in ("title", "closing", "section", "key-message"):
                 self.footer(s, idx)
             self.notes(s)
         out.parent.mkdir(parents=True, exist_ok=True)

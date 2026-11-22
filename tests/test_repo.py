@@ -71,6 +71,16 @@ class SkillsTest(unittest.TestCase):
             self.assertIsNotNone(m, f"skills badge missing in {name}")
             self.assertEqual(int(m.group(1)), len(SKILLS), f"skills badge count is stale in {name}")
 
+    def test_test_badge_matches_the_suite(self):
+        """The "unit tests" badge in both READMEs counts the tests unittest discovers."""
+        suite = unittest.defaultTestLoader.discover(str(ROOT / "tests"), top_level_dir=str(ROOT / "tests"))
+        n = suite.countTestCases()
+        for name in READMES:
+            m = re.search(r"unit%20tests-(\d+)-", (ROOT / name).read_text(encoding="utf-8"))
+            with self.subTest(readme=name):
+                self.assertIsNotNone(m, f"unit-tests badge missing in {name}")
+                self.assertEqual(int(m.group(1)), n, f"unit-tests badge is stale in {name}: the suite has {n}")
+
     def test_readme_translations_stay_in_step(self):
         """English and Vietnamese READMEs: same version, commands, images; each links the other."""
         texts = {n: (ROOT / n).read_text(encoding="utf-8") for n in READMES}

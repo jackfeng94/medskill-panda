@@ -80,7 +80,7 @@ T = {
   deliver="Deliver", deliver_files=".html · .pptx · .pdf · .docx",
   deliver_note="plus a report: what was verified against full text, abstract only, or not at all",
   ex_s="Example output · HTML deck", ex_s_sub="One offline file built by html-deck-building from simulated DEMO-HF data: figures drawn from the data, a source on every slide. lint_slop: 0 findings.",
-  ex_p="Example output · PowerPoint in your template", ex_p_sub="The same talk built by pptx-deck-building inside a branded template: native, editable diagram and chart; speaker notes on every slide. check_pptx and lint_slop: 0 findings.",
+  ex_p="Example output · PowerPoint in your template", ex_p_sub="A 12-slide journal club built by pptx-deck-building inside a branded template: agenda, PICO, native diagram and chart, takeaways, appraisal, bottom line, references; speaker notes on every slide. check_spec, check_pptx and lint_slop: 0 findings.",
   ex_m="Example output · manuscript", ex_m_sub="Word file from the same data: English text, Vietnamese abstract. Checked with lint_prose.",
   audit_hd="lint_prose: demo-hf.docx (vi+en): 1 error, 0 warnings",
   audit_rows=[("P01", "Corresponding author: [MISSING: authors to confirm]", "a gap only the authors can fill, left visible on purpose")],
@@ -114,7 +114,7 @@ T = {
   deliver="Bàn giao", deliver_files=".html · .pptx · .pdf · .docx",
   deliver_note="kèm báo cáo: đã kiểm chứng với toàn văn, chỉ tóm tắt, hay chưa kiểm chứng",
   ex_s="Ví dụ đầu ra · slide HTML", ex_s_sub="Một file offline do html-deck-building dựng từ dữ liệu mô phỏng DEMO-HF: hình vẽ từ dữ liệu, có nguồn trên mọi slide. lint_slop: 0 lỗi.",
-  ex_p="Ví dụ đầu ra · PowerPoint theo template của bạn", ex_p_sub="Cùng bài nói do pptx-deck-building dựng trong một template có nhận diện riêng: sơ đồ và biểu đồ gốc sửa được, có ghi chú người nói trên mọi slide. check_pptx và lint_slop: 0 lỗi.",
+  ex_p="Ví dụ đầu ra · PowerPoint theo template của bạn", ex_p_sub="Journal club 12 slide do pptx-deck-building dựng trong template có nhận diện riêng: mục lục, PICO, sơ đồ và biểu đồ gốc, câu chốt, thẩm định, kết luận, tài liệu; ghi chú người nói trên mọi slide. check_spec, check_pptx và lint_slop: 0 lỗi.",
   ex_m="Ví dụ đầu ra · bản thảo", ex_m_sub="File Word từ cùng bộ dữ liệu: nội dung tiếng Anh, tóm tắt tiếng Việt. Kiểm tra bằng lint_prose.",
   audit_hd="lint_prose: demo-hf.docx (vi+en): 1 lỗi, 0 cảnh báo",
   audit_rows=[("P01", "Corresponding author: [MISSING: authors to confirm]", "chỗ trống chỉ tác giả điền được, cố ý để lộ ra")],
@@ -173,9 +173,10 @@ PL = {
   s=("01", "HTML slide deck", "One offline file with motion, speaker notes and a laser pointer. Titles state the conclusion; every figure is drawn from the data and every slide carries its source.",
      ["<code>.html</code>, 6 slides", "<code>html-deck-building</code>", "<span class=ok>lint_slop: 0 findings</span>", "simulated DEMO-HF trial"],
      ["Title", "Trial flow", "Subgroups", "Quality of life", "Bottom line"]),
-  p=("02", "PowerPoint in your template", "The same talk inside a hospital or congress template. The trial diagram and the line chart are native PowerPoint objects you can edit; every slide has speaker notes.",
-     ["<code>.pptx</code>, 6 slides", "<code>pptx-deck-building</code>", "<span class=ok>check_pptx, lint_slop: 0</span>", "simulated DEMO-HF trial"],
-     ["Title", "Kaplan–Meier", "Subgroups", "Native line chart", "Bottom line"]),
+  p=("02", "A complete journal club in PowerPoint", "The same trial as a full journal-club deck inside a hospital template: agenda, PICO question, native trial schema, figures with a takeaway, effect sizes, appraisal, bottom line and references. Every slide has speaker notes.",
+     ["<code>.pptx</code>, 12 slides", "<code>pptx-deck-building</code>", "<span class=ok>check_spec, check_pptx, lint_slop: 0</span>", "simulated DEMO-HF trial"],
+     [(1, "Title"), (2, "Agenda"), (3, "PICO question"), (4, "Native trial schema"), (6, "Subgroups"),
+      (7, "Native line chart"), (8, "Effect sizes"), (9, "Strengths, limits"), (10, "Bottom line"), (11, "References")], 5),
   m=("03", "Manuscript, two languages", "A Word file written from the same data: English text with a Vietnamese abstract, a three-line table and a figure. The audit flags the one gap only the authors can fill.",
      ["<code>.docx</code> and PDF", "<code>scientific-writing</code>", "<span class=ok>lint_prose: 1 deliberate gap</span>", "simulated DEMO-HF trial"]),
   callouts=[("Banner", "The document says the data are simulated."), ("Explicit gap", "[MISSING: authors to confirm] instead of an invented author."),
@@ -190,9 +191,10 @@ PL = {
   s=("01", "Slide HTML", "Một file offline có chuyển động, ghi chú người nói và bút laser. Tiêu đề nói kết luận; mọi hình vẽ từ dữ liệu, mọi slide ghi nguồn.",
      ["<code>.html</code>, 6 slide", "<code>html-deck-building</code>", "<span class=ok>lint_slop: 0 lỗi</span>", "thử nghiệm mô phỏng DEMO-HF"],
      ["Tiêu đề", "Dòng bệnh nhân", "Phân nhóm", "Chất lượng sống", "Kết luận"]),
-  p=("02", "PowerPoint theo template", "Cùng bài nói, dựng trong template bệnh viện hoặc hội nghị. Sơ đồ thử nghiệm và biểu đồ đường là đối tượng gốc của PowerPoint, sửa được; slide nào cũng có ghi chú.",
-     ["<code>.pptx</code>, 6 slide", "<code>pptx-deck-building</code>", "<span class=ok>check_pptx, lint_slop: 0</span>", "thử nghiệm mô phỏng DEMO-HF"],
-     ["Tiêu đề", "Kaplan–Meier", "Phân nhóm", "Biểu đồ đường gốc", "Kết luận"]),
+  p=("02", "Journal club hoàn chỉnh bằng PowerPoint", "Cùng thử nghiệm, thành một bài journal club đầy đủ trong template bệnh viện: mục lục, câu hỏi PICO, sơ đồ thử nghiệm gốc, hình có câu chốt, độ lớn hiệu quả, thẩm định, kết luận và tài liệu tham khảo. Slide nào cũng có ghi chú.",
+     ["<code>.pptx</code>, 12 slide", "<code>pptx-deck-building</code>", "<span class=ok>check_spec, check_pptx, lint_slop: 0</span>", "thử nghiệm mô phỏng DEMO-HF"],
+     [(1, "Tiêu đề"), (2, "Mục lục"), (3, "Câu hỏi PICO"), (4, "Sơ đồ thử nghiệm gốc"), (6, "Phân nhóm"),
+      (7, "Biểu đồ đường gốc"), (8, "Độ lớn hiệu quả"), (9, "Điểm mạnh, hạn chế"), (10, "Kết luận"), (11, "Tài liệu")], 5),
   m=("03", "Bản thảo hai ngôn ngữ", "File Word viết từ cùng bộ dữ liệu: nội dung tiếng Anh, tóm tắt tiếng Việt, bảng ba đường kẻ và hình. Bộ kiểm tra chỉ ra chỗ trống duy nhất mà tác giả phải tự điền.",
      ["<code>.docx</code> và PDF", "<code>scientific-writing</code>", "<span class=ok>lint_prose: 1 chỗ trống cố ý</span>", "thử nghiệm mô phỏng DEMO-HF"]),
   callouts=[("Dòng cảnh báo", "Bài ghi rõ dữ liệu là mô phỏng."), ("Chỗ trống rõ ràng", "[MISSING: authors to confirm] thay vì bịa tên tác giả."),
@@ -214,7 +216,10 @@ def caption(L, key, extra=""):
 
 def deck_plate(L, key, files, hero, pid):
     names = PL[L][key][4]
-    others = [i for i in range(1, 7) if i != hero]
+    if names and isinstance(names[0], tuple):  # explicit (slide number, name) pairs
+        others, names = [i for i, _ in names], [n for _, n in names]
+    else:
+        others = [i for i in range(1, 7) if i != hero]
     thumbs = "".join(f'<figure><div class="frame"><img src="{img(DEMO / "screens" / files.format(i=i))}"></div>'
                      f'<figcaption><b>{i}</b>{e(n)}</figcaption></figure>' for i, n in zip(others, names))
     return (f'<div class="plate" id="{pid}" style="--c:{COLORS[key]}">{caption(L, key)}<div class="hero-row">'
@@ -224,7 +229,7 @@ def deck_plate(L, key, files, hero, pid):
 def examples(L):
     q = PL[L]
     slides = deck_plate(L, "s", L + "-{i}.png", 3, "slides")
-    pptx = deck_plate(L, "p", "pptx-" + L + "-{i}.png", 2, "pptx")
+    pptx = deck_plate(L, "p", "pptx-" + L + "-{i}.png", PL[L]["p"][5], "pptx")
     marks_y = (7.3, 16.9, 23.0, 41.0, 69.3)  # % of the page height, matched to the rendered page
     marks = "".join(f'<span class="mk" style="top:calc({y}% - 15px)">{k}</span>' for k, y in enumerate(marks_y, 1))
     callouts = "".join(f'<li><b>{k}</b><span><strong>{e(h)}</strong>{e(b)}</span></li>' for k, (h, b) in enumerate(q["callouts"], 1))

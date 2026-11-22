@@ -1,5 +1,22 @@
 # Changelog
 
+## Unreleased
+
+- **PowerPoint truyền đạt tốt hơn và đủ thành phần:** `pptx_from_spec.py` có thêm các loại slide
+  `agenda` (mục lục, đánh dấu phần đang nói, số phút), `section` (slide chuyển phần), `pico` (câu
+  hỏi nghiên cứu dạng PICO), `two-column`/`comparison` (điểm mạnh và hạn chế, cũ và mới),
+  `key-message` (câu kết luận cần nhớ, chữ lớn). Slide tiêu đề có thêm `affiliation`, `event`,
+  `date`; `figure-text` và `two-column` có `takeaway` (một câu chốt dưới đường kẻ màu nhấn);
+  `big-number` canh giữa, có vạch ngăn và dòng `context`; `references` nhận mục có cấu trúc
+  (đánh số, thụt dòng treo, tên tạp chí in nghiêng). Đường kẻ và mũi tên không còn bóng mờ.
+- **`check_spec.py`:** kiểm tra `deck.json` trước khi dựng: trường bắt buộc, ghi chú, nguồn của
+  slide số liệu, và đủ thành phần theo loại bài (`--recipe journal-club`, `journal-club-report`,
+  `conference`, `lecture`).
+- **Từ một bài báo PDF ra bộ PPTX journal club đầy đủ:** bảng thành phần trong
+  `pptx-deck-building`, ánh xạ recipe trong `deck-planning`, mục 7.8 trong hướng dẫn. Ví dụ
+  DEMO-HF giờ là bài journal club 12 slide; CI chạy `check_spec`, `check_pptx`, `lint_slop` trên nó.
+- **Badge số unit test** trong README; test bảo đảm con số khớp bộ test.
+
 ## 1.3.0
 
 ### Mới trong lần này

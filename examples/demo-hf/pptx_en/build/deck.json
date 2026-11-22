@@ -2,7 +2,9 @@
   "template": "../../theme/template.pptx",
   "layouts": {
     "title": "Title Slide",
-    "content": "Title Only"
+    "content": "Title Only",
+    "closing": "Title Slide",
+    "key-message": "Title Slide"
   },
   "styles": {
     "title": {
@@ -22,6 +24,13 @@
     "subtitle": {
       "size": 20,
       "color": "#CFE6EE",
+      "align": "left"
+    },
+    "key_message": {
+      "size": 34,
+      "bold": true,
+      "color": "#FFFFFF",
+      "anchor": "top",
       "align": "left"
     }
   },
@@ -53,9 +62,60 @@
     {
       "type": "title",
       "title": "In the simulated DEMO-HF trial, structured follow-up cut heart-failure admissions by a quarter",
-      "subtitle": "Journal club · a demonstration built from simulated data",
+      "subtitle": "A demonstration built from simulated data",
       "presenter": "Medskill Panda demo",
+      "event": "Journal club",
       "notes": "Introduce DEMO-HF as a teaching example with simulated data."
+    },
+    {
+      "type": "agenda",
+      "title": "Four questions in fifteen minutes",
+      "items": [
+        {
+          "text": "The question and the design",
+          "minutes": 3
+        },
+        {
+          "text": "Admissions and quality of life",
+          "minutes": 5
+        },
+        {
+          "text": "How far to trust it",
+          "minutes": 4
+        },
+        {
+          "text": "What it means for our clinic",
+          "minutes": 3
+        }
+      ],
+      "notes": "Fifteen minutes: four questions, one per part."
+    },
+    {
+      "type": "pico",
+      "title": "Does structured follow-up after discharge prevent the next heart-failure admission?",
+      "rows": [
+        {
+          "label": "Population",
+          "text": "HFrEF after a hospital stay"
+        },
+        {
+          "label": "Intervention",
+          "text": "Structured follow-up"
+        },
+        {
+          "label": "Comparator",
+          "text": "Usual care"
+        },
+        {
+          "label": "Outcome",
+          "text": "Heart-failure admission within 24 months"
+        },
+        {
+          "label": "Design",
+          "text": "Randomised 1:1, 2,000 patients, simulated"
+        }
+      ],
+      "notes": "State the question in PICO form before showing any result."
     },
     {
       "type": "diagram",
@@ -155,9 +215,9 @@
       "credit": "Source: simulated DEMO-HF data (seed 7); Kaplan–Meier estimate",
       "bullets": [
         "Difference 6.7 percentage points",
-        "Number needed to treat: 15",
-        "243 vs 308 admissions"
+        "Number needed to treat: 15"
       ],
+      "takeaway": "One admission prevented for every 15 patients followed for two years",
       "split": 0.62,
       "notes": "Point to the separation of the curves before month 6."
     },
@@ -169,9 +229,9 @@
       "credit": "Source: simulated DEMO-HF data (seed 7); Poisson rate ratios",
       "bullets": [
         "Overall rate ratio 0.75 (95% CI 0.63–0.89)",
-        "Every subgroup estimate lies below 1",
-        "Subgroups are exploratory"
+        "Every subgroup estimate lies below 1"
       ],
+      "takeaway": "No subgroup stands apart from the overall effect",
       "split": 0.62,
       "notes": "Subgroups are exploratory; say so."
     },
@@ -220,21 +280,83 @@
       "numbers": [
         {
           "value": "−6.7",
-          "label": "percentage points: 32.5% → 25.8% at 24 months",
+          "label": "percentage points fewer admissions",
+          "context": "32.5% → 25.8% at 24 months",
           "color": "#56677F"
         },
         {
           "value": "0.75",
-          "label": "rate ratio, 95% CI 0.63–0.89",
+          "label": "rate ratio",
+          "context": "95% CI 0.63–0.89",
           "color": "#C8372D"
         },
         {
           "value": "15",
-          "label": "number needed to treat for 24 months",
+          "label": "number needed to treat",
+          "context": "over 24 months",
           "color": "#0F5E7A"
         }
       ],
-      "notes": "Close with the absolute effect, not only the ratio."
+      "notes": "Close the results with the absolute effect, not only the ratio."
+    },
+    {
+      "type": "two-column",
+      "title": "A clean comparison, but a simulated population cannot change practice",
+      "left": {
+        "heading": "Strengths",
+        "bullets": [
+          "Randomised comparison",
+          "Hard endpoint: admission",
+          "Absolute and relative effects"
+        ],
+        "style": "primary"
+      },
+      "right": {
+        "heading": "Limitations",
+        "bullets": [
+          "Simulated data, not evidence",
+          "Exploratory subgroups",
+          "No cost or workload data"
+        ],
+        "style": "int"
+      },
+      "takeaway": "Learn the method; do not change practice yet.",
+      "notes": "Weigh the strengths against what a simulated trial cannot show."
+    },
+    {
+      "type": "key-message",
+      "message": "Structured follow-up prevented 6.7 admissions per 100 patients over two years",
+      "support": [
+        "In real trials, check whether the effect holds where staff and visits are scarce.",
+        "Discussion: which patients in our clinic would we offer this to first?"
+      ],
+      "notes": "Pause on the bottom line, then open the discussion question."
+    },
+    {
+      "type": "references",
+      "title": "References",
+      "items": [
+        {
+          "authors": "Medskill Panda",
+          "title": "DEMO-HF simulated trial dataset, seed 7",
+          "journal": "examples/demo-hf/make_data.py",
+          "year": 2026
+        },
+        {
+          "authors": "Green CP, Porter CB, Bresnahan DR, Spertus JA",
+          "title": "Development and evaluation of the Kansas City Cardiomyopathy Questionnaire",
+          "journal": "J Am Coll Cardiol",
+          "year": 2000
+        }
+      ],
+      "notes": "Sources for the data and the KCCQ scale."
+    },
+    {
+      "type": "closing",
+      "title": "Questions and discussion",
+      "subtitle": "DEMO-HF · simulated data for teaching",
+      "presenter": "Medskill Panda demo",
+      "notes": "Take questions."
     }
   ]
 }

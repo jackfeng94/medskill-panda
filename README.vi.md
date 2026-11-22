@@ -15,6 +15,7 @@ bắt các dấu hiệu "slide do máy làm", và hỗ trợ viết bài báo, t
 [![version 1.3.0](https://img.shields.io/badge/version-1.3.0-4a5a6a)](CHANGELOG.md)
 [![skills-36-](https://img.shields.io/badge/skills-36-11607a)](#các-skill)
 [![tests](https://github.com/jackfeng94/medskill-panda/actions/workflows/tests.yml/badge.svg)](https://github.com/jackfeng94/medskill-panda/actions/workflows/tests.yml)
+[![unit tests 75](https://img.shields.io/badge/unit%20tests-75-11607a)](tests/)
 [![python 3.8+](https://img.shields.io/badge/python-3.8%2B-4a5a6a)](#hook)
 
 **Chưa quen terminal hay Claude Code? Bắt đầu từ [hướng dẫn từng bước](docs/HUONG-DAN.md).**
@@ -64,7 +65,7 @@ thuyết trình, chỉ cần nói *"làm slide journal club về DAPA-HF"*; `med
 và bài có công thức).
 
 <div align="center">
-<img src="assets/example-pptx.vi.a833d2d6.png" alt="Cùng bài nói dưới dạng PowerPoint sửa được trong một template có nhận diện riêng: slide tiêu đề, sơ đồ thử nghiệm gốc, Kaplan–Meier, forest plot, biểu đồ đường gốc, các con số chính" width="100%">
+<img src="assets/example-pptx.vi.5d9e7950.png" alt="Cùng bài nói dưới dạng PowerPoint sửa được trong một template có nhận diện riêng: slide tiêu đề, sơ đồ thử nghiệm gốc, Kaplan–Meier, forest plot, biểu đồ đường gốc, các con số chính" width="100%">
 </div>
 
 ## Cài đặt
@@ -142,7 +143,7 @@ chứng hoặc dữ liệu của tác giả, lưu dạng SVG cho slide HTML, Pow
 nhãn theo ngôn ngữ của bài (`0,75` cho tiếng Việt, `0.75` cho tiếng Anh).
 
 <div align="center">
-<img src="assets/chart-gallery.vi.9347c0c3.png" alt="Tám loại biểu đồ: Kaplan–Meier kèm số còn theo dõi, forest plot, sơ đồ CONSORT, biểu đồ đường kèm dải tin cậy, cột nhóm kèm khoảng tin cậy, box plot kèm từng bệnh nhân, cột chồng phân độ NYHA, đường ROC" width="100%">
+<img src="assets/chart-gallery.vi.2db6fd87.png" alt="Tám loại biểu đồ: Kaplan–Meier kèm số còn theo dõi, forest plot, sơ đồ CONSORT, biểu đồ đường kèm dải tin cậy, cột nhóm kèm khoảng tin cậy, box plot kèm từng bệnh nhân, cột chồng phân độ NYHA, đường ROC" width="100%">
 </div>
 
 <sub>Cả tám biểu đồ vẽ từ dữ liệu mô phỏng bằng <a href="examples/demo-hf/make_charts.py">examples/demo-hf/make_charts.py</a>; bản tiếng Anh ở <code>examples/demo-hf/out/charts/en/</code>.</sub>
