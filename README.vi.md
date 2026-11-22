@@ -19,7 +19,7 @@ bắt các dấu hiệu "slide do máy làm", và hỗ trợ viết bài báo, t
 
 **Chưa quen terminal hay Claude Code? Bắt đầu từ [hướng dẫn từng bước](docs/HUONG-DAN.md).**
 
-<img src="assets/example-slides.vi.png" alt="Sáu slide HTML của ví dụ DEMO-HF: tiêu đề, dòng bệnh nhân, Kaplan–Meier, forest plot, chất lượng sống, hiệu quả tuyệt đối" width="100%">
+<img src="assets/example-slides.vi.92fee725.png" alt="Sáu slide HTML của ví dụ DEMO-HF: tiêu đề, dòng bệnh nhân, Kaplan–Meier, forest plot, chất lượng sống, hiệu quả tuyệt đối" width="100%">
 
 <sub>Bộ slide thật do plugin dựng từ dữ liệu mô phỏng (<a href="examples/demo-hf/">examples/demo-hf</a>): tiêu đề khẳng định, hình vẽ từ dữ liệu, dòng nguồn trên mọi slide, 0 lỗi slop.</sub>
 
@@ -41,7 +41,7 @@ bắt các dấu hiệu "slide do máy làm", và hỗ trợ viết bài báo, t
 ## Cách hoạt động
 
 <div align="center">
-<img src="assets/pipeline.vi.png" alt="Medskill Panda hoạt động thế nào: đầu vào, trục chung gồm brief, kế hoạch và sổ bằng chứng, rồi làn slide và làn viết bài, một bước kiểm tra, bàn giao kèm thư mục dự án" width="100%">
+<img src="assets/pipeline.vi.1069afb3.png" alt="Medskill Panda hoạt động thế nào: đầu vào, trục chung gồm brief, kế hoạch và sổ bằng chứng, rồi làn slide và làn viết bài, một bước kiểm tra, bàn giao kèm thư mục dự án" width="100%">
 </div>
 
 Slide và bản thảo dùng chung một trục bằng chứng: cùng brief, cùng kế hoạch đã duyệt, cùng sổ
@@ -64,7 +64,7 @@ thuyết trình, chỉ cần nói *"làm slide journal club về DAPA-HF"*; `med
 và bài có công thức).
 
 <div align="center">
-<img src="assets/example-pptx.vi.png" alt="Cùng bài nói dưới dạng PowerPoint sửa được trong một template có nhận diện riêng: slide tiêu đề, sơ đồ thử nghiệm gốc, Kaplan–Meier, forest plot, biểu đồ đường gốc, các con số chính" width="100%">
+<img src="assets/example-pptx.vi.a833d2d6.png" alt="Cùng bài nói dưới dạng PowerPoint sửa được trong một template có nhận diện riêng: slide tiêu đề, sơ đồ thử nghiệm gốc, Kaplan–Meier, forest plot, biểu đồ đường gốc, các con số chính" width="100%">
 </div>
 
 ## Cài đặt
@@ -131,7 +131,7 @@ cầu viết đi theo cùng nguyên tắc như làm slide:
    tác giả.
 
 <div align="center">
-<img src="assets/example-manuscript.vi.png" alt="Trang bản thảo mẫu có tóm tắt tiếng Anh và tiếng Việt, cạnh kết quả lint_prose" width="100%">
+<img src="assets/example-manuscript.vi.8dc2e4cb.png" alt="Trang bản thảo mẫu có tóm tắt tiếng Anh và tiếng Việt, cạnh kết quả lint_prose" width="100%">
 </div>
 
 ## Biểu đồ
@@ -141,7 +141,7 @@ chứng hoặc dữ liệu của tác giả, lưu dạng SVG cho slide HTML, Pow
 nhãn theo ngôn ngữ của bài (`0,75` cho tiếng Việt, `0.75` cho tiếng Anh).
 
 <div align="center">
-<img src="assets/chart-gallery.vi.png" alt="Tám loại biểu đồ: Kaplan–Meier kèm số còn theo dõi, forest plot, sơ đồ CONSORT, biểu đồ đường kèm dải tin cậy, cột nhóm kèm khoảng tin cậy, box plot kèm từng bệnh nhân, cột chồng phân độ NYHA, đường ROC" width="100%">
+<img src="assets/chart-gallery.vi.9347c0c3.png" alt="Tám loại biểu đồ: Kaplan–Meier kèm số còn theo dõi, forest plot, sơ đồ CONSORT, biểu đồ đường kèm dải tin cậy, cột nhóm kèm khoảng tin cậy, box plot kèm từng bệnh nhân, cột chồng phân độ NYHA, đường ROC" width="100%">
 </div>
 
 <sub>Cả tám biểu đồ vẽ từ dữ liệu mô phỏng bằng <a href="examples/demo-hf/make_charts.py">examples/demo-hf/make_charts.py</a>; bản tiếng Anh ở <code>examples/demo-hf/out/charts/en/</code>.</sub>

@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Ảnh README và hướng dẫn mang mã nội dung trong tên (`pipeline.vi.1069afb3.png`…), do
+  `assets/src/publish_art.py` tạo và tự cập nhật đường dẫn: đổi ảnh là đổi tên, nên trình duyệt
+  và GitHub không còn hiện bản cũ. Test bảo đảm mọi ảnh đều có mã và đều được dùng.
+- Hướng dẫn A–Z có thêm ảnh ở các bước: kết quả slide HTML và PowerPoint, các loại biểu đồ, bản
+  thảo mẫu.
 - Ảnh README theo phong cách đồ hoạ tạp chí: sơ đồ quy trình có dải màu theo giai đoạn, biểu tượng
   nét mảnh, tiêu đề chữ có chân, ngoặc nhóm ba giai đoạn; ảnh ví dụ thành các "plate" kiểu hình
   trong bài báo (cột chú thích, slide lớn kèm ảnh nhỏ, trang bản thảo có chú thích đánh số, biểu đồ

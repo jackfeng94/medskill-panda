@@ -112,6 +112,20 @@ class GuideTest(unittest.TestCase):
         self.assertEqual(heads[0], heads[1])
 
 
+class ArtworkTest(unittest.TestCase):
+    """README/guide images carry a content hash in their name (no stale browser copies) and are all used."""
+
+    def test_images_are_hashed_and_referenced(self):
+        docs = " ".join(p.read_text(encoding="utf-8") for p in
+                        [ROOT / "README.md", ROOT / "README.vi.md", *(ROOT / "docs").glob("*.md")])
+        for png in (ROOT / "assets").glob("*.png"):
+            if png.name == "logo.png":
+                continue
+            with self.subTest(image=png.name):
+                self.assertRegex(png.name, r"\.[0-9a-f]{8}\.png$", "publish with assets/src/publish_art.py")
+                self.assertIn(png.name, docs, "image not used by any README or guide")
+
+
 class ManifestTest(unittest.TestCase):
     def test_versions_agree(self):
         plugin = json.loads((ROOT / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
