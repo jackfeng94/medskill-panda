@@ -40,7 +40,7 @@ tính của bạn. Sau khi cài, bạn chỉ cần gõ yêu cầu bằng tiếng
 Với bài báo, luận văn, đề cương, quy trình tương tự nhưng đầu ra là file Word, LaTeX hoặc
 Markdown, bằng tiếng Việt, tiếng Anh hoặc song ngữ.
 
-![Quy trình](../assets/pipeline.vi.00ae372c.png)
+![Quy trình](../assets/pipeline.vi.44dd65cc.png)
 
 ## 2. Cần chuẩn bị gì
 
@@ -203,11 +203,11 @@ Mọi thứ nằm trong một thư mục con mang tên bài nói, ví dụ `bai-
 
 Mở thư mục nhanh từ terminal: macOS `open .`, Windows `explorer .`.
 
-![Ví dụ bộ slide HTML](../assets/example-slides.vi.f8dc0384.png)
+![Ví dụ bộ slide HTML](../assets/example-slides.vi.0745477e.png)
 
 *Ví dụ bộ slide HTML do plugin dựng từ dữ liệu mô phỏng (thư mục `examples/demo-crs`).*
 
-![Ví dụ bộ slide PowerPoint](../assets/example-pptx.vi.83a12384.png)
+![Ví dụ bộ slide PowerPoint](../assets/example-pptx.vi.56f66d78.png)
 
 *Cùng thử nghiệm thành một bài journal club 12 slide hoàn chỉnh bằng PowerPoint trong template: mục lục, câu hỏi PICO, sơ đồ thử nghiệm, hình kèm câu chốt, độ lớn hiệu quả, điểm mạnh và hạn chế, kết luận, tài liệu tham khảo. Sơ đồ và biểu đồ sửa được.*
 
@@ -231,7 +231,7 @@ plot"*, *"Thêm slide tài liệu tham khảo"*. Plugin sửa đúng bước li�
 
 Các loại biểu đồ plugin vẽ từ dữ liệu, bạn có thể gọi tên khi yêu cầu sửa:
 
-![Các loại biểu đồ](../assets/chart-gallery.vi.47689eb5.png)
+![Các loại biểu đồ](../assets/chart-gallery.vi.5a52b044.png)
 
 ### 7.8. Journal club từ một bài báo (PDF)
 
@@ -304,7 +304,7 @@ không tự sửa bản thảo; nó đề xuất và chỉ sửa những gì b�
 Chỗ nào ghi `[MISSING: …]` là thông tin **chỉ bạn mới điền được** (ví dụ số quyết định của hội
 đồng đạo đức). Plugin cố ý để lộ, không bịa.
 
-![Ví dụ bản thảo](../assets/example-manuscript.vi.6652af11.png)
+![Ví dụ bản thảo](../assets/example-manuscript.vi.03a72a63.png)
 
 *Bản thảo mẫu: tóm tắt tiếng Anh và tiếng Việt, bảng từ dữ liệu, và chỗ `[MISSING]` mà bộ kiểm tra chỉ ra.*
 

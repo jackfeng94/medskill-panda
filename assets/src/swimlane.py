@@ -9,9 +9,9 @@ import html
 e = html.escape
 INK, MUTE, RULE, PAPER = "#16212B", "#55636F", "#C3CDD5", "#FAF8F4"
 TEAL, BLUE, RED, SLATE, PLUM, GREEN, AMBER = "#0F5E7A", "#2C5F9E", "#B4362C", "#4F5F73", "#7A3E7A", "#2E7D4F", "#A86A00"
-SERIF = "'DejaVu Serif', Georgia, 'Liberation Serif', serif"
-SANS = "'Liberation Sans', Arial, Helvetica, sans-serif"
-MONO = "'DejaVu Sans Mono', Menlo, Consolas, monospace"
+SERIF = "'Source Serif 4', Georgia, serif"          # fonts/fonts.css, loaded by make_art.py
+SANS = "Inter, 'Segoe UI', Arial, sans-serif"
+MONO = "'JetBrains Mono', Menlo, Consolas, monospace"
 STEP_COLOR = [TEAL, TEAL, BLUE, RED, RED, PLUM, GREEN]
 
 ICON = {  # 32 x 32 line icons, drawn in the step colour
@@ -115,7 +115,7 @@ def sheet(x, y, w, h, fname, head, rows, ic, color):
            f'<rect x="{x}" y="{y}" width="5" height="{h}" fill="{color}"/>',
            text(x + 18, y + 32, fname, 15, "bold", color, font=MONO),
            f'<line x1="{x+18}" y1="{y+46}" x2="{x+w-18}" y2="{y+46}" stroke="{RULE}" stroke-width="1"/>',
-           text(x + 18, y + 76, head, 15, "bold", INK, font=SERIF),
+           text(x + 18, y + 76, head, 16.5, "bold", INK, font=SERIF),
            lines(x + 18, y + 104, rows, 13.5, 19, color=MUTE),
            icon(ic, x + w - 44, y + h - 42, color, 28)]
     return "".join(out)
@@ -148,7 +148,7 @@ def pipeline(L):
         ax_, bx_ = xs[i] - 16, xs[j] + sw + 16
         out.append(f'<rect x="{ax_:.1f}" y="{sy-48}" width="{bx_-ax_:.1f}" height="{sh+70}" fill="{ACT_TINT[k]}"/>')
         anchor, lx = ("end", bx_ - 14) if k == 0 else ("start", ax_ + 14)  # act I: clear of the first dashed line
-        out.append(f'<text x="{lx:.1f}" y="{sy-18}" font-family="{SERIF}" font-weight="bold" font-style="italic" '
+        out.append(f'<text x="{lx:.1f}" y="{sy-18}" font-family="{SERIF}" font-weight="700" '
                    f'fill="{ACT_COLOR[k]}" text-anchor="{anchor}"><tspan font-size="20">{e(num)}</tspan>'
                    f'<tspan font-size="16" dx="10">{e(name)}</tspan></text>')
     # the chain: one line through every sheet, arrowheads between sheets
@@ -186,7 +186,7 @@ def pipeline(L):
     out.append(text(mx, ly + 12, t["loop"], 14, "bold", RED, "middle"))
     # always-on checks: four columns split by thin rules
     oy = 690
-    out.append(text(x0, oy, t["on_h"], 20, "bold", font=SERIF, extra='font-style="italic"'))
+    out.append(text(x0, oy, t["on_h"], 21, "bold", font=SERIF))
     cw = (x1 - x0) / 4
     for k, (h, body) in enumerate(t["on"]):
         nx = x0 + k * cw

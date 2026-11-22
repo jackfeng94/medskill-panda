@@ -21,7 +21,7 @@ protocols and posters in English, Vietnamese or both.
 
 **New to the terminal or Claude Code? Start with the [step-by-step guide](docs/GUIDE.md).**
 
-<img src="assets/example-slides.19c8267c.png" alt="Six slides of the DEMO-CRS example HTML deck: title, trial flow, Kaplan–Meier curve, subgroup forest plot, SNOT-22 symptom score, absolute effect" width="100%">
+<img src="assets/example-slides.0215508e.png" alt="Six slides of the DEMO-CRS example HTML deck: title, trial flow, Kaplan–Meier curve, subgroup forest plot, SNOT-22 symptom score, absolute effect" width="100%">
 
 <sub>A real deck built by the plugin from simulated data (<a href="examples/demo-crs/">examples/demo-crs</a>): assertion titles, figures drawn from the data, a source line on every slide, 0 slop findings.</sub>
 
@@ -45,7 +45,7 @@ protocols and posters in English, Vietnamese or both.
 ## How it works
 
 <div align="center">
-<img src="assets/pipeline.3f9ecf63.png" alt="How Medskill Panda works: each step saves a file (brief.md, plan.md, claims.json, figures/, out/, audit/, STATUS.md) in three parts: prepare, gather evidence, build and check. You ask, approve the outline, and receive the result; a problem found is fixed at the step that caused it" width="100%">
+<img src="assets/pipeline.7d473381.png" alt="How Medskill Panda works: each step saves a file (brief.md, plan.md, claims.json, figures/, out/, audit/, STATUS.md) in three parts: prepare, gather evidence, build and check. You ask, approve the outline, and receive the result; a problem found is fixed at the step that caused it" width="100%">
 </div>
 
 Slides and manuscripts share one evidence spine: the same brief, the same approved plan and
@@ -69,7 +69,7 @@ PowerPoint (inside your template, with native editable charts) and LaTeX Beamer 
 defences and equation-heavy talks).
 
 <div align="center">
-<img src="assets/example-pptx.e7ad2739.png" alt="The same talk as an editable PowerPoint inside a branded template: title slide, native trial diagram, Kaplan–Meier curve, forest plot, native line chart, big numbers" width="100%">
+<img src="assets/example-pptx.1f33c44d.png" alt="The same talk as an editable PowerPoint inside a branded template: title slide, native trial diagram, Kaplan–Meier curve, forest plot, native line chart, big numbers" width="100%">
 </div>
 
 ## Install
@@ -139,7 +139,7 @@ writing request follows the same principles as the slides:
    links, reporting guideline and authorship.
 
 <div align="center">
-<img src="assets/example-manuscript.5e93572d.png" alt="Example manuscript page with an English abstract and a Vietnamese abstract, next to the lint_prose result" width="100%">
+<img src="assets/example-manuscript.27b7f20e.png" alt="Example manuscript page with an English abstract and a Vietnamese abstract, next to the lint_prose result" width="100%">
 </div>
 
 ## Charts
@@ -149,7 +149,7 @@ evidence ledger or the authors' data, saved as SVG for HTML or PowerPoint decks 
 manuscripts, and labelled in the deck's language (`0.75` in English, `0,75` in Vietnamese).
 
 <div align="center">
-<img src="assets/chart-gallery.470fe280.png" alt="Eight chart types: Kaplan–Meier curve with numbers at risk, forest plot, CONSORT flow diagram, line chart with confidence bands, grouped bars with confidence intervals, box plot with individual points, stacked bars of NYHA class, ROC curve" width="100%">
+<img src="assets/chart-gallery.ae192e7f.png" alt="Eight chart types: Kaplan–Meier curve with numbers at risk, forest plot, CONSORT flow diagram, line chart with confidence bands, grouped bars with confidence intervals, box plot with individual points, stacked bars of NYHA class, ROC curve" width="100%">
 </div>
 
 <sub>All eight are drawn from simulated data by <a href="examples/demo-crs/make_charts.py">examples/demo-crs/make_charts.py</a>; the Vietnamese versions are in <code>examples/demo-crs/out/charts/vi/</code>.</sub>

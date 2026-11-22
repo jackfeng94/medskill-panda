@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- **Font ảnh minh hoạ:** tiêu đề dùng Source Serif 4 (giấy phép SIL OFL, kèm trong
+  `assets/src/fonts/`, hỗ trợ đủ dấu tiếng Việt) thay DejaVu Serif; chữ thường Inter, mã JetBrains
+  Mono; bỏ chữ nghiêng giả. `shoot.js` chờ font tải xong mới chụp.
+- **Bản thảo ví dụ:** tiêu đề đầu đoạn dùng dấu hai chấm (`Background:`, `Methods:`, `Kết quả:`…).
+
 - **Hình "cách hoạt động" thiết kế lại từ đầu:** thay sơ đồ hai làn với bảy hộp màu đánh số bằng
   chuỗi file (brief.md → plan.md → claims.json → figures/ → out/ → audit/ → STATUS.md), mỗi bước vẽ
   thành tờ tài liệu gấp góc, chia ba phần (Chuẩn bị, Tìm bằng chứng, Làm và kiểm tra). Bước duyệt

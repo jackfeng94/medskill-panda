@@ -13,6 +13,7 @@ assets/example-manuscript(.vi).png. The example images embed real output from
 examples/demo-crs/ (run its scripts first; see examples/demo-crs/README.md).
 """
 import base64
+import re
 import sys as _sys
 import html
 import sys
@@ -131,13 +132,13 @@ CSS = """
 /* examples: journal-figure plates */
 .plate{width:1680px;padding:40px 40px 44px;background:#FAF8F4;display:grid;grid-template-columns:330px 1fr;gap:40px;border-top:1px solid #E2DED6}
 .cap .rule{width:56px;height:6px;background:var(--c)}
-.cap .no{font:700 64px/1 'DejaVu Serif',Georgia,serif;color:var(--c);margin:18px 0 6px}
-.cap h2{font:700 27px/1.2 'DejaVu Serif',Georgia,serif;margin:0 0 14px;color:#16212B}
+.cap .no{font:700 64px/1 'Source Serif 4',Georgia,serif;color:var(--c);margin:18px 0 6px}
+.cap h2{font:700 27px/1.2 'Source Serif 4',Georgia,serif;margin:0 0 14px;color:#16212B}
 .cap p{font-size:15.5px;line-height:1.5;color:#33414D;margin:0 0 20px}
 .cap dl{margin:0;border-top:2px solid #16212B}
 .cap dl div{display:grid;grid-template-columns:96px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid #D9D4CB;font-size:14px}
 .cap dt{font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:11.5px;color:#6B6458;padding-top:2px}
-.cap dd{margin:0;color:#16212B}.cap dd code{font:12.5px 'DejaVu Sans Mono',Menlo,monospace;background:#EFEBE3;padding:1px 5px}
+.cap dd{margin:0;color:#16212B}.cap dd code{font:12.5px 'JetBrains Mono',Menlo,monospace;background:#EFEBE3;padding:1px 5px}
 .cap .ok{color:#2E7D4F;font-weight:700}
 .cap .sim{margin-top:16px;font-size:12.5px;color:#8A5B00}
 .frame{background:#fff;border:1px solid #CFC9BE}.frame img{display:block;width:100%}
@@ -146,16 +147,16 @@ CSS = """
 .thumbs figure{margin:0}.thumbs figcaption{font-size:12.5px;color:#55636F;margin-top:6px}
 .thumbs figcaption b{color:#16212B;margin-right:4px}
 .ms{display:grid;grid-template-columns:600px 1fr;gap:34px;align-items:start}
-.page{position:relative}.mk{position:absolute;left:-15px;width:30px;height:30px;background:var(--c);color:#fff;font:700 16px/30px 'DejaVu Serif',Georgia,serif;text-align:center}
+.page{position:relative}.mk{position:absolute;left:-15px;width:30px;height:30px;background:var(--c);color:#fff;font:700 16px/30px 'Source Serif 4',Georgia,serif;text-align:center}
 .callouts{margin:0;padding:0;list-style:none;border-top:2px solid #16212B}
 .callouts li{display:grid;grid-template-columns:34px 1fr;gap:10px;padding:11px 0;border-bottom:1px solid #D9D4CB;font-size:15px;line-height:1.4}
-.callouts li b{display:block;width:28px;height:28px;background:var(--c);color:#fff;font:700 15px/28px 'DejaVu Serif',Georgia,serif;text-align:center}
+.callouts li b{display:block;width:28px;height:28px;background:var(--c);color:#fff;font:700 15px/28px 'Source Serif 4',Georgia,serif;text-align:center}
 .callouts li span strong{display:block;color:#16212B}.callouts li span{color:#33414D}
-.term{margin-top:22px;border:1px solid #CFC9BE;background:#fff}.term .hd{background:#16212B;color:#fff;padding:10px 14px;font:13px 'DejaVu Sans Mono',Menlo,monospace}
-.term .row{padding:10px 14px;font:13.5px 'DejaVu Sans Mono',Menlo,monospace;color:#16212B}.term .row b{background:#B4362C;color:#fff;padding:1px 6px;margin-right:8px}
+.term{margin-top:22px;border:1px solid #CFC9BE;background:#fff}.term .hd{background:#16212B;color:#fff;padding:10px 14px;font:13px 'JetBrains Mono',Menlo,monospace}
+.term .row{padding:10px 14px;font:13.5px 'JetBrains Mono',Menlo,monospace;color:#16212B}.term .row b{background:#B4362C;color:#fff;padding:1px 6px;margin-right:8px}
 .cgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .panel{position:relative;background:#fff;border:1px solid #CFC9BE;padding:30px 6px 6px}.panel img{display:block;width:100%}
-.panel .lt{position:absolute;left:0;top:0;width:28px;height:28px;background:#16212B;color:#fff;font:700 16px/28px 'DejaVu Serif',Georgia,serif;text-align:center}
+.panel .lt{position:absolute;left:0;top:0;width:28px;height:28px;background:#16212B;color:#fff;font:700 16px/28px 'Source Serif 4',Georgia,serif;text-align:center}
 """
 
 JOIN = '<div class="join"><svg viewBox="0 0 40 22"><path d="M2 11h32M26 3l9 8-9 8" fill="none" stroke="#8A99A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>'
@@ -246,9 +247,12 @@ def examples(L):
     return slides + pptx + ms + gallery
 
 
+FONT_DIR = ROOT / "assets" / "src" / "fonts"
+FONTS = re.sub(r"url\(([^)]+)\)", lambda m_: f"url({(FONT_DIR / m_.group(1)).as_uri()})",
+               (FONT_DIR / "fonts.css").read_text(encoding="utf-8"))
 OUT.mkdir(parents=True, exist_ok=True)
 for L in ("en", "vi"):
-    page = (f'<!doctype html><html lang="{L}"><head><meta charset="utf-8"><style>{CSS}</style></head>'
+    page = (f'<!doctype html><html lang="{L}"><head><meta charset="utf-8"><style>{FONTS}{CSS}</style></head>'
             f'<body>{pipeline(L)}{examples(L)}</body></html>')
     (OUT / f"art_{L}.html").write_text(page, encoding="utf-8")
 print("ok")

@@ -40,7 +40,7 @@ computer. Once installed, you type a request in plain English or Vietnamese, for
 Papers, theses and protocols follow the same steps, producing Word, LaTeX or Markdown in
 English, Vietnamese or both.
 
-![How it works](../assets/pipeline.3f9ecf63.png)
+![How it works](../assets/pipeline.7d473381.png)
 
 ## 2. What you need
 
@@ -202,11 +202,11 @@ Everything is in a sub-folder named after the talk, e.g. `talks/sinus-52/`:
 
 Open the folder from the terminal: macOS `open .`, Windows `explorer .`.
 
-![Example HTML deck](../assets/example-slides.19c8267c.png)
+![Example HTML deck](../assets/example-slides.0215508e.png)
 
 *An HTML deck built by the plugin from simulated data (folder `examples/demo-crs`).*
 
-![Example PowerPoint deck](../assets/example-pptx.e7ad2739.png)
+![Example PowerPoint deck](../assets/example-pptx.1f33c44d.png)
 
 *The same trial as a complete 12-slide journal club in PowerPoint, inside a template: agenda, PICO question, trial schema, figures with a takeaway, effect sizes, strengths and limitations, bottom line, references. Diagrams and charts stay editable.*
 
@@ -231,7 +231,7 @@ again.
 
 The chart types the plugin draws from data, which you can name when asking for a change:
 
-![Chart types](../assets/chart-gallery.470fe280.png)
+![Chart types](../assets/chart-gallery.ae192e7f.png)
 
 ### 7.8. A journal club from one article (PDF)
 
@@ -307,7 +307,7 @@ and applies only those you accept, as a new version.
 Anything marked `[MISSING: …]` is information **only you can supply** (an ethics approval
 number, for instance). The plugin leaves it visible on purpose instead of inventing it.
 
-![Example manuscript](../assets/example-manuscript.5e93572d.png)
+![Example manuscript](../assets/example-manuscript.27b7f20e.png)
 
 *A sample manuscript: English and Vietnamese abstracts, a table from the data, and the `[MISSING]` gap the audit points out.*
 
