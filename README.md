@@ -21,9 +21,9 @@ protocols and posters in English, Vietnamese or both.
 
 **New to the terminal or Claude Code? Start with the [step-by-step guide](docs/GUIDE.md).**
 
-<img src="assets/example-slides.217943b8.png" alt="Six slides of the DEMO-HF example HTML deck: title, trial flow, Kaplan–Meier curve, subgroup forest plot, quality of life, absolute effect" width="100%">
+<img src="assets/example-slides.19c8267c.png" alt="Six slides of the DEMO-CRS example HTML deck: title, trial flow, Kaplan–Meier curve, subgroup forest plot, SNOT-22 symptom score, absolute effect" width="100%">
 
-<sub>A real deck built by the plugin from simulated data (<a href="examples/demo-hf/">examples/demo-hf</a>): assertion titles, figures drawn from the data, a source line on every slide, 0 slop findings.</sub>
+<sub>A real deck built by the plugin from simulated data (<a href="examples/demo-crs/">examples/demo-crs</a>): assertion titles, figures drawn from the data, a source line on every slide, 0 slop findings.</sub>
 
 </div>
 
@@ -50,7 +50,7 @@ protocols and posters in English, Vietnamese or both.
 
 Slides and manuscripts share one evidence spine: the same brief, the same approved plan and
 the same evidence ledger, then a slides line and a writing line that meet again at the audit.
-For a talk, just say *"make a journal club deck on DAPA-HF"*; `medical-deck` runs these
+For a talk, just say *"make a journal club deck on SINUS-52"*; `medical-deck` runs these
 stages:
 
 | # | Stage | Skill | Your part |
@@ -69,7 +69,7 @@ PowerPoint (inside your template, with native editable charts) and LaTeX Beamer 
 defences and equation-heavy talks).
 
 <div align="center">
-<img src="assets/example-pptx.d07d6039.png" alt="The same talk as an editable PowerPoint inside a branded template: title slide, native trial diagram, Kaplan–Meier curve, forest plot, native line chart, big numbers" width="100%">
+<img src="assets/example-pptx.e7ad2739.png" alt="The same talk as an editable PowerPoint inside a branded template: title slide, native trial diagram, Kaplan–Meier curve, forest plot, native line chart, big numbers" width="100%">
 </div>
 
 ## Install
@@ -110,7 +110,7 @@ claude --plugin-dir ./medskill-panda
 
 | You want to | Type |
 |-------------|------|
-| Make a talk | *"Make a 20-minute grand rounds deck on HFrEF"* |
+| Make a talk | *"Make a 20-minute grand rounds deck on chronic rhinosinusitis with nasal polyps"* |
 | Only settle what the talk is about | `/medskill-panda:grill-deck` |
 | Check an existing deck | `/medskill-panda:audit-deck` |
 | See where each talk stands | `/medskill-panda:status` |
@@ -139,7 +139,7 @@ writing request follows the same principles as the slides:
    links, reporting guideline and authorship.
 
 <div align="center">
-<img src="assets/example-manuscript.567a77b3.png" alt="Example manuscript page with an English abstract and a Vietnamese abstract, next to the lint_prose result" width="100%">
+<img src="assets/example-manuscript.5e93572d.png" alt="Example manuscript page with an English abstract and a Vietnamese abstract, next to the lint_prose result" width="100%">
 </div>
 
 ## Charts
@@ -149,10 +149,10 @@ evidence ledger or the authors' data, saved as SVG for HTML or PowerPoint decks 
 manuscripts, and labelled in the deck's language (`0.75` in English, `0,75` in Vietnamese).
 
 <div align="center">
-<img src="assets/chart-gallery.ba2a18ae.png" alt="Eight chart types: Kaplan–Meier curve with numbers at risk, forest plot, CONSORT flow diagram, line chart with confidence bands, grouped bars with confidence intervals, box plot with individual points, stacked bars of NYHA class, ROC curve" width="100%">
+<img src="assets/chart-gallery.470fe280.png" alt="Eight chart types: Kaplan–Meier curve with numbers at risk, forest plot, CONSORT flow diagram, line chart with confidence bands, grouped bars with confidence intervals, box plot with individual points, stacked bars of NYHA class, ROC curve" width="100%">
 </div>
 
-<sub>All eight are drawn from simulated data by <a href="examples/demo-hf/make_charts.py">examples/demo-hf/make_charts.py</a>; the Vietnamese versions are in <code>examples/demo-hf/out/charts/vi/</code>.</sub>
+<sub>All eight are drawn from simulated data by <a href="examples/demo-crs/make_charts.py">examples/demo-crs/make_charts.py</a>; the Vietnamese versions are in <code>examples/demo-crs/out/charts/vi/</code>.</sub>
 
 ## Skills
 

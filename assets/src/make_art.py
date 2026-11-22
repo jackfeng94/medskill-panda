@@ -10,7 +10,7 @@ Then publish under content-hashed names (updates README.md, README.vi.md, docs/*
 shoot.js writes <prefix>-pipeline.png, <prefix>-slides.png and <prefix>-manuscript.png; copy
 them to assets/pipeline(.vi).png, assets/example-slides(.vi).png and
 assets/example-manuscript(.vi).png. The example images embed real output from
-examples/demo-hf/ (run its scripts first; see examples/demo-hf/README.md).
+examples/demo-crs/ (run its scripts first; see examples/demo-crs/README.md).
 """
 import base64
 import sys as _sys
@@ -21,7 +21,7 @@ from pathlib import Path
 OUT = Path(sys.argv[1])
 _sys.path.insert(0, str(Path(__file__).resolve().parent))
 ROOT = Path(__file__).resolve().parents[2]
-DEMO = ROOT / "examples" / "demo-hf"
+DEMO = ROOT / "examples" / "demo-crs"
 e = html.escape
 
 
@@ -79,14 +79,14 @@ T = {
   folder_note="STATUS.md tracks every stage, so a later session picks up where this one stopped.",
   deliver="Deliver", deliver_files=".html · .pptx · .pdf · .docx",
   deliver_note="plus a report: what was verified against full text, abstract only, or not at all",
-  ex_s="Example output · HTML deck", ex_s_sub="One offline file built by html-deck-building from simulated DEMO-HF data: figures drawn from the data, a source on every slide. lint_slop: 0 findings.",
+  ex_s="Example output · HTML deck", ex_s_sub="One offline file built by html-deck-building from simulated DEMO-CRS data: figures drawn from the data, a source on every slide. lint_slop: 0 findings.",
   ex_p="Example output · PowerPoint in your template", ex_p_sub="A 12-slide journal club built by pptx-deck-building inside a branded template: agenda, PICO, native diagram and chart, takeaways, appraisal, bottom line, references; speaker notes on every slide. check_spec, check_pptx and lint_slop: 0 findings.",
   ex_m="Example output · manuscript", ex_m_sub="Word file from the same data: English text, Vietnamese abstract. Checked with lint_prose.",
-  audit_hd="lint_prose: demo-hf.docx (vi+en): 1 error, 0 warnings",
+  audit_hd="lint_prose: demo-crs.docx (vi+en): 1 error, 0 warnings",
   audit_rows=[("P01", "Corresponding author: [MISSING: authors to confirm]", "a gap only the authors can fill, left visible on purpose")],
-  checks=["Abstract in English, Tóm tắt in Vietnamese", "0.75 in English, 0,75 in Vietnamese: no mixed-decimal warning", "Every number from results.json", "Converted to PDF with LibreOffice"],
+  checks=["Abstract in English, Tóm tắt in Vietnamese", "0.68 in English, 0,68 in Vietnamese: no mixed-decimal warning", "Every number from results.json", "Converted to PDF with LibreOffice"],
   sim="All numbers are simulated for demonstration (seed 7).",
-  ex_c="Chart gallery", ex_c_sub="Eight chart types drawn from the same simulated data by examples/demo-hf/make_charts.py. SVG, ready for HTML or PowerPoint decks and manuscripts.",
+  ex_c="Chart gallery", ex_c_sub="Eight chart types drawn from the same simulated data by examples/demo-crs/make_charts.py. SVG, ready for HTML or PowerPoint decks and manuscripts.",
  ),
  "vi": dict(
   head="Medskill Panda hoạt động thế nào", head_sub="Một trục bằng chứng, hai đầu ra, một bước kiểm tra. Mỗi bước để lại một file.",
@@ -113,14 +113,14 @@ T = {
   folder_note="STATUS.md ghi lại từng bước, nên phiên sau làm tiếp đúng chỗ đang dừng.",
   deliver="Bàn giao", deliver_files=".html · .pptx · .pdf · .docx",
   deliver_note="kèm báo cáo: đã kiểm chứng với toàn văn, chỉ tóm tắt, hay chưa kiểm chứng",
-  ex_s="Ví dụ đầu ra · slide HTML", ex_s_sub="Một file offline do html-deck-building dựng từ dữ liệu mô phỏng DEMO-HF: hình vẽ từ dữ liệu, có nguồn trên mọi slide. lint_slop: 0 lỗi.",
+  ex_s="Ví dụ đầu ra · slide HTML", ex_s_sub="Một file offline do html-deck-building dựng từ dữ liệu mô phỏng DEMO-CRS: hình vẽ từ dữ liệu, có nguồn trên mọi slide. lint_slop: 0 lỗi.",
   ex_p="Ví dụ đầu ra · PowerPoint theo template của bạn", ex_p_sub="Journal club 12 slide do pptx-deck-building dựng trong template có nhận diện riêng: mục lục, PICO, sơ đồ và biểu đồ gốc, câu chốt, thẩm định, kết luận, tài liệu; ghi chú người nói trên mọi slide. check_spec, check_pptx và lint_slop: 0 lỗi.",
   ex_m="Ví dụ đầu ra · bản thảo", ex_m_sub="File Word từ cùng bộ dữ liệu: nội dung tiếng Anh, tóm tắt tiếng Việt. Kiểm tra bằng lint_prose.",
-  audit_hd="lint_prose: demo-hf.docx (vi+en): 1 lỗi, 0 cảnh báo",
+  audit_hd="lint_prose: demo-crs.docx (vi+en): 1 lỗi, 0 cảnh báo",
   audit_rows=[("P01", "Corresponding author: [MISSING: authors to confirm]", "chỗ trống chỉ tác giả điền được, cố ý để lộ ra")],
-  checks=["Abstract tiếng Anh, Tóm tắt tiếng Việt", "0.75 ở phần tiếng Anh, 0,75 ở phần tiếng Việt: không báo lẫn dấu thập phân", "Mọi con số lấy từ results.json", "Chuyển sang PDF bằng LibreOffice"],
+  checks=["Abstract tiếng Anh, Tóm tắt tiếng Việt", "0.68 ở phần tiếng Anh, 0,68 ở phần tiếng Việt: không báo lẫn dấu thập phân", "Mọi con số lấy từ results.json", "Chuyển sang PDF bằng LibreOffice"],
   sim="Mọi con số là dữ liệu mô phỏng để minh hoạ (seed 7).",
-  ex_c="Bộ sưu tập biểu đồ", ex_c_sub="Tám loại biểu đồ vẽ từ cùng bộ dữ liệu mô phỏng bằng examples/demo-hf/make_charts.py. Định dạng SVG, dùng được cho slide HTML, PowerPoint và bản thảo.",
+  ex_c="Bộ sưu tập biểu đồ", ex_c_sub="Tám loại biểu đồ vẽ từ cùng bộ dữ liệu mô phỏng bằng examples/demo-crs/make_charts.py. Định dạng SVG, dùng được cho slide HTML, PowerPoint và bản thảo.",
  ),
 }
 
@@ -171,37 +171,37 @@ PL = {
   sim="All numbers are simulated for demonstration (seed 7).",
   spec=("Format", "Built by", "Checks", "Data"),
   s=("01", "HTML slide deck", "One offline file with motion, speaker notes and a laser pointer. Titles state the conclusion; every figure is drawn from the data and every slide carries its source.",
-     ["<code>.html</code>, 6 slides", "<code>html-deck-building</code>", "<span class=ok>lint_slop: 0 findings</span>", "simulated DEMO-HF trial"],
-     ["Title", "Trial flow", "Subgroups", "Quality of life", "Bottom line"]),
+     ["<code>.html</code>, 6 slides", "<code>html-deck-building</code>", "<span class=ok>lint_slop: 0 findings</span>", "simulated DEMO-CRS trial"],
+     ["Title", "Trial flow", "Subgroups", "Symptoms (SNOT-22)", "Bottom line"]),
   p=("02", "A complete journal club in PowerPoint", "The same trial as a full journal-club deck inside a hospital template: agenda, PICO question, native trial schema, figures with a takeaway, effect sizes, appraisal, bottom line and references. Every slide has speaker notes.",
-     ["<code>.pptx</code>, 12 slides", "<code>pptx-deck-building</code>", "<span class=ok>check_spec, check_pptx, lint_slop: 0</span>", "simulated DEMO-HF trial"],
+     ["<code>.pptx</code>, 12 slides", "<code>pptx-deck-building</code>", "<span class=ok>check_spec, check_pptx, lint_slop: 0</span>", "simulated DEMO-CRS trial"],
      [(1, "Title"), (2, "Agenda"), (3, "PICO question"), (4, "Native trial schema"), (6, "Subgroups"),
-      (7, "Native line chart"), (8, "Effect sizes"), (9, "Strengths, limits"), (10, "Bottom line"), (11, "References")], 5),
-  m=("03", "Manuscript, two languages", "A Word file written from the same data: English text with a Vietnamese abstract, a three-line table and a figure. The audit flags the one gap only the authors can fill.",
-     ["<code>.docx</code> and PDF", "<code>scientific-writing</code>", "<span class=ok>lint_prose: 1 deliberate gap</span>", "simulated DEMO-HF trial"]),
+      (7, "Native SNOT-22 chart"), (8, "Effect sizes"), (9, "Strengths, limits"), (10, "Bottom line"), (11, "References")], 5),
+  m=("03", "Manuscript, two languages", "A full IMRaD paper in Word from the same data: English text with a Vietnamese abstract, cited introduction, methods, a three-line table, a figure and a discussion. The audit flags the one gap only the authors can fill.",
+     ["<code>.docx</code> and PDF", "<code>scientific-writing</code>", "<span class=ok>lint_prose: 1 deliberate gap</span>", "simulated DEMO-CRS trial"]),
   callouts=[("Banner", "The document says the data are simulated."), ("Explicit gap", "[MISSING: authors to confirm] instead of an invented author."),
-            ("English abstract", "Numbers written 0.75, 95% CI 0.63–0.89."), ("Tóm tắt (Vietnamese)", "Same numbers written 0,75; KTC 95% 0,63–0,89."),
-            ("Table 1", "Baseline characteristics computed from the data.")],
+            ("English abstract", "Numbers written 0.68, 95% CI 0.52–0.91."), ("Tóm tắt (Vietnamese)", "Same numbers written 0,68; KTC 95% 0,52–0,91."),
+            ("Introduction", "Background cited to EPOS 2020 and the SNOT-22 validation; full IMRaD follows.")],
   c=("04", "Charts from data", "Eight chart types common in medical talks and papers, drawn from the same simulated data as SVG, with labels in the deck's language.",
-     ["SVG, English and Vietnamese", "<code>make_charts.py</code>", "values in <code>values.json</code>", "simulated DEMO-HF trial"]),
+     ["SVG, English and Vietnamese", "<code>make_charts.py</code>", "values in <code>values.json</code>", "simulated DEMO-CRS trial"]),
  ),
  "vi": dict(
   sim="Mọi con số là dữ liệu mô phỏng để minh hoạ (seed 7).",
   spec=("Định dạng", "Dựng bằng", "Kiểm tra", "Dữ liệu"),
   s=("01", "Slide HTML", "Một file offline có chuyển động, ghi chú người nói và bút laser. Tiêu đề nói kết luận; mọi hình vẽ từ dữ liệu, mọi slide ghi nguồn.",
-     ["<code>.html</code>, 6 slide", "<code>html-deck-building</code>", "<span class=ok>lint_slop: 0 lỗi</span>", "thử nghiệm mô phỏng DEMO-HF"],
-     ["Tiêu đề", "Dòng bệnh nhân", "Phân nhóm", "Chất lượng sống", "Kết luận"]),
+     ["<code>.html</code>, 6 slide", "<code>html-deck-building</code>", "<span class=ok>lint_slop: 0 lỗi</span>", "thử nghiệm mô phỏng DEMO-CRS"],
+     ["Tiêu đề", "Dòng bệnh nhân", "Phân nhóm", "Triệu chứng (SNOT-22)", "Kết luận"]),
   p=("02", "Journal club hoàn chỉnh bằng PowerPoint", "Cùng thử nghiệm, thành một bài journal club đầy đủ trong template bệnh viện: mục lục, câu hỏi PICO, sơ đồ thử nghiệm gốc, hình có câu chốt, độ lớn hiệu quả, thẩm định, kết luận và tài liệu tham khảo. Slide nào cũng có ghi chú.",
-     ["<code>.pptx</code>, 12 slide", "<code>pptx-deck-building</code>", "<span class=ok>check_spec, check_pptx, lint_slop: 0</span>", "thử nghiệm mô phỏng DEMO-HF"],
+     ["<code>.pptx</code>, 12 slide", "<code>pptx-deck-building</code>", "<span class=ok>check_spec, check_pptx, lint_slop: 0</span>", "thử nghiệm mô phỏng DEMO-CRS"],
      [(1, "Tiêu đề"), (2, "Mục lục"), (3, "Câu hỏi PICO"), (4, "Sơ đồ thử nghiệm gốc"), (6, "Phân nhóm"),
-      (7, "Biểu đồ đường gốc"), (8, "Độ lớn hiệu quả"), (9, "Điểm mạnh, hạn chế"), (10, "Kết luận"), (11, "Tài liệu")], 5),
-  m=("03", "Bản thảo hai ngôn ngữ", "File Word viết từ cùng bộ dữ liệu: nội dung tiếng Anh, tóm tắt tiếng Việt, bảng ba đường kẻ và hình. Bộ kiểm tra chỉ ra chỗ trống duy nhất mà tác giả phải tự điền.",
-     ["<code>.docx</code> và PDF", "<code>scientific-writing</code>", "<span class=ok>lint_prose: 1 chỗ trống cố ý</span>", "thử nghiệm mô phỏng DEMO-HF"]),
+      (7, "Biểu đồ SNOT-22 gốc"), (8, "Độ lớn hiệu quả"), (9, "Điểm mạnh, hạn chế"), (10, "Kết luận"), (11, "Tài liệu")], 5),
+  m=("03", "Bản thảo hai ngôn ngữ", "Bài IMRaD đầy đủ bằng Word từ cùng bộ dữ liệu: nội dung tiếng Anh, tóm tắt tiếng Việt, đặt vấn đề có trích dẫn, phương pháp, bảng ba đường kẻ, hình và bàn luận. Bộ kiểm tra chỉ ra chỗ trống duy nhất mà tác giả phải tự điền.",
+     ["<code>.docx</code> và PDF", "<code>scientific-writing</code>", "<span class=ok>lint_prose: 1 chỗ trống cố ý</span>", "thử nghiệm mô phỏng DEMO-CRS"]),
   callouts=[("Dòng cảnh báo", "Bài ghi rõ dữ liệu là mô phỏng."), ("Chỗ trống rõ ràng", "[MISSING: authors to confirm] thay vì bịa tên tác giả."),
-            ("Abstract tiếng Anh", "Số viết 0.75, 95% CI 0.63–0.89."), ("Tóm tắt tiếng Việt", "Cùng số liệu viết 0,75; KTC 95% 0,63–0,89."),
-            ("Bảng 1", "Đặc điểm nền tính từ dữ liệu.")],
+            ("Abstract tiếng Anh", "Số viết 0.68, 95% CI 0.52–0.91."), ("Tóm tắt tiếng Việt", "Cùng số liệu viết 0,68; KTC 95% 0,52–0,91."),
+            ("Introduction", "Nền tảng có trích dẫn EPOS 2020 và nghiên cứu thẩm định SNOT-22; tiếp theo đủ IMRaD.")],
   c=("04", "Biểu đồ từ dữ liệu", "Tám loại biểu đồ hay gặp trong slide và bài báo y khoa, vẽ từ cùng bộ dữ liệu mô phỏng, xuất SVG, nhãn theo ngôn ngữ của bài.",
-     ["SVG, tiếng Anh và tiếng Việt", "<code>make_charts.py</code>", "giá trị trong <code>values.json</code>", "thử nghiệm mô phỏng DEMO-HF"]),
+     ["SVG, tiếng Anh và tiếng Việt", "<code>make_charts.py</code>", "giá trị trong <code>values.json</code>", "thử nghiệm mô phỏng DEMO-CRS"]),
  ),
 }
 COLORS = {"s": "#B4362C", "p": "#0F5E7A", "m": "#7A3E7A", "c": "#2C5F9E"}
@@ -230,10 +230,10 @@ def examples(L):
     q = PL[L]
     slides = deck_plate(L, "s", L + "-{i}.png", 3, "slides")
     pptx = deck_plate(L, "p", "pptx-" + L + "-{i}.png", PL[L]["p"][5], "pptx")
-    marks_y = (7.3, 16.9, 23.0, 41.0, 69.3)  # % of the page height, matched to the rendered page
+    marks_y = (7.3, 19.2, 35.0, 58.4, 73.0)  # % of the page height, matched to the rendered page
     marks = "".join(f'<span class="mk" style="top:calc({y}% - 15px)">{k}</span>' for k, y in enumerate(marks_y, 1))
     callouts = "".join(f'<li><b>{k}</b><span><strong>{e(h)}</strong>{e(b)}</span></li>' for k, (h, b) in enumerate(q["callouts"], 1))
-    term = (f'<div class="term"><div class="hd">$ lint_prose.py demo-hf.docx</div>'
+    term = (f'<div class="term"><div class="hd">$ lint_prose.py demo-crs.docx</div>'
             f'<div class="row"><b>P01</b>[MISSING: authors to confirm]</div></div>')
     ms = (f'<div class="plate" id="manuscript" style="--c:{COLORS["m"]}">{caption(L, "m")}<div class="ms">'
           f'<div class="page frame">{marks}<img src="{img(DEMO / "screens" / "page1.png")}"></div>'

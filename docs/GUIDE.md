@@ -28,7 +28,7 @@ top to bottom; each step says how to check that it worked. The first run takes 2
 
 Medskill Panda is a **plugin** for **Claude Code**, an AI assistant that runs on your
 computer. Once installed, you type a request in plain English or Vietnamese, for example
-*"Make a 15-minute journal club deck on the DAPA-HF trial"*, and the plugin:
+*"Make a 15-minute journal club deck on the SINUS-52 trial"*, and the plugin:
 
 1. asks you one round of questions (audience, duration, language, format…);
 2. plans every slide and **waits for your approval**;
@@ -155,7 +155,7 @@ If you have paper PDFs, guidelines or your hospital's PowerPoint template, copy 
 At the Claude Code prompt, just ask. For example:
 
 ```text
-Make a 15-minute journal club deck on the DAPA-HF paper in dapa-hf.pdf, for residents
+Make a 15-minute journal club deck on the SINUS-52 paper in sinus-52.pdf, for residents
 ```
 
 ### 7.3. Answer the questions
@@ -189,7 +189,7 @@ permission to run a command or write a file, read it and choose **Yes**.
 
 ### 7.6. Open the results
 
-Everything is in a sub-folder named after the talk, e.g. `talks/dapa-hf/`:
+Everything is in a sub-folder named after the talk, e.g. `talks/sinus-52/`:
 
 | File | What it is |
 |------|------------|
@@ -202,11 +202,11 @@ Everything is in a sub-folder named after the talk, e.g. `talks/dapa-hf/`:
 
 Open the folder from the terminal: macOS `open .`, Windows `explorer .`.
 
-![Example HTML deck](../assets/example-slides.217943b8.png)
+![Example HTML deck](../assets/example-slides.19c8267c.png)
 
-*An HTML deck built by the plugin from simulated data (folder `examples/demo-hf`).*
+*An HTML deck built by the plugin from simulated data (folder `examples/demo-crs`).*
 
-![Example PowerPoint deck](../assets/example-pptx.d07d6039.png)
+![Example PowerPoint deck](../assets/example-pptx.e7ad2739.png)
 
 *The same trial as a complete 12-slide journal club in PowerPoint, inside a template: agenda, PICO question, trial schema, figures with a takeaway, effect sizes, strengths and limitations, bottom line, references. Diagrams and charts stay editable.*
 
@@ -231,7 +231,7 @@ again.
 
 The chart types the plugin draws from data, which you can name when asking for a change:
 
-![Chart types](../assets/chart-gallery.ba2a18ae.png)
+![Chart types](../assets/chart-gallery.470fe280.png)
 
 ### 7.8. A journal club from one article (PDF)
 
@@ -307,7 +307,7 @@ and applies only those you accept, as a new version.
 Anything marked `[MISSING: …]` is information **only you can supply** (an ethics approval
 number, for instance). The plugin leaves it visible on purpose instead of inventing it.
 
-![Example manuscript](../assets/example-manuscript.567a77b3.png)
+![Example manuscript](../assets/example-manuscript.5e93572d.png)
 
 *A sample manuscript: English and Vietnamese abstracts, a table from the data, and the `[MISSING]` gap the audit points out.*
 
@@ -342,7 +342,7 @@ Then type:
 ```
 
 The plugin reads `STATUS.md` and tells you where each talk stands and what comes next. Type
-*"Continue the dapa-hf talk"* to resume.
+*"Continue the sinus-52 talk"* to resume.
 
 ## 11. Update the plugin
 

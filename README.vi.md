@@ -20,9 +20,9 @@ bắt các dấu hiệu "slide do máy làm", và hỗ trợ viết bài báo, t
 
 **Chưa quen terminal hay Claude Code? Bắt đầu từ [hướng dẫn từng bước](docs/HUONG-DAN.md).**
 
-<img src="assets/example-slides.vi.92fee725.png" alt="Sáu slide HTML của ví dụ DEMO-HF: tiêu đề, dòng bệnh nhân, Kaplan–Meier, forest plot, chất lượng sống, hiệu quả tuyệt đối" width="100%">
+<img src="assets/example-slides.vi.f8dc0384.png" alt="Sáu slide HTML của ví dụ DEMO-CRS: tiêu đề, dòng bệnh nhân, Kaplan–Meier, forest plot, điểm triệu chứng SNOT-22, hiệu quả tuyệt đối" width="100%">
 
-<sub>Bộ slide thật do plugin dựng từ dữ liệu mô phỏng (<a href="examples/demo-hf/">examples/demo-hf</a>): tiêu đề khẳng định, hình vẽ từ dữ liệu, dòng nguồn trên mọi slide, 0 lỗi slop.</sub>
+<sub>Bộ slide thật do plugin dựng từ dữ liệu mô phỏng (<a href="examples/demo-crs/">examples/demo-crs</a>): tiêu đề khẳng định, hình vẽ từ dữ liệu, dòng nguồn trên mọi slide, 0 lỗi slop.</sub>
 
 </div>
 
@@ -47,7 +47,7 @@ bắt các dấu hiệu "slide do máy làm", và hỗ trợ viết bài báo, t
 
 Slide và bản thảo dùng chung một trục bằng chứng: cùng brief, cùng kế hoạch đã duyệt, cùng sổ
 bằng chứng, rồi tách thành tuyến slide và tuyến viết bài, nhập lại ở bước kiểm tra. Với bài
-thuyết trình, chỉ cần nói *"làm slide journal club về DAPA-HF"*; `medical-deck` chạy các bước:
+thuyết trình, chỉ cần nói *"làm slide journal club về SINUS-52"*; `medical-deck` chạy các bước:
 
 | # | Bước | Skill | Bạn cần làm |
 |---|------|-------|-------------|
@@ -65,7 +65,7 @@ thuyết trình, chỉ cần nói *"làm slide journal club về DAPA-HF"*; `med
 và bài có công thức).
 
 <div align="center">
-<img src="assets/example-pptx.vi.5d9e7950.png" alt="Cùng bài nói dưới dạng PowerPoint sửa được trong một template có nhận diện riêng: slide tiêu đề, sơ đồ thử nghiệm gốc, Kaplan–Meier, forest plot, biểu đồ đường gốc, các con số chính" width="100%">
+<img src="assets/example-pptx.vi.83a12384.png" alt="Cùng bài nói dưới dạng PowerPoint sửa được trong một template có nhận diện riêng: slide tiêu đề, sơ đồ thử nghiệm gốc, Kaplan–Meier, forest plot, biểu đồ đường gốc, các con số chính" width="100%">
 </div>
 
 ## Cài đặt
@@ -106,7 +106,7 @@ claude --plugin-dir ./medskill-panda
 
 | Bạn muốn | Gõ |
 |----------|----|
-| Làm bài thuyết trình | *"Làm slide grand rounds 20 phút về suy tim EF giảm"* |
+| Làm bài thuyết trình | *"Làm slide grand rounds 20 phút về viêm mũi xoang mạn có polyp mũi"* |
 | Chỉ chốt ý tưởng bài nói | `/medskill-panda:grill-deck` |
 | Kiểm tra slide có sẵn | `/medskill-panda:audit-deck` |
 | Xem tiến độ các bài nói | `/medskill-panda:status` |
@@ -133,7 +133,7 @@ cầu viết đi theo cùng nguyên tắc như làm slide:
    tác giả.
 
 <div align="center">
-<img src="assets/example-manuscript.vi.8dc2e4cb.png" alt="Trang bản thảo mẫu có tóm tắt tiếng Anh và tiếng Việt, cạnh kết quả lint_prose" width="100%">
+<img src="assets/example-manuscript.vi.6652af11.png" alt="Trang bản thảo mẫu có tóm tắt tiếng Anh và tiếng Việt, cạnh kết quả lint_prose" width="100%">
 </div>
 
 ## Biểu đồ
@@ -143,10 +143,10 @@ chứng hoặc dữ liệu của tác giả, lưu dạng SVG cho slide HTML, Pow
 nhãn theo ngôn ngữ của bài (`0,75` cho tiếng Việt, `0.75` cho tiếng Anh).
 
 <div align="center">
-<img src="assets/chart-gallery.vi.2db6fd87.png" alt="Tám loại biểu đồ: Kaplan–Meier kèm số còn theo dõi, forest plot, sơ đồ CONSORT, biểu đồ đường kèm dải tin cậy, cột nhóm kèm khoảng tin cậy, box plot kèm từng bệnh nhân, cột chồng phân độ NYHA, đường ROC" width="100%">
+<img src="assets/chart-gallery.vi.47689eb5.png" alt="Tám loại biểu đồ: Kaplan–Meier kèm số còn theo dõi, forest plot, sơ đồ CONSORT, biểu đồ đường kèm dải tin cậy, cột nhóm kèm khoảng tin cậy, box plot kèm từng bệnh nhân, cột chồng phân độ NYHA, đường ROC" width="100%">
 </div>
 
-<sub>Cả tám biểu đồ vẽ từ dữ liệu mô phỏng bằng <a href="examples/demo-hf/make_charts.py">examples/demo-hf/make_charts.py</a>; bản tiếng Anh ở <code>examples/demo-hf/out/charts/en/</code>.</sub>
+<sub>Cả tám biểu đồ vẽ từ dữ liệu mô phỏng bằng <a href="examples/demo-crs/make_charts.py">examples/demo-crs/make_charts.py</a>; bản tiếng Anh ở <code>examples/demo-crs/out/charts/en/</code>.</sub>
 
 ## Các skill
 

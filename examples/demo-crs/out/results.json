@@ -1,0 +1,77 @@
+{
+  "n": 600,
+  "n_arm": 300,
+  "events_control": 115,
+  "cuminc24_control": 40.5,
+  "events_intervention": 84,
+  "cuminc24_intervention": 28.6,
+  "rr": 0.68,
+  "rr_lo": 0.52,
+  "rr_hi": 0.91,
+  "arr24": 11.9,
+  "nnt24": 9,
+  "age_mean": {
+    "intervention": 46.3,
+    "control": 46.3
+  },
+  "age_sd": {
+    "intervention": 11.9,
+    "control": 11.8
+  },
+  "female_pct": {
+    "intervention": 39.3,
+    "control": 45.3
+  },
+  "asthma_pct": {
+    "intervention": 36.0,
+    "control": 30.7
+  },
+  "lmk_mean": {
+    "intervention": 15.0,
+    "control": 15.0
+  },
+  "subgroups": [
+    {
+      "label": "Age < 50",
+      "rr": 0.74,
+      "lo": 0.53,
+      "hi": 1.05,
+      "n": 379
+    },
+    {
+      "label": "Age ≥ 50",
+      "rr": 0.59,
+      "lo": 0.36,
+      "hi": 0.95,
+      "n": 221
+    },
+    {
+      "label": "Women",
+      "rr": 0.77,
+      "lo": 0.51,
+      "hi": 1.18,
+      "n": 254
+    },
+    {
+      "label": "Men",
+      "rr": 0.63,
+      "lo": 0.43,
+      "hi": 0.91,
+      "n": 346
+    },
+    {
+      "label": "Asthma",
+      "rr": 0.57,
+      "lo": 0.37,
+      "hi": 0.88,
+      "n": 200
+    },
+    {
+      "label": "No asthma",
+      "rr": 0.73,
+      "lo": 0.51,
+      "hi": 1.06,
+      "n": 400
+    }
+  ]
+}

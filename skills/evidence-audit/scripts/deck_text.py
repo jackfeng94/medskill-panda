@@ -108,11 +108,11 @@ def html_slides(src: str) -> list[dict]:
     return out
 
 
-CHROME_NAME = re.compile(r"^(?:source|credit|page|footer|slide number|date)\b", re.I)
+CHROME_NAME = re.compile(r"^(?:source|credit|page|footer|slide number|date|references)\b", re.I)
 
 
 def _pptx_chrome(shp) -> bool:
-    """Footer, page number, date and source-credit boxes: not body text."""
+    """Footer, page number, date, source-credit and reference-list boxes: not body text."""
     if CHROME_NAME.match(shp.name or ""):
         return True
     if getattr(shp, "is_placeholder", False):
