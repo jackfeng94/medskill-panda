@@ -45,7 +45,7 @@ protocols and posters in English, Vietnamese or both.
 ## How it works
 
 <div align="center">
-<img src="assets/pipeline.a77c00e4.png" alt="Medskill Panda as a chain of files: brief.md, plan.md, claims.json, figures/, out/, audit/ and STATUS.md in three acts (frame, ground in sources, make and prove); you describe, approve at a gate, and use the result; a failed check reopens the file that caused it" width="100%">
+<img src="assets/pipeline.3f9ecf63.png" alt="How Medskill Panda works: each step saves a file (brief.md, plan.md, claims.json, figures/, out/, audit/, STATUS.md) in three parts: prepare, gather evidence, build and check. You ask, approve the outline, and receive the result; a problem found is fixed at the step that caused it" width="100%">
 </div>
 
 Slides and manuscripts share one evidence spine: the same brief, the same approved plan and

@@ -40,7 +40,7 @@ tính của bạn. Sau khi cài, bạn chỉ cần gõ yêu cầu bằng tiếng
 Với bài báo, luận văn, đề cương, quy trình tương tự nhưng đầu ra là file Word, LaTeX hoặc
 Markdown, bằng tiếng Việt, tiếng Anh hoặc song ngữ.
 
-![Quy trình](../assets/pipeline.vi.d36b43d0.png)
+![Quy trình](../assets/pipeline.vi.00ae372c.png)
 
 ## 2. Cần chuẩn bị gì
 

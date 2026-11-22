@@ -42,7 +42,7 @@ bắt các dấu hiệu "slide do máy làm", và hỗ trợ viết bài báo, t
 ## Cách hoạt động
 
 <div align="center">
-<img src="assets/pipeline.vi.d36b43d0.png" alt="Medskill Panda là một chuỗi file: brief.md, plan.md, claims.json, figures/, out/, audit/ và STATUS.md trong ba hồi (định khung, neo vào nguồn, làm ra và chứng minh); bạn mô tả, đồng ý ở cổng duyệt và sử dụng kết quả; kiểm tra trượt thì mở lại đúng file gây lỗi" width="100%">
+<img src="assets/pipeline.vi.00ae372c.png" alt="Medskill Panda làm việc thế nào: mỗi bước lưu một file (brief.md, plan.md, claims.json, figures/, out/, audit/, STATUS.md) qua ba phần: chuẩn bị, tìm bằng chứng, làm và kiểm tra. Bạn đặt yêu cầu, duyệt dàn ý và nhận kết quả; phát hiện lỗi thì quay lại sửa đúng bước gây lỗi" width="100%">
 </div>
 
 Slide và bản thảo dùng chung một trục bằng chứng: cùng brief, cùng kế hoạch đã duyệt, cùng sổ

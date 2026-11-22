@@ -26,48 +26,48 @@ ICON = {  # 32 x 32 line icons, drawn in the step colour
 
 S = {
  "en": dict(
-  title="Medskill Panda: a chain of files you can check",
-  sub="Each step writes one file, and the next step works only from that file. You step in three times.",
-  acts=[("I", "Frame", 0, 1), ("II", "Ground in sources", 2, 3), ("III", "Make and prove", 4, 6)],
-  sheets=[("brief.md", "Pin down the job", ["who listens, how long,", "which language and file"], "chat"),
-          ("plan.md", "Write the argument", ["one claim per slide", "or per section"], "plan"),
-          ("claims.json", "Trace every number", ["value, page and the", "exact source sentence"], "ledger"),
-          ("figures/", "Draw from data", ["charts recomputed,", "paper figures cropped"], "figure"),
-          ("out/", "Assemble", ["HTML, PPTX, Beamer;", "Word, LaTeX, Markdown"], "deck"),
-          ("audit/", "Re-check", ["numbers against quotes,", "wording and layout"], "audit"),
-          ("STATUS.md", "Hand over", ["what was verified", "and what was not"], "deliver")],
-  you=[("You describe", ["the topic and your files,", "then answer once"]),
-       ("You say yes", ["to plan.md, or ask", "for changes"]),
-       ("You use it", ["present, revise", "or submit"])],
-  gate="GATE",
-  loop="A failed check reopens the file that caused it · up to 3 rounds",
-  on_h="Always on, without being asked",
-  on=[("Gate", "No slide or paper file is made before plan.md is approved."),
-      ("Number trace", "On every save, a number with no claim behind it is flagged."),
-      ("Pattern scan", "Machine-made layouts and stock phrases are flagged on save."),
-      ("Prose check", "Unsourced statistics, overclaims, decimal style in VI and EN.")],
+  title="How Medskill Panda works",
+  sub="Every step saves its result as a file you can open. You only need to step in three times.",
+  acts=[("I", "Prepare", 0, 1), ("II", "Gather evidence", 2, 3), ("III", "Build and check", 4, 6)],
+  sheets=[("brief.md", "Set the brief", ["audience, length,", "language, format"], "chat"),
+          ("plan.md", "Outline", ["one main point per", "slide or section"], "plan"),
+          ("claims.json", "Record sources", ["value, page number,", "verbatim quote"], "ledger"),
+          ("figures/", "Make figures", ["charts from the data,", "figures from the paper"], "figure"),
+          ("out/", "Produce files", ["slides: HTML, PPTX", "papers: Word, LaTeX"], "deck"),
+          ("audit/", "Check", ["numbers match sources,", "wording and layout"], "audit"),
+          ("STATUS.md", "Report", ["what was verified", "and what was not"], "deliver")],
+  you=[("You ask", ["the topic and your files,", "then a few questions"]),
+       ("You approve", ["the outline, or ask", "for changes"]),
+       ("You receive", ["present, edit", "or submit"])],
+  gate="APPROVE",
+  loop="Problem found → fixed at the step that caused it (up to 3 times)",
+  on_h="Automatic checks",
+  on=[("No build before approval", "No slides or paper until you approve the outline."),
+      ("Number check", "Each time a slide is saved, a number without a source is flagged."),
+      ("Template-look check", "Generic layouts and stock phrases are flagged when a slide is saved."),
+      ("Writing check", "Uncited statistics, overstated conclusions and decimal style.")],
  ),
  "vi": dict(
-  title="Medskill Panda: một chuỗi file bạn kiểm tra được",
-  sub="Mỗi bước ghi ra một file, bước sau chỉ làm việc từ file đó. Bạn tham gia ba lần.",
-  acts=[("I", "Định khung", 0, 1), ("II", "Neo vào nguồn", 2, 3), ("III", "Làm ra và chứng minh", 4, 6)],
-  sheets=[("brief.md", "Chốt yêu cầu", ["ai nghe, bao lâu,", "ngôn ngữ, loại file"], "chat"),
-          ("plan.md", "Viết mạch lập luận", ["mỗi slide, mỗi mục", "một khẳng định"], "plan"),
-          ("claims.json", "Truy từng con số", ["giá trị, số trang và", "câu gốc nguyên văn"], "ledger"),
-          ("figures/", "Vẽ từ dữ liệu", ["biểu đồ tính lại,", "hình bài báo cắt ra"], "figure"),
-          ("out/", "Ráp thành phẩm", ["HTML, PPTX, Beamer;", "Word, LaTeX, Markdown"], "deck"),
-          ("audit/", "Soát lại", ["số liệu so với câu trích,", "câu chữ và bố cục"], "audit"),
-          ("STATUS.md", "Bàn giao", ["điều đã kiểm chứng", "và điều chưa"], "deliver")],
-  you=[("Bạn mô tả", ["chủ đề và tài liệu,", "trả lời một lượt"]),
-       ("Bạn đồng ý", ["với plan.md, hoặc", "yêu cầu sửa"]),
-       ("Bạn sử dụng", ["trình bày, sửa", "hoặc nộp bài"])],
-  gate="CỔNG",
-  loop="Kiểm tra trượt thì mở lại đúng file gây lỗi · tối đa 3 vòng",
-  on_h="Luôn chạy, không cần gọi",
-  on=[("Cổng duyệt", "Chưa duyệt plan.md thì chưa tạo file slide hay bài báo."),
-      ("Truy số liệu", "Mỗi lần lưu, số nào không có nhận định đứng sau đều bị báo."),
-      ("Quét kiểu máy", "Bố cục và câu sáo kiểu máy làm bị báo ngay khi lưu."),
-      ("Soát văn bản", "Thống kê thiếu nguồn, khẳng định quá mức, dấu thập phân Việt/Anh.")],
+  title="Medskill Panda làm việc thế nào",
+  sub="Mỗi bước lưu kết quả thành một file để bạn mở ra xem. Bạn chỉ cần tham gia ba lần.",
+  acts=[("I", "Chuẩn bị", 0, 1), ("II", "Tìm bằng chứng", 2, 3), ("III", "Làm và kiểm tra", 4, 6)],
+  sheets=[("brief.md", "Xác định yêu cầu", ["người nghe, thời lượng,", "ngôn ngữ, định dạng"], "chat"),
+          ("plan.md", "Lập dàn ý", ["mỗi slide hoặc mỗi mục", "một ý chính"], "plan"),
+          ("claims.json", "Ghi nguồn số liệu", ["con số, số trang,", "câu trích nguyên văn"], "ledger"),
+          ("figures/", "Vẽ hình", ["biểu đồ từ dữ liệu,", "hình lấy từ bài báo"], "figure"),
+          ("out/", "Tạo file", ["slide: HTML, PPTX", "bài báo: Word, LaTeX"], "deck"),
+          ("audit/", "Kiểm tra", ["số liệu khớp nguồn,", "câu chữ, trình bày"], "audit"),
+          ("STATUS.md", "Báo cáo", ["phần đã kiểm chứng", "và phần chưa"], "deliver")],
+  you=[("Bạn đặt yêu cầu", ["chủ đề, tài liệu,", "trả lời vài câu hỏi"]),
+       ("Bạn duyệt dàn ý", ["đồng ý, hoặc", "yêu cầu sửa"]),
+       ("Bạn nhận kết quả", ["trình bày, chỉnh sửa", "hoặc nộp bài"])],
+  gate="DUYỆT",
+  loop="Phát hiện lỗi → quay lại sửa đúng bước gây lỗi (tối đa 3 lần)",
+  on_h="Kiểm tra tự động",
+  on=[("Chưa duyệt thì chưa làm", "Chưa duyệt dàn ý thì chưa tạo slide hay bài viết."),
+      ("Đối chiếu số liệu", "Mỗi lần lưu slide, số nào không có nguồn sẽ bị báo."),
+      ("Lọc slide rập khuôn", "Bố cục và câu chữ sáo rỗng bị báo ngay khi lưu."),
+      ("Soát bài viết", "Số liệu thiếu trích dẫn, kết luận quá đà, cách viết số thập phân.")],
  ),
 }
 ACT_COLOR = [TEAL, BLUE, RED]
@@ -160,7 +160,8 @@ def pipeline(L):
         out.append(sheet(xs[i], sy, sw, sh, fname, head, rows, ic, ACT_COLOR[k]))
     # the gate: a bar across the chain
     out.append(f'<rect x="{gate_x-5:.1f}" y="{sy-62}" width="10" height="{sh+96}" fill="{AMBER}"/>')
-    out.append(f'<rect x="{gate_x-30:.1f}" y="{cy-15}" width="60" height="30" fill="{AMBER}"/>')
+    gw = len(t["gate"]) * 10.5 + 22
+    out.append(f'<rect x="{gate_x-gw/2:.1f}" y="{cy-15}" width="{gw:.1f}" height="30" fill="{AMBER}"/>')
     out.append(text(gate_x, cy + 6, t["gate"], 14, "bold", "#FFFFFF", "middle", extra='letter-spacing="2"'))
     # the three moments that need the person: amber discs above the chain
     for (vx, (verb, rows)) in zip((xs[0] + sw / 2, gate_x, xs[6] + sw / 2), t["you"]):
@@ -193,6 +194,6 @@ def pipeline(L):
             out.append(f'<line x1="{nx-14:.1f}" y1="{oy+22}" x2="{nx-14:.1f}" y2="{oy+118}" stroke="{RULE}" stroke-width="1.2"/>')
         out.append(icon(ON_ICON[k], nx, oy + 26, INK, 26))
         out.append(text(nx + 36, oy + 46, h, 16, "bold", INK))
-        out.append(lines(nx, oy + 78, wrap(body, 44), 14.5, 20, color=MUTE))
+        out.append(lines(nx, oy + 78, wrap(body, 52), 14.5, 20, color=MUTE))
     out.append("</svg>")
     return f'<div id="pipeline" style="width:{W}px;background:{PAPER}">' + "".join(out) + "</div>"
