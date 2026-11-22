@@ -296,6 +296,18 @@ number, for instance). The plugin leaves it visible on purpose instead of invent
 
 *A sample manuscript: English and Vietnamese abstracts, a table from the data, and the `[MISSING]` gap the audit points out.*
 
+### 9.4. From paper to talk or poster
+
+When the paper is drafted, turn it into slides or a poster that use **the same numbers**:
+
+```text
+/medskill-panda:paper-to-deck
+```
+
+The plugin reads the paper's evidence ledger, asks only what a talk adds (event, audience,
+duration, format), and imports every claim with its source and quote. A number on a slide that
+is not in the paper is flagged the moment the slide is saved.
+
 ## 10. Carry on the next day
 
 Open a terminal, go back to the same folder and start `claude`:

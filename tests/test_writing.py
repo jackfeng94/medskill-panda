@@ -20,7 +20,7 @@ import lint_prose  # noqa: E402
 
 HAS_DOCX = importlib.util.find_spec("docx") is not None
 CLI_SKILLS = ("scientific-writing", "literature-review", "research-lookup", "citation-management",
-              "peer-review", "venue-templates", "hypothesis-generation", "scholar-evaluation")
+              "peer-review", "venue-templates", "hypothesis-generation")
 
 
 def run_lint(text: str, suffix: str = ".md", *args: str) -> list[dict]:

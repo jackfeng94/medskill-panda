@@ -294,6 +294,18 @@ Chỗ nào ghi `[MISSING: …]` là thông tin **chỉ bạn mới điền đư�
 
 *Bản thảo mẫu: tóm tắt tiếng Anh và tiếng Việt, bảng từ dữ liệu, và chỗ `[MISSING]` mà bộ kiểm tra chỉ ra.*
 
+### 9.4. Từ bài báo ra slide hoặc poster
+
+Khi bài báo đã viết xong, chuyển nó thành slide hoặc poster dùng **cùng số liệu**:
+
+```text
+/medskill-panda:paper-to-deck
+```
+
+Plugin đọc sổ bằng chứng của bài báo, chỉ hỏi thêm những gì bài nói cần (sự kiện, người nghe,
+thời lượng, định dạng), rồi nhập mọi nhận định kèm nguồn và câu trích. Con số nào trên slide không
+có trong bài báo sẽ bị báo ngay khi slide được lưu.
+
 ## 10. Làm tiếp vào hôm sau
 
 Mở terminal, vào lại đúng thư mục, chạy `claude`:

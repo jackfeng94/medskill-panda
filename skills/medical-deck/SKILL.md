@@ -41,6 +41,10 @@ it as you go; it is how a later session resumes. Write `done, approved` on the P
 only after the user says yes to `plan.md`: on Claude Code a hook keeps `build/` and `out/`
 closed until then.
 
+When the talk presents the user's own manuscript written with scientific-writing, use the
+`/medskill-panda:paper-to-deck` route: `scripts/manuscript_to_evidence.py` imports the paper's
+claims into `evidence/`, so the slides reuse its numbers.
+
 Stage 4 still runs when the user supplies the paper: their PDF becomes the source, and
 claims are extracted from it with page/table/figure locators. Search only fills gaps.
 

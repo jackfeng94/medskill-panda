@@ -94,6 +94,37 @@ def close(a: float, b: float) -> bool:
     return abs(a - b) <= 1e-9 * max(1.0, abs(a), abs(b))
 
 
+def slide_findings(slides: list[dict], claims: list[dict], include_figures: bool = False,
+                   include_notes: bool = False) -> list[tuple[str, str]]:
+    """UNSUPPORTED and ELSEWHERE findings for the numbers shown on each slide.
+
+    Also used by the plugin's save hook, so a number without a claim is flagged the moment the
+    slide is written, not only at the audit.
+    """
+    by_slide: dict[int | None, list[float]] = {}
+    for c in claims:
+        vals = []
+        for v in c.get("values", []):
+            vals += [n for _, n in numbers(str(v), keep_small=True)]
+        by_slide.setdefault(c.get("slide"), []).extend(vals)
+    unmapped = by_slide.get(None, [])
+
+    findings: list[tuple[str, str]] = []
+    for s in slides:
+        text = (s["text"] if include_figures else s.get("text_nosvg", s["text"])) + \
+            (" " + s["notes"] if include_notes else "")
+        own = by_slide.get(s["index"], []) + unmapped
+        for tok, v in numbers(text):
+            if any(close(v, x) for x in own):
+                continue
+            other = [k for k, xs in by_slide.items() if k not in (s["index"], None) and any(close(v, x) for x in xs)]
+            if other:
+                findings.append(("ELSEWHERE", f"slide {s['index']}: '{tok}' is in a claim for slide(s) {other}"))
+            else:
+                findings.append(("UNSUPPORTED", f"slide {s['index']}: '{tok}' has no claim"))
+    return findings
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("deck")
@@ -110,26 +141,7 @@ def main(argv=None) -> int:
     if a.refs:
         refs = {r["id"] for r in json.loads(Path(a.refs).read_text(encoding="utf-8")).get("references", [])}
 
-    by_slide: dict[int | None, list[float]] = {}
-    for c in claims:
-        vals = []
-        for v in c.get("values", []):
-            vals += [n for _, n in numbers(str(v), keep_small=True)]
-        by_slide.setdefault(c.get("slide"), []).extend(vals)
-    unmapped = by_slide.get(None, [])
-
-    findings: list[tuple[str, str]] = []
-    for s in slides:
-        text = (s["text"] if a.include_figures else s.get("text_nosvg", s["text"])) +             (" " + s["notes"] if a.include_notes else "")
-        own = by_slide.get(s["index"], []) + unmapped
-        for tok, v in numbers(text):
-            if any(close(v, x) for x in own):
-                continue
-            other = [k for k, xs in by_slide.items() if k not in (s["index"], None) and any(close(v, x) for x in xs)]
-            if other:
-                findings.append(("ELSEWHERE", f"slide {s['index']}: '{tok}' is in a claim for slide(s) {other}"))
-            else:
-                findings.append(("UNSUPPORTED", f"slide {s['index']}: '{tok}' has no claim"))
+    findings = slide_findings(slides, claims, a.include_figures, a.include_notes)
 
     for c in claims:
         cid = c.get("id", "?")
