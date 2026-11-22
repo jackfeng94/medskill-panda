@@ -40,7 +40,7 @@ computer. Once installed, you type a request in plain English or Vietnamese, for
 Papers, theses and protocols follow the same steps, producing Word, LaTeX or Markdown in
 English, Vietnamese or both.
 
-![How it works](../assets/pipeline.91dcddf5.png)
+![How it works](../assets/pipeline.a77c00e4.png)
 
 ## 2. What you need
 
