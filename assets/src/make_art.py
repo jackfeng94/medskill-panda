@@ -4,6 +4,9 @@
     node assets/src/shoot.js <out-dir>/art_en.html <out-dir>/en 2
     node assets/src/shoot.js <out-dir>/art_vi.html <out-dir>/vi 2
 
+Then publish under content-hashed names (updates README.md, README.vi.md, docs/*.md):
+    python assets/src/publish_art.py <out-dir>      (expects hi-en-*.png and hi-vi-*.png at scale 2)
+
 shoot.js writes <prefix>-pipeline.png, <prefix>-slides.png and <prefix>-manuscript.png; copy
 them to assets/pipeline(.vi).png, assets/example-slides(.vi).png and
 assets/example-manuscript(.vi).png. The example images embed real output from

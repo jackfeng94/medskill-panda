@@ -2,13 +2,20 @@
 
 ## Unreleased
 
+- Ảnh README và hướng dẫn mang mã nội dung trong tên (`pipeline.vi.1069afb3.png`…), do
+  `assets/src/publish_art.py` tạo và tự cập nhật đường dẫn: đổi ảnh là đổi tên, nên trình duyệt
+  và GitHub không còn hiện bản cũ. Test bảo đảm mọi ảnh đều có mã và đều được dùng.
+- Hướng dẫn A–Z có thêm ảnh ở các bước: kết quả slide HTML và PowerPoint, các loại biểu đồ, bản
+  thảo mẫu.
 - Ảnh README theo phong cách đồ hoạ tạp chí: sơ đồ quy trình có dải màu theo giai đoạn, biểu tượng
   nét mảnh, tiêu đề chữ có chân, ngoặc nhóm ba giai đoạn; ảnh ví dụ thành các "plate" kiểu hình
   trong bài báo (cột chú thích, slide lớn kèm ảnh nhỏ, trang bản thảo có chú thích đánh số, biểu đồ
   gắn nhãn A–H). Không bo góc, không đổ bóng, không nền chuyển màu.
 - Slide tiêu đề của ví dụ có đường Kaplan–Meier thật thay cho khoảng trống.
-- `pptx_from_spec.py`: tuỳ chọn `theme.corners: "square"` cho ô sơ đồ góc vuông, không bóng
-  (mặc định vẫn bo góc).
+- `pptx_from_spec.py`, sơ đồ (`diagram`): kiểu mặc định mới, ô vuông viền mảnh, dải màu nhấn ở
+  đầu ô, dòng đầu in đậm cùng màu, chữ căn trái, không bóng, đường nối mảnh màu xám; kiểu bo góc
+  cũ vẫn có qua `theme.corners: "rounded"`. Sửa lỗi đường nối vào hình tròn (ô ngẫu nhiên hoá) đi
+  chéo vì dùng sai điểm nối.
 - Hướng dẫn từ A đến Z cho người mới (`docs/HUONG-DAN.md`, `docs/GUIDE.md`): cài Claude Code,
   đăng nhập, cài plugin, làm bài thuyết trình đầu tiên, kiểm tra slide, viết bài báo, làm tiếp,
   cập nhật, xử lý sự cố, thuật ngữ; liên kết từ đầu hai README.

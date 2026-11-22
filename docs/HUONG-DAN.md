@@ -40,7 +40,7 @@ tính của bạn. Sau khi cài, bạn chỉ cần gõ yêu cầu bằng tiếng
 Với bài báo, luận văn, đề cương, quy trình tương tự nhưng đầu ra là file Word, LaTeX hoặc
 Markdown, bằng tiếng Việt, tiếng Anh hoặc song ngữ.
 
-![Quy trình](../assets/pipeline.vi.png)
+![Quy trình](../assets/pipeline.vi.1069afb3.png)
 
 ## 2. Cần chuẩn bị gì
 
@@ -203,6 +203,14 @@ Mọi thứ nằm trong một thư mục con mang tên bài nói, ví dụ `bai-
 
 Mở thư mục nhanh từ terminal: macOS `open .`, Windows `explorer .`.
 
+![Ví dụ bộ slide HTML](../assets/example-slides.vi.92fee725.png)
+
+*Ví dụ bộ slide HTML do plugin dựng từ dữ liệu mô phỏng (thư mục `examples/demo-hf`).*
+
+![Ví dụ bộ slide PowerPoint](../assets/example-pptx.vi.a833d2d6.png)
+
+*Cùng bài nói dưới dạng PowerPoint trong template: sơ đồ và biểu đồ sửa được.*
+
 **Trình chiếu file HTML:**
 
 | Phím | Tác dụng |
@@ -220,6 +228,10 @@ Mở thư mục nhanh từ terminal: macOS `open .`, Windows `explorer .`.
 
 Cứ nói bằng lời: *"Slide 6 nhiều chữ quá, rút còn 3 ý"*, *"Đổi biểu đồ cột thành forest
 plot"*, *"Thêm slide tài liệu tham khảo"*. Plugin sửa đúng bước liên quan và kiểm tra lại.
+
+Các loại biểu đồ plugin vẽ từ dữ liệu, bạn có thể gọi tên khi yêu cầu sửa:
+
+![Các loại biểu đồ](../assets/chart-gallery.vi.9347c0c3.png)
 
 ## 8. Kiểm tra một bộ slide có sẵn
 
@@ -277,6 +289,10 @@ không tự sửa bản thảo; nó đề xuất và chỉ sửa những gì b�
 
 Chỗ nào ghi `[MISSING: …]` là thông tin **chỉ bạn mới điền được** (ví dụ số quyết định của hội
 đồng đạo đức). Plugin cố ý để lộ, không bịa.
+
+![Ví dụ bản thảo](../assets/example-manuscript.vi.8dc2e4cb.png)
+
+*Bản thảo mẫu: tóm tắt tiếng Anh và tiếng Việt, bảng từ dữ liệu, và chỗ `[MISSING]` mà bộ kiểm tra chỉ ra.*
 
 ## 10. Làm tiếp vào hôm sau
 

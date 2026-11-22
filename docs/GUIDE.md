@@ -40,7 +40,7 @@ computer. Once installed, you type a request in plain English or Vietnamese, for
 Papers, theses and protocols follow the same steps, producing Word, LaTeX or Markdown in
 English, Vietnamese or both.
 
-![How it works](../assets/pipeline.png)
+![How it works](../assets/pipeline.91dcddf5.png)
 
 ## 2. What you need
 
@@ -202,6 +202,14 @@ Everything is in a sub-folder named after the talk, e.g. `talks/dapa-hf/`:
 
 Open the folder from the terminal: macOS `open .`, Windows `explorer .`.
 
+![Example HTML deck](../assets/example-slides.217943b8.png)
+
+*An HTML deck built by the plugin from simulated data (folder `examples/demo-hf`).*
+
+![Example PowerPoint deck](../assets/example-pptx.9f2e0731.png)
+
+*The same talk as a PowerPoint inside a template: diagrams and charts stay editable.*
+
 **Presenting the HTML deck:**
 
 | Key | Does |
@@ -220,6 +228,10 @@ Open the folder from the terminal: macOS `open .`, Windows `explorer .`.
 Just say it: *"Slide 6 has too much text, cut it to three points"*, *"Turn the bar chart into a
 forest plot"*, *"Add a references slide"*. The plugin redoes only the affected step and checks
 again.
+
+The chart types the plugin draws from data, which you can name when asking for a change:
+
+![Chart types](../assets/chart-gallery.013f1797.png)
 
 ## 8. Check an existing deck
 
@@ -279,6 +291,10 @@ and applies only those you accept, as a new version.
 
 Anything marked `[MISSING: …]` is information **only you can supply** (an ethics approval
 number, for instance). The plugin leaves it visible on purpose instead of inventing it.
+
+![Example manuscript](../assets/example-manuscript.567a77b3.png)
+
+*A sample manuscript: English and Vietnamese abstracts, a table from the data, and the `[MISSING]` gap the audit points out.*
 
 ## 10. Carry on the next day
 

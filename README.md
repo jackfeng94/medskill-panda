@@ -20,7 +20,7 @@ protocols and posters in English, Vietnamese or both.
 
 **New to the terminal or Claude Code? Start with the [step-by-step guide](docs/GUIDE.md).**
 
-<img src="assets/example-slides.png" alt="Six slides of the DEMO-HF example HTML deck: title, trial flow, Kaplan–Meier curve, subgroup forest plot, quality of life, absolute effect" width="100%">
+<img src="assets/example-slides.217943b8.png" alt="Six slides of the DEMO-HF example HTML deck: title, trial flow, Kaplan–Meier curve, subgroup forest plot, quality of life, absolute effect" width="100%">
 
 <sub>A real deck built by the plugin from simulated data (<a href="examples/demo-hf/">examples/demo-hf</a>): assertion titles, figures drawn from the data, a source line on every slide, 0 slop findings.</sub>
 
@@ -44,7 +44,7 @@ protocols and posters in English, Vietnamese or both.
 ## How it works
 
 <div align="center">
-<img src="assets/pipeline.png" alt="How Medskill Panda works: inputs, a shared spine of brief, plan and evidence ledger, then a slides lane and a writing lane, one audit, and delivery with the project folder" width="100%">
+<img src="assets/pipeline.91dcddf5.png" alt="How Medskill Panda works: inputs, a shared spine of brief, plan and evidence ledger, then a slides lane and a writing lane, one audit, and delivery with the project folder" width="100%">
 </div>
 
 Slides and manuscripts share one evidence spine: the same brief, the same approved plan and
@@ -68,7 +68,7 @@ PowerPoint (inside your template, with native editable charts) and LaTeX Beamer 
 defences and equation-heavy talks).
 
 <div align="center">
-<img src="assets/example-pptx.png" alt="The same talk as an editable PowerPoint inside a branded template: title slide, native trial diagram, Kaplan–Meier curve, forest plot, native line chart, big numbers" width="100%">
+<img src="assets/example-pptx.9f2e0731.png" alt="The same talk as an editable PowerPoint inside a branded template: title slide, native trial diagram, Kaplan–Meier curve, forest plot, native line chart, big numbers" width="100%">
 </div>
 
 ## Install
@@ -137,7 +137,7 @@ writing request follows the same principles as the slides:
    links, reporting guideline and authorship.
 
 <div align="center">
-<img src="assets/example-manuscript.png" alt="Example manuscript page with an English abstract and a Vietnamese abstract, next to the lint_prose result" width="100%">
+<img src="assets/example-manuscript.567a77b3.png" alt="Example manuscript page with an English abstract and a Vietnamese abstract, next to the lint_prose result" width="100%">
 </div>
 
 ## Charts
@@ -147,7 +147,7 @@ evidence ledger or the authors' data, saved as SVG for HTML or PowerPoint decks 
 manuscripts, and labelled in the deck's language (`0.75` in English, `0,75` in Vietnamese).
 
 <div align="center">
-<img src="assets/chart-gallery.png" alt="Eight chart types: Kaplan–Meier curve with numbers at risk, forest plot, CONSORT flow diagram, line chart with confidence bands, grouped bars with confidence intervals, box plot with individual points, stacked bars of NYHA class, ROC curve" width="100%">
+<img src="assets/chart-gallery.013f1797.png" alt="Eight chart types: Kaplan–Meier curve with numbers at risk, forest plot, CONSORT flow diagram, line chart with confidence bands, grouped bars with confidence intervals, box plot with individual points, stacked bars of NYHA class, ROC curve" width="100%">
 </div>
 
 <sub>All eight are drawn from simulated data by <a href="examples/demo-hf/make_charts.py">examples/demo-hf/make_charts.py</a>; the Vietnamese versions are in <code>examples/demo-hf/out/charts/vi/</code>.</sub>

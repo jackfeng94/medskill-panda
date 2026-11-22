@@ -350,47 +350,82 @@ class Builder:
             for r in p.runs:
                 self.font(r, self.theme["type_pt"]["small"] + 2, header, "#FFFFFF" if header else "ink")
 
+    # node style -> (fill, accent): accent colours the top band, the first line and the border
+    NODE_STYLES = {"default": ("#FFFFFF", "primary"), "int": ("#FCF1EF", "intervention"),
+                   "ctl": ("#F2F4F7", "control"), "primary": ("primary", "primary"), "muted": ("#F6F7F8", "muted")}
+    # python-pptx connection sites: rectangles have 4 (top, left, bottom, right), ovals have 8
+    OVAL_SITE = {0: 0, 1: 2, 2: 4, 3: 6}
+
     def s_diagram(self, s, idx):
+        """Trial schemas, flows and algorithms as native, editable shapes.
+
+        Default look (theme.corners = "square"): flat rectangles with a thin border, a narrow accent band
+        on top, the first line bold in the accent colour, text left-aligned, no shadows, thin grey
+        connectors. theme.corners = "rounded" gives rounded boxes without the band.
+        """
         self.cur = self.prs.slides.add_slide(self.layout("content", s.get("layout")))
         x, y, w, h = self.content_box(self.title(s))
         self._clear_body_placeholders()
-        shapes = {}
-        styles = {"default": ("#FFFFFF", "primary", "ink"), "int": ("#FBEAE8", "intervention", "ink"),
-                  "ctl": ("#EEF1F5", "control", "ink"), "primary": ("primary", "primary", "#FFFFFF"),
-                  "muted": ("#F4F5F7", "line", "muted")}
+        rounded = self.theme.get("corners", "square") == "rounded"
+        shapes, ovals = {}, set()
+        band_h = Inches(0.07)
         for n in s.get("nodes", []):
-            fill, line, ink = styles.get(n.get("style", "default"), styles["default"])
-            square = self.theme.get("corners", "rounded") == "square"
-            kind = (MSO_SHAPE.OVAL if n.get("shape") == "circle"
-                    else MSO_SHAPE.RECTANGLE if square else MSO_SHAPE.ROUNDED_RECTANGLE)
-            shp = self.cur.shapes.add_shape(kind, x + int(w * n["x"]), y + int(h * n["y"]), int(w * n["w"]), int(h * n["h"]))
-            if square:  # flat look: no rounded corners, no inherited shadow
-                shp.shadow.inherit = False
+            style = n.get("style", "default")
+            fill, accent = self.NODE_STYLES.get(style, self.NODE_STYLES["default"])
+            circle = n.get("shape") == "circle"
+            kind = MSO_SHAPE.OVAL if circle else MSO_SHAPE.ROUNDED_RECTANGLE if rounded else MSO_SHAPE.RECTANGLE
+            nx, ny, nw, nh = x + int(w * n["x"]), y + int(h * n["y"]), int(w * n["w"]), int(h * n["h"])
+            shp = self.cur.shapes.add_shape(kind, nx, ny, nw, nh)
             shp.name = f"Node {n['id']}"
+            shp.shadow.inherit = False
             shp.fill.solid()
             shp.fill.fore_color.rgb = self.color(fill)
-            shp.line.color.rgb = self.color(line)
-            shp.line.width = Pt(1.75)
+            filled = style == "primary"
+            if filled:
+                shp.line.fill.background()
+            else:
+                shp.line.color.rgb = self.color(accent if style in ("int", "ctl") else "line")
+                shp.line.width = Pt(1)
             if kind == MSO_SHAPE.ROUNDED_RECTANGLE:
-                shp.adjustments[0] = 0.12
+                shp.adjustments[0] = 0.08
+            if circle:
+                ovals.add(n["id"])
+            elif not rounded and not filled:  # accent band along the top edge
+                band = self.cur.shapes.add_shape(MSO_SHAPE.RECTANGLE, nx, ny, nw, band_h)
+                band.name = f"Accent {n['id']}"
+                band.shadow.inherit = False
+                band.fill.solid()
+                band.fill.fore_color.rgb = self.color(accent)
+                band.line.fill.background()
             tf = shp.text_frame
             tf.word_wrap = True
-            tf.margin_left = tf.margin_right = Inches(0.12)
+            tf.margin_left = tf.margin_right = Inches(0.14)
+            tf.margin_top = Inches(0.12)
+            center = circle or filled or n.get("align", "left") == "center"
             lines = n["text"] if isinstance(n["text"], list) else [n["text"]]
+            size = n.get("size", self.theme["type_pt"]["small"] + 2)
             for i, line in enumerate(lines):
                 p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
-                p.alignment = PP_ALIGN.CENTER if n.get("align", "center") == "center" else PP_ALIGN.LEFT
+                p.alignment = PP_ALIGN.CENTER if center else PP_ALIGN.LEFT
                 r = p.add_run()
                 r.text = line
-                self.font(r, n.get("size", self.theme["type_pt"]["small"] + 2), i == 0 and n.get("bold_first", True), ink)
+                first = i == 0 and n.get("bold_first", True)
+                color = "#FFFFFF" if filled else (accent if first else "ink")
+                self.font(r, size, first, color)
             shapes[n["id"]] = shp
         for e in s.get("edges", []):
             a, b = shapes[e["from"]], shapes[e["to"]]
+            fs, ts = e.get("from_side", 3), e.get("to_side", 1)
             con = self.cur.shapes.add_connector(MSO_CONNECTOR.ELBOW if e.get("elbow") else MSO_CONNECTOR.STRAIGHT, 0, 0, 0, 0)
-            con.begin_connect(a, e.get("from_side", 3))
-            con.end_connect(b, e.get("to_side", 1))
-            con.line.color.rgb = self.color("primary")
-            con.line.width = Pt(2)
+            # python-pptx places the ends with the 4 rectangle sites (the same points on a circle's
+            # bounding box); the site index PowerPoint re-routes by is then set for the oval's 8 sites
+            con.begin_connect(a, fs)
+            con.end_connect(b, ts)
+            for node, tag, side in ((e["from"], "a:stCxn", fs), (e["to"], "a:endCxn", ts)):
+                if node in ovals:
+                    con._element.find(".//" + qn(tag)).set("idx", str(self.OVAL_SITE.get(side, side)))
+            con.line.color.rgb = self.color("muted")
+            con.line.width = Pt(1.5)
             ln = con.line._get_or_add_ln()
             tail = etree.SubElement(ln, qn("a:tailEnd"))
             tail.set("type", "triangle")
